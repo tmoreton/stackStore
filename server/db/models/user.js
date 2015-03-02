@@ -1,10 +1,14 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+var product = require('./product.js');
+var orders = require('./orders.js');
 
 var schema = new mongoose.Schema({
     email: {
-        type: String
+        type: String,
+        required: true,
+        unique: true
     },
     password: {
         type: String
@@ -23,7 +27,9 @@ var schema = new mongoose.Schema({
     },
     google: {
         id: String
-    }
+    },
+    admin: { type:Boolean, default: false },
+    orders: [{type: mongoose.Schema.Types.ObjectId, ref: "Order"}]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
