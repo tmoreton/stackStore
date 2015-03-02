@@ -1,7 +1,7 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
-var product = require('./product.js');
+var product = require('./sandwich.js');
 var orders = require('./orders.js');
 
 var schema = new mongoose.Schema({

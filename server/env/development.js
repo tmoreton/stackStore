@@ -1,10 +1,10 @@
 module.exports = {
-  "DATABASE_URI": "mongodb://localhost:27017/my-app",
+  "DATABASE_URI": "mongodb://localhost:27017/stackStore",
   "SESSION_SECRET": "Optimus Prime is my real dad",
   "TWITTER": {
     "consumerKey": "ZVQ2NZscYX1aa6nZI81Fg8HBg",
     "consumerSecret": "FkNrAsPhXVwr1qKgV5fSMGtuTsQNoWqybHlkKFf4g6FG1n4J1V",
-    "callbackUrl": "http://127.0.0.1:1337/auth/twitter/callback"
+    "callbackUrl": "https://127.0.0.1:1337/auth/twitter/callback"
   },
   "FACEBOOK": {
     "clientID": "336560806541655",

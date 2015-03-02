@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Product = require('./product.js');
+var Sandwich = require('./sandwich.js');
 var User = require('./user.js')
 
 var schema = new mongoose.Schema({
@@ -7,7 +7,7 @@ var schema = new mongoose.Schema({
     type: String,
     required: true
   },
-  product: [{type: mongoose.Schema.Types.ObjectId, ref: "Product"}],
+  sandwich: [{type: mongoose.Schema.Types.ObjectId, ref: "Sandwich"}],
   user: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
 });
 

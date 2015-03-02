@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    title: {
+    name: {
         type: String,
         required: true,
         unique: true
@@ -18,7 +18,9 @@ var schema = new mongoose.Schema({
     },
     image: {
         url: String
-    }
+    },
+    fillings: [String],
+    bread: String
     // id: {
     //     type: String,
     //     unique: true
@@ -33,9 +35,9 @@ function setPrice(num){
     return num*100;
 }
 
-var Product = mongoose.model('Product', schema);
+var Sandwich = mongoose.model('Sandwich', schema);
 
 module.exports = {
-    Product: Product,
-    productSchema: schema
+    Sandwich: Sandwich,
+    sandwichSchema: schema
 };

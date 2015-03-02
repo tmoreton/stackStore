@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
-var product = require('./product.js')
+var Product = require('./sandwich.js')
 
 var schema = new mongoose.Schema({
-    products: [{type: mongoose.Schema.Types.ObjectId, ref: "Product"}]
+    sandwiches: [{type: mongoose.Schema.Types.ObjectId, ref: "Sandwich"}]
 });
 
 var Order = mongoose.model('Orders', schema);
 
 module.exports = {
-    Order: Order,
-    OrderSchema: schema
+    Order: Order
+    // OrderSchema: schema
 };
