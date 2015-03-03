@@ -7,4 +7,13 @@
 		<option value=''>Choose a type of bread</option>
 	</select>
 	<h1 ng-show="breadType">{{breadType}} is an excellent choice.</h1>
+
+	<h2>Choose your sandwich filling</h2>
+	<span ng-repeat="filling in fillings">
+		<label for="{{filling}}">
+			<input type="checkbox" value="{{filling}}" ng-model="selectedFillings" />
+			{{filling}}
+		</label>
+	</span>
+
 </div>

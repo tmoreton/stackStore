@@ -11,6 +11,7 @@ app.config(function ($stateProvider) {
 
 app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) {
 	$scope.bread = BreadFillings.bread;
+	$scope.fillings = BreadFillings.fillings;
 	console.log('in controller');
 	$scope.breadChosen =  function() {
 	    SandwichesFactory.addNewSandwich($scope.breadType).then( function(response) {
