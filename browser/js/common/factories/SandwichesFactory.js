@@ -12,7 +12,7 @@ app.factory('SandwichesFactory', function ($http) {
         },
 
         addNewSandwich: function(sandwich) {
-            return $http.post('/sadwiches', sandwich);
+            return $http.post('/sandwiches', sandwich);
         }
     }
 
