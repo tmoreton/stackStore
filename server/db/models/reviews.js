@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Sandwich = require('./sandwich.js');
-var User = require('./user.js')
+var User = require('./user.js');
 
 var schema = new mongoose.Schema({
   description: {

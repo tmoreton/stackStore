@@ -5,13 +5,22 @@ var product = require('./sandwich.js');
 var orders = require('./orders.js');
 
 var schema = new mongoose.Schema({
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
         unique: true
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
     salt: {
         type: String
@@ -62,4 +71,7 @@ schema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
-mongoose.model('User', schema);
+var User = mongoose.model('User', schema);
+module.exports = {
+    User: User
+};

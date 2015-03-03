@@ -1,10 +1,10 @@
 'use strict';
 app.factory('AddUser', function ($http) {
-  console.log("add user is called")
     return {
-        AddUser: function () {
-            return $http.post("/signup").then(function(response){
-                console.log("responsedata:",response.data)
+        AddUser: function (postBody) {
+          console.log("add user is called")
+            return $http.post('/api/signup/', postBody).then(function(response){
+                console.log("response",response)
                 return response.data
             })
         }
