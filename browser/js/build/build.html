@@ -1,0 +1,10 @@
+<div class="container text-center">
+	<h2>Make your own sandwich</h2>
+	<select 
+	ng-model="breadType" 
+	ng-options="type for type in bread"
+	ng-change="breadChosen()">
+		<option value=''>Choose a type of bread</option>
+	</select>
+	<h1 ng-show="breadType">{{breadType}} is an excellent choice.</h1>
+</div>
