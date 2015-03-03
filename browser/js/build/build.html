@@ -1,0 +1,29 @@
+<div class="container text-center build">
+	<h2>Choose your bread</h2>
+	<select 
+	ng-model="breadType" 
+	ng-options="type for type in bread">
+		<option value=''>Choose a type of bread</option>
+	</select>
+	<h1 ng-show="breadType">{{breadType}} is an excellent choice.</h1>
+
+	<h2>Choose your sandwich filling</h2>
+	<div class="row">
+	<div class="col-md-3" ng-repeat="filling in fillings | orderBy">
+		<label for="{{filling}}">
+			{{filling}}
+			<input type="checkbox" value="{{filling}}" ng-model="selectedFillings" />
+		</label>
+	</div>
+	<div class="clearfix" ng-if="$index%4==3"></div>
+	<div ng-repeat-end=""></div>
+	</div>
+
+	<h2>Describe your sandwich</h2>
+	<textarea class="form-control" rows="3" placeholder="Give your sandwich a narrative" ng-model="describeSandwich"></textarea>
+
+	<h2>Finally, give your sandwich a name!</h2>
+	<input type="text" class="form-control" placeholder="Name your sandwich" ng-model="nameSandwich">
+
+
+</div>
