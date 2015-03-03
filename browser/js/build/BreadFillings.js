@@ -28,6 +28,7 @@ app.factory('BreadFillings', function () {
        'Onions',
        'Bell Peppers',
        'Spinach',
+       'Portobello Mushroom',
        'Kale',
        'Hummus',
        'Peanut Butter',

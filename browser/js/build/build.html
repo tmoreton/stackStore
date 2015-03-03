@@ -1,5 +1,5 @@
 <div class="container text-center">
-	<h2>Make your own sandwich</h2>
+	<h2>Choose your bread</h2>
 	<select 
 	ng-model="breadType" 
 	ng-options="type for type in bread"
@@ -9,11 +9,18 @@
 	<h1 ng-show="breadType">{{breadType}} is an excellent choice.</h1>
 
 	<h2>Choose your sandwich filling</h2>
-	<span ng-repeat="filling in fillings">
+	<div class="row">
+	<div class="col-md-3" ng-repeat="filling in fillings | orderBy">
 		<label for="{{filling}}">
-			<input type="checkbox" value="{{filling}}" ng-model="selectedFillings" />
 			{{filling}}
+			<input type="checkbox" value="{{filling}}" ng-model="selectedFillings" />
 		</label>
-	</span>
+	</div>
+	<div class="clearfix" ng-if="$index%4==3"></div>
+	<div ng-repeat-end=""></div>
+	</div>
+	
+	<h2>Describe your sandwich</h2>
+	<textarea
 
 </div>
