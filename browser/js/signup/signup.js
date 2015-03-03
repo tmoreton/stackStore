@@ -17,9 +17,3 @@ app.controller('SignupCtrl', function ($scope, AddUser) {
   }
 });
 
-
-// app.controller('SignupCtrl', ['$scope', '$http', function($scope, $http){
-//   $scope.signup = function(){
-//     $http.post('/signup').then
-//   }
-// }])
