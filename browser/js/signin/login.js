@@ -9,13 +9,15 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, checkuser) {
+app.controller('LoginCtrl', function ($scope, checkuser, $state) {
 
   $scope.checkuser = function(){
+    $scope.authorizedUser = ''
     console.log("checkuser is happening")
     console.log($scope.user)
     checkuser.checkuser($scope.user).then(function(user){
         $scope.authorizedUser = user
+        $state.go('success');
     });
     console.log("authorizedUser", $scope.authorizedUser)
   }
