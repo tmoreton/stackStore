@@ -10,5 +10,5 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('SignupCtrl', function ($scope, AddUser) {
-  $scope.signup() = AddUser.AddUser();
+  $scope.signup() = AddUser();
 });
