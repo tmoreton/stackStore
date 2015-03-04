@@ -8,7 +8,7 @@ app.factory('BreadFillings', function () {
         'Rye',
         'Brioche',
         'Baguette',
-        'Wrap',
+        'Lettuce Wrap',
         'Pumpernickel',
         'Ciabatta',
         'Multigrain',

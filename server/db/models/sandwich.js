@@ -12,7 +12,7 @@ var schema = new mongoose.Schema({
     },
     price: {
         type: Number,
-        required: true,
+        //required: true,
         get: getPrice,
         set: setPrice
     },
@@ -20,7 +20,10 @@ var schema = new mongoose.Schema({
         url: String
     },
     fillings: [String],
-    bread: String
+    bread: {
+        type: String,
+        required: true,
+    }
     // id: {
     //     type: String,
     //     unique: true
