@@ -16,10 +16,14 @@ app.controller('LoginCtrl', function ($scope, checkuser, $state, AuthService) {
             console.log("checkuser is happening")
             console.log($scope.user)
             checkuser.checkuser($scope.user).then(function(user){
-                if(AuthService.isAuthenticated) {
+                if(user) {
+                    console.log("authornot")
                     $state.go('success');   
                 } 
-            });
-            console.log("authorizedUser", $scope.authorizedUser)
+            }).catch(function(err){
+                $state.go('home')
+                console.log(err)
+            })
+
           }
 });

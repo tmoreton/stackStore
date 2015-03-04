@@ -23,7 +23,6 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('SuccessCtrl', function($scope, getLoggedInUser, $state){
+	$scope.ifLoggedIn = true;
 	$scope.user = getLoggedInUser;
-	
-
 });

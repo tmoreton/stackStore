@@ -9,10 +9,9 @@ app.controller('MainController', function ($scope, AuthService) {
         { label: 'Login/Signup', state: 'signup' },
         { label: 'Build Sandwich', state: 'build'}
     ];
-    $scope.test = "test";
 
     $scope.userLogout = function() {
-        console.log("is this being called?");
+        console.log("User has successfully logged out.");
         return AuthService.logout()
     };
 
