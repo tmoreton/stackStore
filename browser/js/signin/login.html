@@ -6,11 +6,13 @@
     <div class="col-md-4">
     <h1 ng-show="authorizedUser">Hello {{authorizedUser.user.firstName}} Make A Sammich!</h1>
       <h2 class="form-signin-heading">Login Here</h2>
+
         <form class="form-signin">
           <input type="email" class="form-control" placeholder="Email address" ng-model="user.email" required><br>
           <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required><br>
           <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="checkuser()">Login</button>
         </form>
+      <h2 ng-show="tryAgain">{{tryAgain}}</h2>
 
     </div>
 

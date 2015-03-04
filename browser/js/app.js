@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt']);
 
-app.controller('MainController', function ($scope) {
+app.controller('MainController', function ($scope, AuthService) {
 
     // Given to the <navbar> directive to show the menu.
     $scope.menuItems = [
@@ -9,6 +9,12 @@ app.controller('MainController', function ($scope) {
         { label: 'Login/Signup', state: 'signup' },
         { label: 'Build Sandwich', state: 'build'}
     ];
+
+    $scope.userLogout = function() {
+        console.log("User has successfully logged out.");
+        return AuthService.logout()
+    };
+
 });
 
 

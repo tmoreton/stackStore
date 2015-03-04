@@ -1,11 +1,9 @@
 'use strict';
-app.factory('checkuser', function ($http) {
+app.factory('checkuser', function ($http, AuthService) {
     return {
         checkuser: function (postBody) {
-          console.log("check user is called")
-            return $http.post('/login/', postBody).then(function(response){
-                return response.data
-            })
+          console.log("check user is called");
+          return AuthService.login(postBody);
         }
     };
 

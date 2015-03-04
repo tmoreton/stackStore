@@ -4,8 +4,11 @@
             <fullstack-logo></fullstack-logo>
         </div>
         <ul class="nav navbar-nav">
-            <li ng-repeat="item in items">
+            <li ng-repeat="item in menuItems">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+            </li>
+            <li>
+                <a ui-sref="home" ng-click="userLogout()">Logout</a>
             </li>
         </ul>
     </div>

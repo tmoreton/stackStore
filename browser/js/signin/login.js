@@ -9,16 +9,21 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, checkuser, $state) {
+app.controller('LoginCtrl', function ($scope, checkuser, $state, AuthService) {
 
-  $scope.checkuser = function(){
-    $scope.authorizedUser = ''
-    console.log("checkuser is happening")
-    console.log($scope.user)
-    checkuser.checkuser($scope.user).then(function(user){
-        $scope.authorizedUser = user
-        $state.go('success');
-    });
-    console.log("authorizedUser", $scope.authorizedUser)
-  }
+          $scope.checkuser = function(){
+            $scope.authorizedUser = ''
+            console.log("checkuser is happening")
+            console.log($scope.user)
+            checkuser.checkuser($scope.user).then(function(user){
+                if(user) {
+                    console.log("authornot")
+                    $state.go('success');   
+                } 
+            }).catch(function(err){
+                $scope.tryAgain = "Try Again";
+                console.log(err)
+            })
+
+          }
 });
