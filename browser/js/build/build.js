@@ -12,16 +12,21 @@ app.config(function ($stateProvider) {
 app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) {
 	$scope.bread = BreadFillings.bread;
 	$scope.fillings = BreadFillings.fillings;
+	$scope.sandwich = {};
 	$scope.isSelectedFilling= {};
-	$scope.fillings.forEach(function (filling) {
-		$scope.isSelectedFilling[filling] = false;
-	});
 
+	$scope.setFillings = function() {
+		$scope.fillings.forEach(function (filling) {
+			$scope.isSelectedFilling[filling] = false;
+		});
+	}
+	$scope.setFillings();
 	//$scope.selectedFillings = [ ];
-
+	$scope.sideSandwiches = [];
 
 	$scope.addSandwich = function() {
 		$scope.sandwich.fillings = [];
+
 		for (var key in $scope.isSelectedFilling) {
 			if ($scope.isSelectedFilling.hasOwnProperty(key)) {
 				if ($scope.isSelectedFilling[key]) {
@@ -29,9 +34,27 @@ app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) 
 				}
 			}
 		}
+		console.log($scope.sandwich);
+		$scope.sideSandwiches.push($scope.sandwich);
+
+
 		SandwichesFactory.addNewSandwich($scope.sandwich).then( function(response) {
-	        console.log('controller response',response);
-	    });
+			$scope.reset();
+	  });
+
+	},
+
+	$scope.reset = function() {
+		$scope.setFillings();
+		// $scope.sandwich.bread = "";
+		// $scope.sandwich.description = "";
+		// $scope.sandwich.name = "";
+		$scope.sandwich = {
+			bread: "",
+			description: "",
+			name: "",
+			fillings: []
+		};
 	}
 });
 
