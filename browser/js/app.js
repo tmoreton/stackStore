@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'ngCookies']);
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt']);
 
 app.controller('MainController', function ($scope) {
 
