@@ -30,7 +30,7 @@ app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) 
 			}
 		}
 		SandwichesFactory.addNewSandwich($scope.sandwich).then( function(response) {
-	        console.log(response);
+	        console.log('controller response',response);
 	    });
 	}
 });

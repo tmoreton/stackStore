@@ -14,9 +14,13 @@ router.get('/sandwiches', function(req, res) {
 
 //post sandwiches
 router.post('/sandwiches', function(req, res) {
-
-	var sandwichData = req.body;
-	Sandwich.create(sandwichData).then(function() {
+	var sandwichData = req.body.sandwich;
+  console.log(sandwichData);
+	Sandwich.create(sandwichData).then(function(err) {
+    if (err) {
+      console.log(err);
+      res.status(500).end();
+    }
 		res.status(200).end();
 	})
 })
