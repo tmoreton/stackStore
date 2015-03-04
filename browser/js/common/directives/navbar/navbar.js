@@ -2,9 +2,7 @@
 app.directive('navbar', function () {
     return {
         restrict: 'E',
-        scope: {
-          items: '='
-        },
+        scope: true,
         templateUrl: 'js/common/directives/navbar/navbar.html'
     };
 });
