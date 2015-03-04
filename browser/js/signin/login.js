@@ -21,7 +21,7 @@ app.controller('LoginCtrl', function ($scope, checkuser, $state, AuthService) {
                     $state.go('success');   
                 } 
             }).catch(function(err){
-                $state.go('home')
+                $scope.tryAgain = "Try Again";
                 console.log(err)
             })
 
