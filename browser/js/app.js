@@ -8,7 +8,6 @@ app.controller('MainController', function ($scope) {
         { label: 'Home', state: 'home' },
         { label: 'Login/Signup', state: 'signup' },
         { label: 'Build Sandwich', state: 'build'}
-        { label: 'Build Sandwich', state: 'build'}
     ];
 });
 
