@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('BuildCtrl', function ($scope, $state, SandwichesFactory, BreadFillings) {
+app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) {
 	$scope.bread = BreadFillings.bread;
 	$scope.fillings = BreadFillings.fillings;
 	$scope.sandwich = {};
