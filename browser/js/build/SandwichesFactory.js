@@ -13,7 +13,6 @@ app.factory('SandwichesFactory', function ($http) {
 
         addNewSandwich: function(sandwich) {
             return $http.post('/api/sandwiches', {sandwich: sandwich}).then(function(response){
-                console.log('addSandwich response',response);
             });
         }
     }
