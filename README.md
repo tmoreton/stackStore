@@ -1,9 +1,39 @@
-## Workflow ##
- 1. Proposal/Issue
- 2. Create branch
- 3. Work on feature (add & commit offten)
- 4. Push branch to Github (to your branch)
- 5. Make pull request with comment
- 6. Code review (review the difference between new branch and master branch; comment)
- 7. Author addresses comments and commits again with comments- code review again
- 8. Commit approved; author pushes to master (close pull request & delete branch)
+##Team Workflow##
+
+On master branch
+
+- git pull
+- Make a new branch and switch to that branch by running git checkout -b my_feature
+
+On my_feature branch
+
+- Do your changes here
+- git add -A and git commit -m "my changes"
+- git checkout master
+
+On master branch
+
+- git pull
+- git checkout my_feature
+
+On my_feature branch
+
+- git merge master
+- RESOLVE ALL CONFLICTS <<< IMPORTANT!
+- git add -A and `git commit -m "merged master into my_feature"
+- git push origin my_feature
+
+On Github
+
+- Create a pull request
+- Notify someone that you have created a pull request
+- Don't branch or work on another feature until the request has been merged into master.
+
+On your local computer
+
+- git checkout master
+- On master
+
+- git pull
+
+Repeat the steps
