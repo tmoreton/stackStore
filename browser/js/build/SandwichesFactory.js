@@ -6,13 +6,15 @@ app.factory('SandwichesFactory', function ($http) {
 
             var sandwichInformation = {};
 
-            return $http.get('/sandwiches', {params: sandwichInformation}).then(function(response) {
+            return $http.get('/api/sandwiches', {params: sandwichInformation}).then(function(response) {
                 return response.data;
             });
         },
 
         addNewSandwich: function(sandwich) {
-            return $http.post('/sandwiches', {sandwich: sandwich});
+            return $http.post('/api/sandwiches', {sandwich: sandwich}).then(function(response){
+                console.log('addSandwich response',response);
+            });
         }
     }
 
