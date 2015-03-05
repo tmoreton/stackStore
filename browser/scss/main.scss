@@ -43,8 +43,8 @@ ul.tray-sandwich{
 	}
 }
 
-input.submitted.ng-invlid {
-	border: 1px solid #f00;
+form.submitted .ng-invalid {
+	border: 2px solid #f00;
 }
 
 @import 'directives/main';
