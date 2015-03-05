@@ -35,6 +35,7 @@ app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings, 
 	//$scope.selectedFillings = [ ];
 
 	$scope.addSandwich = function() {
+		console.log('scope form',$scope.createSandwich);
 		if ($scope.createSandwich.$valid) {
 			$scope.sandwich.fillings = [];
 
