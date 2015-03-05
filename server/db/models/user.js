@@ -38,7 +38,8 @@ var schema = new mongoose.Schema({
         id: String
     },
     admin: { type:Boolean, default: false },
-    orders: [{type: mongoose.Schema.Types.ObjectId, ref: "Order"}]
+    orders: [{type: mongoose.Schema.Types.ObjectId, ref: "Orders"}],
+    reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Reviews"}]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
