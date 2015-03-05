@@ -9,12 +9,15 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) {
+app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings, CookieFactory, $cookies) {
 	$scope.bread = BreadFillings.bread;
 	$scope.fillings = BreadFillings.fillings;
 	$scope.sandwich = {};
 	$scope.isSelectedFilling= {};
-
+	// CookieFactory.setCookies();
+	// $cookies.hello = undefined;
+	// console.log($cookies);
+	
 	$scope.setFillings = function() {
 		$scope.fillings.forEach(function (filling) {
 			$scope.isSelectedFilling[filling] = false;
@@ -22,8 +25,17 @@ app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) 
 	}
 	$scope.setFillings();
 	//$scope.selectedFillings = [ ];
+	var cookies
 	$scope.sideSandwiches = [];
-
+	
+	if($cookies.sandwiches!= 'undefined'){
+		var cookies = $cookies.sandwiches;
+		console.log("cookies:", cookies)
+		$scope.sideSandwiches = cookies
+		
+	}
+	console.log("cookies:", cookies)
+	console.log("Tray should contain", $scope.sideSandwiches)
 	$scope.addSandwich = function() {
 		if ($scope.createSandwich.$valid) {
 			$scope.sandwich.fillings = [];
@@ -38,6 +50,9 @@ app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) 
 			console.log($scope.sandwich);
 			$scope.sideSandwiches.push($scope.sandwich);
 
+			$cookies.sandwiches = $scope.sideSandwiches
+			var cook = $cookies.sandwiches
+			console.log("cookies:",cook)
 
 			SandwichesFactory.addNewSandwich($scope.sandwich).then( function(response) {
 				$scope.reset();
