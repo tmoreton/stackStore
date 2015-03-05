@@ -10,5 +10,14 @@
   }
 }
 
+.tray-sandwich {
+	.name {
+		font-weight: bold;
+	}
+	.descrip {
+		font-style: italic;
+	}
+}
+
 @import 'directives/main';
 @import 'home/main';

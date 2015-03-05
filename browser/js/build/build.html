@@ -1,69 +1,36 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6 text-center build">
-
-    	<form>
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6 text-center build">
+			<form>
 				<h2>Choose your bread</h2>
 				<select required="true" ng-model="sandwich.bread" ng-options="type for type in bread">
 					<option value=''>Choose a type of bread</option>
 				</select>
 				<h1 ng-show="breadType">{{breadType}} is an excellent choice.</h1>
 				<h2>Choose your sandwich filling</h2>
-					<div class="row">
-						<div class="col-sm-3" ng-repeat="filling in fillings | orderBy">
-							<label for="{{filling}}">
-								{{filling}}
-								<input type="checkbox" checklist-value="filling" ng-model="isSelectedFilling[filling]"/>
-							</label>
-							<div class="clearfix" ng-if="$index%4==3"></div>
-							<div ng-repeat-end=""></div>
-							</div>
-							<h2>Describe your sandwich</h2>
-								<textarea class="form-control" rows="3" placeholder="Give your sandwich a description!" ng-model="sandwich.description" required></textarea>
-							<h2>Finally, give your sandwich a name!</h2>
-								<input type="text" class="form-control" placeholder="Name your sandwich" ng-model="sandwich.name" required><br><br>
-								<div class="text-center">
-								<button class="btn btn-lg btn-primary" type="submit" ng-click="addSandwich()" >Add Sandwich</button>
-								<button class="btn btn-lg btn-default" ng-click="reset()">Reset</button>
-						</div>
+				<div class="row">
+					<div class="col-sm-3" ng-repeat="filling in fillings | orderBy">
+						<label for="{{filling}}">
+							{{filling}}
+							<input type="checkbox" checklist-value="filling" ng-model="isSelectedFilling[filling]"/>
+						</label>
+						<div class="clearfix" ng-if="$index%4==3"></div>
+						<div ng-repeat-end=""></div>
 					</div>
-				</form>
-
-   </div>
-    <div class="col-md-3">
-    	<side-Bar></side-Bar>
-    </div>
-  </div>
-
-
-<!-- <div class="container text-center build">
-	<form>
-	<h2>Choose your bread</h2>
-	<select required="true" ng-model="sandwich.bread" ng-options="type for type in bread">
-		<option value=''>Choose a type of bread</option>
-	</select>
-	<h1 ng-show="breadType">{{breadType}} is an excellent choice.</h1>
-	<h2>Choose your sandwich filling</h2>
-		<div class="row">
-			<div class="col-sm-3" ng-repeat="filling in fillings | orderBy">
-				<label for="{{filling}}">
-					{{filling}}
-					<input type="checkbox" checklist-value="filling" ng-model="isSelectedFilling[filling]"/>
-				</label>
-				<div class="clearfix" ng-if="$index%4==3"></div>
-				<div ng-repeat-end=""></div>
-				</div>
-				<h2>Describe your sandwich</h2>
+					<h2>Describe your sandwich</h2>
 					<textarea class="form-control" rows="3" placeholder="Give your sandwich a description!" ng-model="sandwich.description" required></textarea>
-				<h2>Finally, give your sandwich a name!</h2>
+					<h2>Finally, give your sandwich a name!</h2>
 					<input type="text" class="form-control" placeholder="Name your sandwich" ng-model="sandwich.name" required><br><br>
 					<div class="text-center">
-					<button class="btn btn-lg btn-primary" type="submit" ng-click="addSandwich()" >Add Sandwich</button>
-					<button class="btn btn-lg btn-default" ng-click="reset()">Reset</button>
-			</div>
+						<button class="btn btn-lg btn-primary" type="submit" ng-click="addSandwich()" >Add Sandwich</button>
+						<button class="btn btn-lg btn-default" ng-click="reset()">Reset</button>
+					</div>
+				</div>
+			</form>
 		</div>
-	</form>
-	<br>
-</div> -->
+		<div class="col-md-3">
+			<side-Bar></side-Bar>
+		</div>
+	</div>
