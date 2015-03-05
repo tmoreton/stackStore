@@ -24,19 +24,18 @@
 					<h2>Finally, give your sandwich a name!</h2>
 					<input name="name" type="text" class="form-control" placeholder="Name your sandwich" ng-model="sandwich.name" required><br><br>
 					<div class="error" 
-					       ng-show="formSubmitAttempted && createSandwich.$invalid">
-					   <small class="error" 
+					       ng-show="createSandwich.submitted">
+					   <div class="error" 
 					       ng-show="createSandwich.bread.$error.required">
-					       You need to select a type of bread. Not a fan of bread? Try the lettuce wrap.
-					   </small>
-					   <small class="error" 
+					       You need to select a type of bread. Not a fan of bread? Try the lettuce wrap.<br></div>					 
+					    <div class="error" 
 					       ng-show="createSandwich.description.$error.required">
 					       Don't forget to add a description.
-					   </small>
-					   <small class="error" 
+					   <br></div>
+					   <div class="error" 
 					       ng-show="createSandwich.name.$error.required">
 					       Your sandwich needs a name!
-					   </small>
+					   <br></div>
 					 </div>
 					<br><br>
 					<div class="text-center">

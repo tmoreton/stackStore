@@ -47,5 +47,9 @@ form.submitted .ng-invalid {
 	border: 2px solid #f00;
 }
 
+.error {
+	color: #e80002;
+	size: 12px;
+}
 @import 'directives/main';
 @import 'home/main';
