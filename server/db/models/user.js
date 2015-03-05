@@ -3,6 +3,7 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 var product = require('./sandwich.js');
 var orders = require('./orders.js');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var schema = new mongoose.Schema({
     firstName: {
@@ -72,7 +73,9 @@ schema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
+schema.plugin(uniqueValidator);
 var User = mongoose.model('User', schema);
+
 module.exports = {
     User: User
 };
