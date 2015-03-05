@@ -25,26 +25,33 @@ app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) 
 	$scope.sideSandwiches = [];
 
 	$scope.addSandwich = function() {
-		$scope.sandwich.fillings = [];
+		if ($scope.createSandwich.$valid) {
+			$scope.sandwich.fillings = [];
 
-		for (var key in $scope.isSelectedFilling) {
-			if ($scope.isSelectedFilling.hasOwnProperty(key)) {
-				if ($scope.isSelectedFilling[key]) {
-					$scope.sandwich.fillings.push(key);
+			for (var key in $scope.isSelectedFilling) {
+				if ($scope.isSelectedFilling.hasOwnProperty(key)) {
+					if ($scope.isSelectedFilling[key]) {
+						$scope.sandwich.fillings.push(key);
+					}
 				}
 			}
-		}
-		console.log($scope.sandwich);
-		$scope.sideSandwiches.push($scope.sandwich);
+			console.log($scope.sandwich);
+			$scope.sideSandwiches.push($scope.sandwich);
 
 
-		SandwichesFactory.addNewSandwich($scope.sandwich).then( function(response) {
-			$scope.reset();
-	  });
+			SandwichesFactory.addNewSandwich($scope.sandwich).then( function(response) {
+				$scope.reset();
+		  });
+		} 
+		else {
+            $scope.createSandwich.submitted = true;
+            console.log("INVALID SUBMISSION");
+        }
 
 	},
 
 	$scope.reset = function() {
+		$scope.createSandwich.submitted = false;
 		$scope.setFillings();
 		// $scope.sandwich.bread = "";
 		// $scope.sandwich.description = "";

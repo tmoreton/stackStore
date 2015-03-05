@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+body {
+  padding-top: 85px;
+}
+
+
 @mixin clearfix {
   &:after {
     content: "";
@@ -10,5 +15,42 @@
   }
 }
 
+#side-panel {
+	margin-top: 55px;
+}
+
+ul.tray-sandwich{
+	 padding:0;
+}
+
+.tray-sandwich {
+	li.name{
+		font-weight: bold;
+		background-image: url('/sandwich-icon.gif');
+		padding:0.15em 0 0.5em 1.5em;
+		margin-bottom:0.2em;
+		text-indent:0.4em;
+		font-weight:bold;
+		list-style:none;
+		background-repeat:no-repeat;
+		margin-bottom: 1px;
+	}
+	.descrip {
+		font-weight: normal;
+		font-size: 80%;
+		font-style: italic;
+		word-wrap:break-word;
+		margin-bottom: 6px;
+	}
+}
+
+form.submitted .ng-invalid {
+	border: 2px solid #f00;
+}
+
+.error {
+	color: #e80002;
+	size: 12px;
+}
 @import 'directives/main';
 @import 'home/main';
