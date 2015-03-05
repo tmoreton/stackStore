@@ -11,11 +11,18 @@
 }
 
 .tray-sandwich {
+
 	.name {
 		font-weight: bold;
+		word-wrap:break-word;
+		margin-bottom: 1px;
 	}
 	.descrip {
+		font-weight: normal;
+		font-size: 80%;
 		font-style: italic;
+		word-wrap:break-word;
+		margin-bottom: 6px;
 	}
 }
 
