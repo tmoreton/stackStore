@@ -19,10 +19,19 @@ body {
 	margin-top: 55px;
 }
 
+ul.tray-sandwich{
+	 padding:0;
+}
+
 .tray-sandwich {
-	.name {
-		font-weight: bold;
-		word-wrap:break-word;
+	li.name{
+		// background-image: url('/sandwich-icon.gif');
+		padding:0.15em 0 0.5em 1.5em;
+		margin-bottom:0.2em;
+		text-indent:0.4em;
+		font-weight:bold;
+		list-style:none;
+		background-repeat:no-repeat;
 		margin-bottom: 1px;
 	}
 	.descrip {
