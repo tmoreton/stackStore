@@ -51,6 +51,7 @@ app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) 
 	},
 
 	$scope.reset = function() {
+		$scope.createSandwich.submitted = false;
 		$scope.setFillings();
 		// $scope.sandwich.bread = "";
 		// $scope.sandwich.description = "";
