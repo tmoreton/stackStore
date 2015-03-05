@@ -3,9 +3,9 @@
 		<div class="col-md-3">
 		</div>
 		<div class="col-md-6 text-center build">
-			<form>
+			<form ng-class="{submitted:createSandwich.submitted}" name="createSandwich" novalidate>
 				<h2>Choose your bread</h2>
-				<select required="true" ng-model="sandwich.bread" ng-options="type for type in bread">
+				<select name="bread" required ng-model="sandwich.bread" ng-options="type for type in bread">
 					<option value=''>Choose a type of bread</option>
 				</select>
 				<h1 ng-show="breadType">{{breadType}} is an excellent choice.</h1>
@@ -20,11 +20,27 @@
 						<div ng-repeat-end=""></div>
 					</div>
 					<h2>Describe your sandwich</h2>
-					<textarea class="form-control" rows="3" placeholder="Give your sandwich a description!" ng-model="sandwich.description" required></textarea>
+					<textarea name="description" class="form-control" rows="3" placeholder="Give your sandwich a description!" ng-model="sandwich.description" required></textarea>
 					<h2>Finally, give your sandwich a name!</h2>
-					<input type="text" class="form-control" placeholder="Name your sandwich" ng-model="sandwich.name" required><br><br>
+					<input name="name" type="text" class="form-control" placeholder="Name your sandwich" ng-model="sandwich.name" required><br><br>
+					<div class="error" 
+					       ng-show="formSubmitAttempted && createSandwich.$invalid">
+					   <small class="error" 
+					       ng-show="createSandwich.bread.$error.required">
+					       You need to select a type of bread. Not a fan of bread? Try the lettuce wrap.
+					   </small>
+					   <small class="error" 
+					       ng-show="createSandwich.description.$error.required">
+					       Don't forget to add a description.
+					   </small>
+					   <small class="error" 
+					       ng-show="createSandwich.name.$error.required">
+					       Your sandwich needs a name!
+					   </small>
+					 </div>
+					<br><br>
 					<div class="text-center">
-						<button class="btn btn-lg btn-primary" type="submit" ng-click="addSandwich()" >Add Sandwich</button>
+						<button class="btn btn-lg btn-primary" ng-click="addSandwich()" >Add Sandwich</button>
 						<button class="btn btn-lg btn-default" ng-click="reset()">Reset</button>
 					</div>
 				</div>

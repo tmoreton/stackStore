@@ -43,5 +43,9 @@ ul.tray-sandwich{
 	}
 }
 
+input.submitted.ng-invlid {
+	border: 1px solid #f00;
+}
+
 @import 'directives/main';
 @import 'home/main';
