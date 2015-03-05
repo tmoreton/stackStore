@@ -31,3 +31,12 @@ navbar {
   }
 
 }
+
+@media (max-width:768px) {
+    .main {
+        margin-top:0;
+    }
+    .navbar-fixed-top {
+        position:static;
+    }
+} 
