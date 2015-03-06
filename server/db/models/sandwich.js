@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 var reviews = require('./reviews.js');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var schema = new mongoose.Schema({
     name: {
@@ -41,8 +42,11 @@ function setPrice(num){
     return num*100;
 }
 
+schema.plugin(uniqueValidator);
 var Sandwich = mongoose.model('Sandwich', schema);
 
 module.exports = {
-    Sandwich: Sandwich
+    Sandwich: Sandwich,
+    getPrice: getPrice,
+    setPrice: setPrice
 };

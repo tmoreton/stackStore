@@ -11,4 +11,9 @@ var schema = new mongoose.Schema({
   user: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
 });
 
-mongoose.model('Reviews', schema);
+var Reviews = mongoose.model('Reviews', schema);
+
+
+module.exports = {
+	Reviews: Reviews
+}
