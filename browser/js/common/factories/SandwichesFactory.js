@@ -2,7 +2,7 @@
 app.factory('SandwichesFactory', function ($http) {
 
     return {
-        getSandwiches: function(sandwich) {
+        getSandwiches: function() {
 
             var sandwichInformation = {};
 

@@ -72,6 +72,22 @@ img.homepic {
 	padding-top: 30px;
 }
 
+.col-centered {
+	margin: 0 auto;
+}
+
+.btn-circle {
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	text-align: center;
+	padding: 6px 0;
+	font-size: 12px;
+	line-height: 42%;
+}
+
+
+
 
 @import 'directives/main';
 @import 'home/main';
