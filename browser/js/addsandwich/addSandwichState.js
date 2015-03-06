@@ -9,10 +9,22 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies) {
+app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies, CookieFactory) {
 	SandwichesFactory.getSandwiches().then( function(sandwiches) {
 		$scope.sandwichSelection = sandwiches;
-		console.log($scope.sandwichSelection);
 	});
+	var storedCookies = CookieFactory.getCookies();
+	if (storedCookies) {
+		$scope.sideSandwiches = storedCookies;
+	}
+	else {
+		$scope.sideSandwiches = [];
+	}
+
+	$scope.addSandwich = function(sandwich) {
+		$scope.sideSandwiches.push(sandwich);
+		CookieFactory.setCookies($scope.sideSandwiches);
+	};
+
 });
 
