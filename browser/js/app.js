@@ -12,7 +12,8 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
     $scope.menuItems = [
         { label: 'Home', state: 'home' },
         // { label: 'Login/Signup', state: 'signup' },
-        { label: 'Build Sandwich', state: 'createsandwich'}
+        { label: 'Add Sandwich from Menu', state: 'addsandwich'},
+        { label: 'Make Your Own Masterpiece', state: 'createsandwich'}
     ];
 
     $rootScope.$on('$stateChangeStart', function( event, toState, toParams, fromState, fromParams ) {
