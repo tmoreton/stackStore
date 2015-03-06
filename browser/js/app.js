@@ -12,7 +12,7 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
     $scope.menuItems = [
         { label: 'Home', state: 'home' },
         { label: 'Login/Signup', state: 'signup' },
-        { label: 'Build Sandwich', state: 'build'}
+        { label: 'Build Sandwich', state: 'createsandwich'}
     ];
 
     $scope.userLogout = function() {
