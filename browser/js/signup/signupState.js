@@ -7,15 +7,9 @@ app.config(function ($stateProvider) {
                 return AuthService.getLoggedInUser().then(function(user){
                     if(user){
                         $state.go("success");
-                        return;
                     }
-                        
-                    // }else{
-                    //     return;
-                    // }
                 })
             }
-
         },
         url: '/signup',
         controller: 'SignupCtrl',
