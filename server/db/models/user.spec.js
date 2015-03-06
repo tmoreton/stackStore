@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 mongoose.connect('mongodb://localhost/testingModels');
 
 var User = require('./user').User;
+var Orders = require('./orders').Orders;
 console.log('are we calling this?', User);
 
 describe('User Model', function() {

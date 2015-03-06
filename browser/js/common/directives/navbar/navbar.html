@@ -16,12 +16,12 @@
                     <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
                 </li>
             </ul>
-            <ul class="nav nabar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a  ng-show="userLoggedIn" ui-sref="home" ng-click="userLogout()">Logout ({{user.email}}) </a>
-                     <a ng-show="!userLoggedIn" ui-sref="signup" ng-click="userLogin()">Login</a>
-                </li>
-            </ul>
+                    <li><a ng-show="!userLoggedIn" ui-sref="login" ng-click="userLogin()">Login</a> 
+                </li>   
+            </ul>       
         </div>
     </div>
 </nav>
