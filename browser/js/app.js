@@ -28,4 +28,11 @@ app.config(function ($urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
     $urlRouterProvider.otherwise('/');
+
+    // .module('myApp', ['angularPayments']).config(function($window) {
+    //     $window.Stripe.setPublishableKey('pk_test_OxISGD7GxGhZCOofus3QFoW8');
+    // });
+    // angular.config(function() {
+    //     window.Stripe.setPublishableKey('pk_test_OxISGD7GxGhZCOofus3QFoW8');
+    // })
 });

@@ -4,12 +4,12 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
       <h2 class="form-signin-heading">Sign Up Here</h2>
-        <form class="form-signin">
-          <input type="text" class="form-control" placeholder="First Name" ng-model="user.firstName" required><br>
-          <input type="text" class="form-control" placeholder="Last Name" ng-model="user.lastName" required><br>
-          <input type="email" class="form-control" placeholder="Email address" ng-model="user.email" required><br>
-          <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required><br>
-          <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signup()">Sign Up</button>
+        <form class="form-signin" name="signInForm" ng-class="{submitted: signInForm.submitted}" novalidate>
+          <input type="text" class="form-control" placeholder="First Name" ng-model="user.firstName" ng-required="true"><br>
+          <input type="text" class="form-control" placeholder="Last Name" ng-model="user.lastName" ng-required="true"><br>
+          <input type="email" class="form-control" placeholder="Email address" ng-model="user.email" ng-required="true"><br>
+          <input type="password" class="form-control" placeholder="Password" ng-model="user.password" ng-required="true"><br>
+          <button class="btn btn-lg btn-primary btn-block" ng-click="signup()">Sign Up</button>
         </form>
         <br>
         <button class="btn btn-sm btn-primary btn-block" ui-sref="login">Already a User - Log In</button>

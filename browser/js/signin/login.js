@@ -15,15 +15,19 @@ app.controller('LoginCtrl', function ($scope, checkuser, $state, AuthService) {
             $scope.authorizedUser = ''
             console.log("checkuser is happening")
             console.log($scope.user)
-            checkuser.checkuser($scope.user).then(function(user){
-                if(user) {
-                    console.log("authornot")
-                    $state.go('success');   
-                } 
-            }).catch(function(err){
-                $scope.tryAgain = "Try Again";
-                console.log(err)
-            })
+            if($scope.loginForm.$valid){
+                checkuser.checkuser($scope.user).then(function(user){
+                    if(user) {
+                        console.log("authornot")
+                        $state.go('success');   
+                    } 
+                }).catch(function(err){
+                    $scope.tryAgain = "Try Again";
+                    console.log(err)
+                })
+            }else{
+                $scope.loginForm.submitted = true;
+            }
 
           }
 });
