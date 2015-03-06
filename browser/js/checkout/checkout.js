@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $kookies, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q) {
+app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q) {
 	$scope.sideSandwiches = CookieFactory.getCookies()
 	$scope.hideCheckoutButton = true;
 	$scope.hideSubmitButton = true;
@@ -55,13 +55,16 @@ app.controller('CheckoutCtrl', function ($scope, $kookies, CookieFactory, AuthSe
 
 		$q.all(sandwichPromises).then(function(sandwichIdArr){
 			//use sandwich ids
-			//create new order with sandwich
+			//create new order with sandwichid array
 			//which will have a reference to the current user
 			$q.when($scope.userPromise).then(function(user){
 				console.log("this is what we think is the user id",user._id)
 				var user_id = user._id;
 				console.log("this is the user id that we are sending to the db",user_id)
 				CheckoutFactory.addNewOrder(sandwichIdArr, user_id)
+				$scope.sideSandwiches = [];
+				$kookies.remove('sandwiches')
+				$state.go('success');
 			})	
 
 		});
