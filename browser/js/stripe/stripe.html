@@ -1,0 +1,23 @@
+<form stripe-form="stripeCallback" ng-controller="stripeForm">
+  <!-- Small modal -->
+  <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-usd glyphicon-align-left" aria-hidden="true"></span>  Checkout</button>
+
+  <div style="padding-top:100px" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <!-- from angular stripe module -->
+        <input name="card" ng-model="number" class="form-control" placeholder="Card Number" payments-format="card"
+           payments-validate="card" />
+        <input name="expiry" ng-model="expiry" class="form-control" placeholder="Expiration" payments-format="expiry"
+           payments-validate="expiry" />
+        <input name="cvc" ng-model="cvc" class="form-control" placeholder="CVC" payments-format="cvc"
+           payments-validate="cvc" />
+    <!--     <input ng-model="number" placeholder="Card Number" />
+        <input ng-model="expiry" placeholder="Expiration" />
+        <input ng-model="cvc" placeholder="CVC" /> -->
+        <button class="btn btn-md btn-primary" type="submit" ng-click="stripeCallback()">Submit</button>
+      </div>
+    </div>
+  </div>
+
+</form>
