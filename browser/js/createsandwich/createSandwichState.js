@@ -10,6 +10,7 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadFactory, FillingsFactory, CookieFactory, $kookies) {
+	$scope.hideSubmitButton = true;
 	var storedCookies = CookieFactory.getCookies();
 	if (storedCookies) {
 		$scope.sideSandwiches = storedCookies;
