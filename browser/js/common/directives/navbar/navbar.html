@@ -11,7 +11,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li ng-repeat="item in menuItems">
+<!--                 <li><img id="navLogo" width="35" height="35" src="http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png"/></li>
+ -->                <li ng-repeat="item in menuItems">
                     <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
                 </li>
             </ul>

@@ -64,5 +64,14 @@ img.homepic {
 	margin-bottom: 0px;
 }
 
+.navbar {
+	max-height: 60px;
+}
+
+#navLogo {
+	padding-top: 30px;
+}
+
+
 @import 'directives/main';
 @import 'home/main';
