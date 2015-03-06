@@ -16,11 +16,14 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
     ];
 
     $scope.userLogout = function() {
-        $scope.LogOutSuccess = "You've successfully logged out";
         $scope.user = null;
         $scope.userLoggedIn = false;
         return AuthService.logout()
     };
+
+    $rootScope.$on(AUTH_EVENTS.logoutSuccess, function() {
+        $scope.LogOutSuccess = "You've successfully logged out";
+    })
 
     $rootScope.$on(AUTH_EVENTS.loginSuccess, function() {
         AuthService.getLoggedInUser().then(function(user) {
