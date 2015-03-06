@@ -4,18 +4,18 @@ app.config(function ($stateProvider) {
     $stateProvider.state('login', {
         url: '/login',
         controller: 'LoginCtrl',
-        templateUrl: 'js/signin/login.html'
+        templateUrl: 'js/signin/login.template.html'
     });
 
 });
 
-app.controller('LoginCtrl', function ($scope, checkuser, $state, AuthService) {
+app.controller('LoginCtrl', function ($scope, CheckUserFactory, $state, AuthService) {
 
           $scope.checkuser = function(){
             $scope.authorizedUser = ''
             console.log("checkuser is happening")
             if($scope.loginForm.$valid){
-                checkuser.checkuser($scope.user).then(function(user){
+                CheckUserFactory.checkuser($scope.user).then(function(user){
                     if(user) {
                         console.log("authornot")
                         $state.go('success');   

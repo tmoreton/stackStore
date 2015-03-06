@@ -3,10 +3,11 @@ navbar {
   display: block;
   background: #a1a1a1;
 
-  fullstack-logo {
-    padding-top: 10px;
+  .navbar-brand {
+    width: 150px;
+    vertical-align: middle;
     margin-right: 20px;
-    width: 30px;
+    margin-top: 80px;
   }
 
   a {
@@ -17,6 +18,7 @@ navbar {
   }
 
   .nav > li > a {
+    padding:30px 10px 30px;
     cursor: pointer;
     &.active {
       color: #f30046;
@@ -24,10 +26,18 @@ navbar {
     &:hover {
       transition: color 0.2s;
     }
-    &:focus {
-      color: #f30046;
-      background: transparent;
-    }
+    // &:focus {
+    //   color: #f30046;
+    //   background: transparent;
+    // }
   }
+
+.navbar-default .navbar-toggle {
+    vertical-align: middle;
+}
+
+.navbar-default a.navbar-brand {
+  vertical-align: middle;
+}
 
 }

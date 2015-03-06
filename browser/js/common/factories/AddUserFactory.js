@@ -1,5 +1,5 @@
 'use strict';
-app.factory('AddUser', function ($http) {
+app.factory('AddUserFactory', function ($http) {
     return {
         AddUser: function (postBody) {
           console.log("add user is called")

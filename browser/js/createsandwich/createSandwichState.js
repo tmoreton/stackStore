@@ -1,15 +1,15 @@
 'use strict';
 app.config(function ($stateProvider) {
 
-    $stateProvider.state('build', {
-        url: '/build',
-        controller: 'BuildCtrl',
-        templateUrl: 'js/build/build.html'
+    $stateProvider.state('createsandwich', {
+        url: '/buildsandwich',
+        controller: 'CreateSandwichCtrl',
+        templateUrl: 'js/createsandwich/createSandwich.template.html'
     });
 
 });
 
-app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings, CookieFactory, $kookies) {
+app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadFactory, FillingsFactory, CookieFactory, $kookies) {
 	var storedCookies = CookieFactory.getCookies();
 	if (storedCookies) {
 		$scope.sideSandwiches = storedCookies;
@@ -17,8 +17,8 @@ app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings, 
 	else {
 		$scope.sideSandwiches = [];
 	}
-	$scope.bread = BreadFillings.bread;
-	$scope.fillings = BreadFillings.fillings;
+	$scope.bread = BreadFactory.bread;
+	$scope.fillings = FillingsFactory.fillings;
 	$scope.sandwich = {};
 	$scope.isSelectedFilling= {};
 	// CookieFactory.setCookies();
