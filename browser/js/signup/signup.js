@@ -12,10 +12,14 @@ app.config(function ($stateProvider) {
 app.controller('SignupCtrl', function ($scope, $state, AddUser) {
 
   $scope.signup = function(){
-    console.log($scope.user)
-    AddUser.AddUser($scope.user).then(function(data){
-        $state.go('success');
-    });
+    console.log($scope.user);
+    if($scope.signInForm.$valid){
+        AddUser.AddUser($scope.user).then(function(data){
+            $state.go('success');
+        });
+    }else{
+        $scope.signInForm.submitted = true;
+    }
   }
 });
 
