@@ -39,10 +39,22 @@ router.post('/signup/', function(req, res){
   })
 });
 router.post('/orders', function(req, res){
-
-  Order.create({sandwiches:req.body.sandwiches, user:req.body.user}).then(function(){
-    console.log("order has been created")
-    res.status(200).end();
+  console.log("this is req.body or so we thought", req.body)
+  Order.create({sandwiches:req.body.sandwiches, user:req.body.user}).then(function(order){
+    console.log("order has been created");
+    console.log("this should be a user damnit", req.body.user)
+    User.findById(req.body.user, function(err, userDoc){
+      console.log("inside user function")
+      if (err){
+        console.log(err)
+      }else{
+        console.log("trying to update user")
+        userDoc.orders.push(order);
+        userDoc.save(function(){
+          res.status(200).end();
+        });
+      }
+    });     
   })
 })
 router.post('/build', function(req, res){

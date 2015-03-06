@@ -15,7 +15,9 @@ app.controller('CheckoutCtrl', function ($scope, $kookies, CookieFactory, AuthSe
 	$scope.hideSubmitButton = true;
 	$scope.isAuthenticated = AuthService.isAuthenticated();
 	//show tray directive -done!
-	$scope.user = AuthService.getLoggedInUser();
+	$scope.userPromise = AuthService.getLoggedInUser();
+	
+	console.log("promise?",$scope.userPromise);
 	//determine if logged in -done!
 	if($scope.isAuthenticated){
 		$scope.hideSubmitButton = false;
@@ -50,12 +52,18 @@ app.controller('CheckoutCtrl', function ($scope, $kookies, CookieFactory, AuthSe
 		$scope.sideSandwiches.forEach(function(sandwich){
 			sandwichPromises.push(CheckoutFactory.addNewSandwich(sandwich));
 		})
+
 		$q.all(sandwichPromises).then(function(sandwichIdArr){
 			//use sandwich ids
-			var id = $scope.user._id
 			//create new order with sandwich
 			//which will have a reference to the current user
-			CheckoutFactory.addNewOrder(sandwichIdArr, id)
+			$q.when($scope.userPromise).then(function(user){
+				console.log("this is what we think is the user id",user._id)
+				var user_id = user._id;
+				console.log("this is the user id that we are sending to the db",user_id)
+				CheckoutFactory.addNewOrder(sandwichIdArr, user_id)
+			})	
+
 		});
 		
 
