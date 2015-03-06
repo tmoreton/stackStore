@@ -11,14 +11,23 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
     // Given to the <navbar> directive to show the menu.
     $scope.menuItems = [
         { label: 'Home', state: 'home' },
-        { label: 'Login/Signup', state: 'signup' },
+        // { label: 'Login/Signup', state: 'signup' },
         { label: 'Build Sandwich', state: 'createsandwich'}
     ];
+
+    $rootScope.$on('$stateChangeStart', function( event, toState, toParams, fromState, fromParams ) {
+        if (fromState.name === 'home')
+            $scope.LogOutSuccess = null;
+    });
 
     $scope.userLogout = function() {
         $scope.user = null;
         $scope.userLoggedIn = false;
-        return AuthService.logout()
+        return AuthService.logout();
+    };
+
+    $scope.userLogin = function() {
+        return AuthService.login();
     };
 
     $rootScope.$on(AUTH_EVENTS.logoutSuccess, function() {

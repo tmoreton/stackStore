@@ -2,6 +2,15 @@
 app.config(function ($stateProvider) {
 
     $stateProvider.state('signup', {
+        resolve: {
+            getLoggedInUser: function(AuthService, $state){
+                return AuthService.getLoggedInUser().then(function(user){
+                    if(user){
+                        $state.go("success");
+                    }
+                })
+            }
+        },
         url: '/signup',
         controller: 'SignupCtrl',
         templateUrl: 'js/signup/signup.template.html'
