@@ -65,6 +65,7 @@ schema.pre('save', function (next) {
         user.password = encryptPassword(user.password, user.salt);
     }
 
+
     next();
 
 });

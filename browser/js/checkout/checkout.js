@@ -9,13 +9,15 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $kookies, CookieFactory, AuthService, AddUserFactory) {
+app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q) {
 	$scope.sideSandwiches = CookieFactory.getCookies()
 	$scope.hideCheckoutButton = true;
 	$scope.hideSubmitButton = true;
 	$scope.isAuthenticated = AuthService.isAuthenticated();
 	//show tray directive -done!
-	$scope.user = AuthService.getLoggedInUser();
+	$scope.userPromise = AuthService.getLoggedInUser();
+	
+	console.log("promise?",$scope.userPromise);
 	//determine if logged in -done!
 	if($scope.isAuthenticated){
 		$scope.hideSubmitButton = false;
@@ -40,19 +42,40 @@ app.controller('CheckoutCtrl', function ($scope, $kookies, CookieFactory, AuthSe
 	  }	
 	$scope.submitOrder = function(){
 		//if you are not signed in
-		//create a user in the db with your infomation
+		//create a user in the db with your information
 		if(!$scope.user){
 			signup()
 		}
 		
+		var sandwichPromises = []
+		//send a sandwich for every sandwich in tray to database
+		$scope.sideSandwiches.forEach(function(sandwich){
+			sandwichPromises.push(CheckoutFactory.addNewSandwich(sandwich));
+		})
 
-		//create a new order in the db
-		//which will have a reference to the current user
+		$q.all(sandwichPromises).then(function(sandwichIdArr){
+			//use sandwich ids
+			//create new order with sandwichid array
+			//which will have a reference to the current user
+			$q.when($scope.userPromise).then(function(user){
+				console.log("this is what we think is the user id",user._id)
+				var user_id = user._id;
+				console.log("this is the user id that we are sending to the db",user_id)
+				CheckoutFactory.addNewOrder(sandwichIdArr, user_id)
+				$scope.sideSandwiches = [];
+				$kookies.remove('sandwiches')
+				$state.go('success');
+			})	
+
+		});
+		
+
+		
 
 		//that user in the db gets another order in their order history
 		//if everything works:
 		//sent to success page
-		$state.go('success');
+		// $state.go('success');
 		//else
 		//error appears
 	}

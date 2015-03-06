@@ -18,11 +18,11 @@ router.get('/sandwiches', function(req, res) {
 //post sandwiches
 router.post('/sandwiches', function(req, res) {
 	var sandwichData = req.body.sandwich;
-	Sandwich.create(sandwichData).then(function(err) {
+	Sandwich.create(sandwichData).then(function(err, sandwich) {
     if (err) {
       res.send(err).end();
     }
-		res.status(200).end();
+		res.json(sandwich);
 	})
 })
 
@@ -38,7 +38,25 @@ router.post('/signup/', function(req, res){
     res.status(200).end();
   })
 });
-
+router.post('/orders', function(req, res){
+  console.log("this is req.body or so we thought", req.body)
+  Order.create({sandwiches:req.body.sandwiches, user:req.body.user}).then(function(order){
+    console.log("order has been created");
+    console.log("this should be a user damnit", req.body.user)
+    User.findById(req.body.user, function(err, userDoc){
+      console.log("inside user function")
+      if (err){
+        console.log(err)
+      }else{
+        console.log("trying to update user")
+        userDoc.orders.push(order);
+        userDoc.save(function(){
+          res.status(200).end();
+        });
+      }
+    });     
+  })
+})
 router.post('/build', function(req, res){
   console.log(req.body)
   // Order.create({
