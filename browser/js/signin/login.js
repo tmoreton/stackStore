@@ -14,11 +14,10 @@ app.controller('LoginCtrl', function ($scope, checkuser, $state, AuthService) {
           $scope.checkuser = function(){
             $scope.authorizedUser = ''
             console.log("checkuser is happening")
-            console.log($scope.user)
             checkuser.checkuser($scope.user).then(function(user){
                 if(user) {
                     console.log("authornot")
-                    $state.go('success');   
+                    $state.go('success'); 
                 } 
             }).catch(function(err){
                 $scope.tryAgain = "Try Again";
@@ -26,4 +25,5 @@ app.controller('LoginCtrl', function ($scope, checkuser, $state, AuthService) {
             })
 
           }
+
 });
