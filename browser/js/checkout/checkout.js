@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $kookies, CookieFactory, AuthService, AddUserFactory) {
+app.controller('CheckoutCtrl', function ($scope, $kookies, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q) {
 	$scope.sideSandwiches = CookieFactory.getCookies()
 	$scope.hideCheckoutButton = true;
 	$scope.hideSubmitButton = true;
@@ -40,19 +40,31 @@ app.controller('CheckoutCtrl', function ($scope, $kookies, CookieFactory, AuthSe
 	  }	
 	$scope.submitOrder = function(){
 		//if you are not signed in
-		//create a user in the db with your infomation
+		//create a user in the db with your information
 		if(!$scope.user){
 			signup()
 		}
 		
+		var sandwichPromises = []
+		//send a sandwich for every sandwich in tray to database
+		$scope.sideSandwiches.forEach(function(sandwich){
+			sandwichPromises.push(CheckoutFactory.addNewSandwich(sandwich));
+		})
+		$q.all(sandwichPromises).then(function(sandwichIdArr){
+			//use sandwich ids
+			var id = $scope.user._id
+			//create new order with sandwich
+			//which will have a reference to the current user
+			CheckoutFactory.addNewOrder(sandwichIdArr, id)
+		});
+		
 
-		//create a new order in the db
-		//which will have a reference to the current user
+		
 
 		//that user in the db gets another order in their order history
 		//if everything works:
 		//sent to success page
-		$state.go('success');
+		// $state.go('success');
 		//else
 		//error appears
 	}

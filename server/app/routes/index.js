@@ -18,11 +18,11 @@ router.get('/sandwiches', function(req, res) {
 //post sandwiches
 router.post('/sandwiches', function(req, res) {
 	var sandwichData = req.body.sandwich;
-	Sandwich.create(sandwichData).then(function(err) {
+	Sandwich.create(sandwichData).then(function(err, sandwich) {
     if (err) {
       res.send(err).end();
     }
-		res.status(200).end();
+		res.json(sandwich);
 	})
 })
 
@@ -38,7 +38,13 @@ router.post('/signup/', function(req, res){
     res.status(200).end();
   })
 });
+router.post('/orders', function(req, res){
 
+  Order.create({sandwiches:req.body.sandwiches, user:req.body.user}).then(function(){
+    console.log("order has been created")
+    res.status(200).end();
+  })
+})
 router.post('/build', function(req, res){
   console.log(req.body)
   // Order.create({
