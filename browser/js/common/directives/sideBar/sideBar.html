@@ -1,12 +1,29 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title">Your Tray</h3>
-	</div>
-	<div class="panel-body" ng-model="sandwich">
-		<div class="tray-sandwich">
-			<div class='name' ng-repeat="sandwich in sideSandwiches"><strong>{{sandwich.name}}</strong>
-			<div class="descrip">{{sandwich.description}}</div>
+	<div style="position: fixed;" class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Your Tray</h3>
+		</div>
+		<div class="panel-body" ng-model="sandwich">
+			<div class="tray-sandwich">
+					<div>
+						<div class='name' ng-repeat="sandwich in sideSandwiches"><img src="http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png" height="35" width="35"><strong> {{sandwich.name}}</strong>
+						<div class="descrip">{{sandwich.description}}</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		<div class="text-center">
+			<stripe></stripe>
+<!-- 			<form action="" method="POST">
+			  <script
+			    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+			    data-amount="2000"
+			    data-name="Demo Site"
+			    data-description="2 widgets ($20.00)"
+			    data-image="/128x128.png">
+			  </script>
+			</form> -->
+		</div>
+		<br>
 	</div>
-</div>
+
