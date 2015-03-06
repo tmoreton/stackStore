@@ -2,23 +2,24 @@
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
             </button>
             <fullstack-logo></fullstack-logo>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in menuItems">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-            <li class="nav navbar-nav navbar-right" ng-show="userLoggedIn">            
-                <a ui-sref="home" ng-click="userLogout()">Logout ({{user.email}}) </a> 
-            </li>
-
-        </ul>
-    </div>
+            <ul class="nav navbar-nav">
+                <li ng-repeat="item in menuItems">
+                    <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+                </li>
+            </ul>
+            <ul class="nav nabar-nav navbar-right">
+                <li ng-show="userLoggedIn">
+                    <a ui-sref="home" ng-click="userLogout()">Logout ({{user.email}}) </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>

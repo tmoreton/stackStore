@@ -53,6 +53,16 @@ form.submitted .ng-invalid {
 	size: 12px;
 }
 
+img.homepic {
+	// display: block;
+	img {
+		// display: block;
+	    width: 250px;
+		margin-bottom: 0px;
+	}
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
 
 @import 'directives/main';
 @import 'home/main';
