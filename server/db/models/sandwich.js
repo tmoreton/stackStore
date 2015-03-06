@@ -19,11 +19,12 @@ var schema = new mongoose.Schema({
     image: {
         url: String
     },
-    fillings: [String],
     bread: {
         type: String,
         required: true,
-    }
+    },
+    fillings: [String],
+    reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Reviews"}]
     // id: {
     //     type: String,
     //     unique: true

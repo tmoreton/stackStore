@@ -14,7 +14,6 @@ app.controller('LoginCtrl', function ($scope, checkuser, $state, AuthService) {
           $scope.checkuser = function(){
             $scope.authorizedUser = ''
             console.log("checkuser is happening")
-            console.log($scope.user)
             if($scope.loginForm.$valid){
                 checkuser.checkuser($scope.user).then(function(user){
                     if(user) {
@@ -30,4 +29,5 @@ app.controller('LoginCtrl', function ($scope, checkuser, $state, AuthService) {
             }
 
           }
+
 });

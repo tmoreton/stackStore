@@ -14,9 +14,10 @@
             <li ng-repeat="item in menuItems">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
-            <li>
-                <a ui-sref="home" ng-click="userLogout()">Logout</a>
+            <li class="nav navbar-nav navbar-right" ng-show="userLoggedIn">            
+                <a ui-sref="home" ng-click="userLogout()">Logout ({{user.email}}) </a> 
             </li>
+
         </ul>
     </div>
     </div>

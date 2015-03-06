@@ -20,7 +20,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('SuccessCtrl', function($scope, getLoggedInUser, $state){
-	$scope.ifLoggedIn = true;
+app.controller('SuccessCtrl', function($scope, getLoggedInUser, $state){  
 	$scope.user = getLoggedInUser;
+  $scope.userLoggedIn = true; 
 });

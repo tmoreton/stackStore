@@ -3,6 +3,7 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 var product = require('./sandwich.js');
 var orders = require('./orders.js');
+var uniqueValidator = require('mongoose-unique-validator');
 
 var schema = new mongoose.Schema({
     firstName: {
@@ -38,7 +39,8 @@ var schema = new mongoose.Schema({
         id: String
     },
     admin: { type:Boolean, default: false },
-    orders: [{type: mongoose.Schema.Types.ObjectId, ref: "Order"}]
+    orders: [{type: mongoose.Schema.Types.ObjectId, ref: "Orders"}],
+    reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Reviews"}]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
@@ -71,7 +73,9 @@ schema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
+schema.plugin(uniqueValidator);
 var User = mongoose.model('User', schema);
+
 module.exports = {
     User: User
 };
