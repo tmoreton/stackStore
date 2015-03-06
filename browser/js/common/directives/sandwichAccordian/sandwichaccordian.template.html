@@ -1,0 +1,10 @@
+<div>
+<accordion close-others="oneAtATime">
+	<accordion-group heading="{{sandwich.name}}" ng-repeat="sandwich in sandwichSelection">
+	<accordian-heading>	
+	<button ng-click='addSandwich(sandwich)' class="btn btn-primary btn-circle pull-right add">+</button>	
+	</accordian-heading>
+		{{sandwich.description}}
+	</accordion-group>
+</accordion>
+</div>
