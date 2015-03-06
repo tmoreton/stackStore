@@ -5,7 +5,7 @@
 		<div class="col-md-6 text-center build">
 			<form ng-class="{submitted:createSandwich.submitted}" name="createSandwich" novalidate>
 				<h2>Choose your bread</h2>
-				<select name="bread" required ng-model="sandwich.bread" ng-options="type for type in bread">
+				<select name="bread" ng-required="true" ng-model="sandwich.bread" ng-options="type for type in bread">
 					<option value=''>Choose a type of bread</option>
 				</select>
 				<h1 ng-show="breadType">{{breadType}} is an excellent choice.</h1>
@@ -20,10 +20,10 @@
 						<div ng-repeat-end=""></div>
 					</div>
 					<h2>Describe your sandwich</h2>
-					<textarea name="description" class="form-control" rows="3" placeholder="Give your sandwich a description!" ng-model="sandwich.description" required></textarea>
+					<textarea name="description" class="form-control" rows="3" placeholder="Give your sandwich a description!" ng-model="sandwich.description" ng-required="true"></textarea>
 					<h2>Finally, give your sandwich a name!</h2>
-					<input name="name" type="text" class="form-control" placeholder="Name your sandwich" ng-model="sandwich.name" required><br><br>
-					<div class="error"
+					<input name="name" type="text" class="form-control" placeholder="Name your sandwich" ng-model="sandwich.name" ng-required="true" sandwichnamevalidator><br><br>
+					<div class="error" 
 					       ng-show="createSandwich.submitted">
 					   <div class="error"
 					       ng-show="createSandwich.bread.$error.required">

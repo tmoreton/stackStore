@@ -9,22 +9,33 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) {
+app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings, CookieFactory, $kookies) {
+	var storedCookies = CookieFactory.getCookies();
+	if (storedCookies) {
+		$scope.sideSandwiches = storedCookies;
+	}
+	else {
+		$scope.sideSandwiches = [];
+	}
 	$scope.bread = BreadFillings.bread;
 	$scope.fillings = BreadFillings.fillings;
 	$scope.sandwich = {};
 	$scope.isSelectedFilling= {};
-
+	// CookieFactory.setCookies();
+	// $cookies.hello = undefined;
+	// console.log($cookies);
+	
 	$scope.setFillings = function() {
 		$scope.fillings.forEach(function (filling) {
 			$scope.isSelectedFilling[filling] = false;
 		});
 	}
+
 	$scope.setFillings();
 	//$scope.selectedFillings = [ ];
-	$scope.sideSandwiches = [];
 
 	$scope.addSandwich = function() {
+		console.log('scope form',$scope.createSandwich);
 		if ($scope.createSandwich.$valid) {
 			$scope.sandwich.fillings = [];
 
@@ -37,11 +48,12 @@ app.controller('BuildCtrl', function ($scope, SandwichesFactory, BreadFillings) 
 			}
 			console.log($scope.sandwich);
 			$scope.sideSandwiches.push($scope.sandwich);
+			CookieFactory.setCookies($scope.sideSandwiches);
 
 
 			SandwichesFactory.addNewSandwich($scope.sandwich).then( function(response) {
 				$scope.reset();
-		  });
+		  	});
 		} 
 		else {
             $scope.createSandwich.submitted = true;

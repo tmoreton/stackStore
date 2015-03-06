@@ -1,5 +1,10 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt']);
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'ngCookies', 'ngKookies'])
+.config(['$kookiesProvider', 
+    function ($kookiesProvider) {
+        $kookiesProvider.config.json = true;
+    }
+]);
 
 app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH_EVENTS) {
 
