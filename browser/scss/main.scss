@@ -41,7 +41,6 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0 0 30px;
     text-transform: uppercase;
     font-family: Montserrat,sans-serif;
     font-weight: 700;
@@ -126,7 +125,7 @@ img.homepic {
 
 .navbar {
 	margin-bottom: 0;
-    border-bottom: 1px solid rgba(255,255,255,.3);
+	background-color: #67b0d1;
 }
 
 
@@ -137,21 +136,47 @@ img.homepic {
 .navbar-custom ul.nav li a {
 	font-size: 12px;
 	letter-spacing: 1px;
-    color: #444;
+    color: #fff;
 	text-transform: uppercase;
 	font-weight: 700;
 }
 
+.navbar-custom .nav li a {
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+
+.navbar-custom .nav li a:hover,
+.navbar-custom .nav li a:focus,
+.navbar-custom .nav li.active {
+    outline: 0;
+    background-color: rgba(255,255,255,.2);
+}
+
+
 .navbar-custom.top-nav-collapse ul.nav li a {
-	    -webkit-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-	color: #fff;
 }
 
 #navLogo {
 	padding-top: 30px;
 }
+
+.navbar-toggle {
+    padding: 4px 6px;
+    font-size: 14px;
+    color: #444;
+    border: 1px solid black;
+}
+
+.navbar-toggle:focus,
+.navbar-toggle:active {
+    outline: 0;
+}
+
 
 .col-centered {
 	margin: 0 auto;
