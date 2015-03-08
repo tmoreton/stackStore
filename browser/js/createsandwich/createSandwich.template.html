@@ -1,15 +1,13 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-3">
-		</div>
-		<div class="col-md-6 text-center build">
+		<div class="col-md-9">
 			<form ng-class="{submitted:createSandwich.submitted}" name="createSandwich" novalidate>
-				<h2>Choose your bread</h2>
+				<div><h2>Choose your bread</h2>
 				<select name="bread" ng-required="true" ng-model="sandwich.bread" ng-options="type for type in bread">
 					<option value=''>Choose a type of bread</option>
-				</select>
-				<h1 ng-show="breadType">{{breadType}} is an excellent choice.</h1>
-				<h2>Choose your sandwich filling</h2>
+				</select></div>
+
+				<div><h2>Choose your sandwich filling</h2>
 				<div class="row">
 					<div class="col-sm-3" ng-repeat="filling in fillings | orderBy">
 						<label for="{{filling}}">
@@ -18,11 +16,11 @@
 						</label>
 						<div class="clearfix" ng-if="$index%4==3"></div>
 						<div ng-repeat-end=""></div>
-					</div>
-					<h2>Describe your sandwich</h2>
-					<textarea name="description" class="form-control" rows="3" placeholder="Give your sandwich a description!" ng-model="sandwich.description" ng-required="true"></textarea>
-					<h2>Finally, give your sandwich a name!</h2>
-					<input name="name" type="text" class="form-control" placeholder="Name your sandwich" ng-model="sandwich.name" ng-required="true" sandwichnamevalidator><br><br>
+					</div></div>
+					<div><h2>Describe your sandwich</h2>
+					<textarea name="description" class="form-control" rows="3" placeholder="Give your sandwich a description!" ng-model="sandwich.description" ng-required="true"></textarea></div>
+					<div><h2>Finally, give your sandwich a name!</h2>
+					<input name="name" type="text" class="form-control" placeholder="Name your sandwich" ng-model="sandwich.name" ng-required="true" sandwichnamevalidator></div>
 					<div class="error" 
 					       ng-show="createSandwich.submitted">
 					   <div class="error"
@@ -36,7 +34,7 @@
 					       ng-show="createSandwich.name.$error.required">
 					       Your sandwich needs a name!
 					   <br></div>
-					 </div>
+					 </div><p>
 					<div class="text-center">
 						<button class="btn btn-lg btn-primary" ng-click="addSandwich()" >Add Sandwich</button>
 						<button class="btn btn-lg btn-default" ng-click="reset()">Reset</button>
