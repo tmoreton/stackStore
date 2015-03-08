@@ -1,10 +1,37 @@
-<div>
+<!-- <div>
 <accordion close-others="oneAtATime">
 	<accordion-group heading="{{sandwich.name}}" ng-repeat="sandwich in sandwichSelection">
-	<accordian-heading>	
-	<button ng-click='addSandwich(sandwich)' class="btn btn-primary btn-circle pull-right add">+</button>	
+	<accordian-heading>
+	<button ng-click='addSandwich(sandwich)' class="btn btn-primary btn-circle pull-right add">+</button>
 	</accordian-heading>
 		{{sandwich.description}}
 	</accordion-group>
 </accordion>
+</div> -->
+<h1>Sandwich Selection</h1>
+<div class="row" >
+  <div ng-repeat="sandwich in sandwichSelection">
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png" alt="">
+            <div class="caption">
+                <h4 class="pull-right">${{sandwich.price}}</h4>
+                <h4><a href="#">{{sandwich.name}}</a>
+                </h4>
+                <p>{{sandwich.description}}</p>
+            </div>
+            <div class="ratings">
+                <p class="pull-right">{{sandwich.reviews}}</p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                </p>
+            </div>
+            <button ng-click='addSandwich(sandwich)' class="btn btn-primary btn-sm">Add to Tray</button>
+        </div>
+    </div>
+  </div>
 </div>
