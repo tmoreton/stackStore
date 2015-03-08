@@ -1,15 +1,16 @@
-<div class="container">
-<h2>This is the checkout page</h2>
-<div>
-<div class="col-md-3">
-	<side-Bar id="side-panel"></side-Bar>
-</div>
-</div>
-<sign-Up ng-show ="!isAuthenticated"></sign-Up>
+<div class="container text-center">
+	<h1>Checkout Page</h1>
+	<div>
+	<div class="col-md-8"></div>
+		<div class="col-md-4">
+			<side-Bar id="side-panel"></side-Bar>
+		</div>
+	</div>
+	<sign-Up ng-show ="!isAuthenticated"></sign-Up>
 
-<h3>{{sandwichesFromCookies}}</h3>
+	<h3>{{sandwichesFromCookies}}</h3>
 </div>
-<!-- <stripe></stripe> 
+<!-- <stripe></stripe>
 	<form action="" method="POST">
 		<script
 			    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -19,4 +20,4 @@
 			    data-description="2 widgets ($20.00)"
 			    data-image="/128x128.png">
 			  </script>
-	</form>  -->	
+	</form>  -->
