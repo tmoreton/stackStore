@@ -6,11 +6,12 @@ var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', '
     }
 ]);
 
+
 app.run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
-app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH_EVENTS) {
+app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH_EVENTS, $kookies) {
 
     // Given to the <navbar> directive to show the menu.
     $scope.menuItems = [
@@ -26,6 +27,7 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
     });
 
     $scope.userLogout = function() {
+        $kookies.remove("sandwiches")
         $scope.user = null;
         $scope.userLoggedIn = false;
         return AuthService.logout();
@@ -53,7 +55,7 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
 
      AuthService.getLoggedInUser().then(function(user) {
                 $scope.user = user;
-                console.log(user);
+                // console.log(user);
                 if(user) {
                     $scope.userLoggedIn = true;
                 } else {
