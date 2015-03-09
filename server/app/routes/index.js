@@ -26,16 +26,7 @@ router.post('/sandwiches', function(req, res) {
 	})
 })
 
-//find specific sandwich
-router.get('/sandwich/:id', function(req,res){
-  var sandwichID = req.params.id;
-  Sandwich.findById(sandwichID, function(err, sandwich){
-    if (err) {
-      res.send(err).end();
-    }
-    res.json(sandwich);
-  })
-})
+
 
 router.post('/signup/', function(req, res){
   console.log(req.body.firstName)
