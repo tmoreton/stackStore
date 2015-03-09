@@ -13,7 +13,7 @@
   <div ng-repeat="sandwich in sandwichSelection">
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail">
-            <img src="http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png" alt="">
+            <img ng-src="{{sandwich.image}}" alt="a picture of a sandwich">
             <div class="caption">
                 <h4 class="pull-right">${{sandwich.price}}</h4>
                 <h4><a href="#">{{sandwich.name}}</a>

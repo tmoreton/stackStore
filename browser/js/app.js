@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'ngCookies', 'ngKookies','ui.bootstrap'])
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'ngCookies', 'ngKookies','ui.bootstrap', 'angular.filter'])
 .config(['$kookiesProvider', 
     function ($kookiesProvider) {
         $kookiesProvider.config.json = true;

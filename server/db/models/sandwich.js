@@ -19,9 +19,7 @@ var schema = new mongoose.Schema({
         get: getPrice,
         set: setPrice
     },
-    image: {
-        url: String
-    },
+    image: String,
     bread: {
         type: String,
         required: true,
