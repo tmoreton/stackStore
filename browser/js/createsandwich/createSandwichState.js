@@ -56,7 +56,6 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 			console.log($scope.sandwich);
 			$scope.sideSandwiches.push($scope.sandwich);
 			CookieFactory.setCookies($scope.sideSandwiches);
-
 			$scope.reset();
 		}
 		else {

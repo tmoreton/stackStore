@@ -6,8 +6,6 @@ var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', '
     }
 ]);
 
-
-
 app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH_EVENTS, $kookies) {
 
     // Given to the <navbar> directive to show the menu.

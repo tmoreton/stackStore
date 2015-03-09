@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q) {
+app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q) {
 	$scope.sideSandwiches = CookieFactory.getCookies()
 	$scope.hideCheckoutButton = true;
 	$scope.hideSubmitButton = true;
@@ -71,6 +71,9 @@ app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CookieFactory
                 
 			})	
 		});
+	}
+	$scope.removeSandwich = function(sandwich){
+		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
 	}
 	
 });

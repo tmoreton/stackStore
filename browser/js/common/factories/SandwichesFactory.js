@@ -21,8 +21,10 @@ app.factory('SandwichesFactory', function ($http) {
             });
         },
 
-        updatePrice: function(id){
-            return $http.post('/api/sandwiches/' + id);
+        newPrice: function(id, price){
+            return $http.put('/api/sandwiches/' + id, {params: {price:price}}).then(function(response) {
+                return response.data;
+            });
         }
     }
 
