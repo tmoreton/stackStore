@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
             getLoggedInUser: function(AuthService, $state){
                 return AuthService.getLoggedInUser().then(function(user){
                     if(user){
-                        $state.go("success");
+                        $state.go("checkout");
                     }
                 })
             }
@@ -18,17 +18,24 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('SignupCtrl', function ($scope, $state, AddUserFactory) {
 
-  $scope.signup = function(){
-    console.log($scope.user);
-    if($scope.signInForm.$valid){
-        AddUserFactory.AddUser($scope.user).then(function(data){
-            $state.go('success');
-        });
-    }else{
-        $scope.signInForm.submitted = true;
-    }
-  }
+app.controller('SignupCtrl', function ($scope, $state, AddUserFactory, CheckUserFactory, CookieFactory) {
+    $scope.signup = function(){
+        
+        if($scope.signInForm.$valid){//adds user to the db
+            
+            AddUserFactory.AddUser($scope.user).then(function(){//if sucessful then logs in the user automatically
+                CheckUserFactory.checkuser($scope.user).then(function(user){
+                    
+                    if(user) {
+                        $state.go("checkout");
+                    }
+                })
+            });
+        }else{
+            $scope.signInForm.submitted = true;
+        }   
+    };
+
 });
 

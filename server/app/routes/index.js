@@ -72,7 +72,7 @@ router.post('/signup/', function(req, res){
     lastName: req.body.lastName,
     password: req.body.password,
     email: req.body.email
-  }).then(function(){
+  }).then(function(person){
     console.log("Got this far!")
     res.status(200).end();
   })
