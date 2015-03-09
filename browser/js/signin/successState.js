@@ -20,7 +20,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('SuccessCtrl', function($scope, getLoggedInUser, $state, SandwichesFactory){  
+app.controller('SuccessCtrl', function($scope, $kookies, getLoggedInUser, $state, SandwichesFactory){  
 	$scope.user = getLoggedInUser;
   $scope.userLoggedIn = true; 
   if ($scope.user.orders.length) {
