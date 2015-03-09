@@ -24,7 +24,7 @@ app.controller('SignupCtrl', function ($scope, $state, AddUserFactory) {
     console.log($scope.user);
     if($scope.signInForm.$valid){
         AddUserFactory.AddUser($scope.user).then(function(data){
-            $state.go('success');
+            $state.go('checkout');
         });
     }else{
         $scope.signInForm.submitted = true;

@@ -26,26 +26,10 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 		//needs to be done
 	}
 	else{
-		//if you are not:
-		//sign up form will appear-done!
+		
 	}
-	
-	 var signup = function(){
-	    console.log($scope.user);
-	    if($scope.signInForm.$valid){
-	        AddUserFactory.AddUser($scope.user).then(function(data){
-	            
-	        });
-	    }else{
-	        $scope.signInForm.submitted = true;
-	    }
-	  }	
 	$scope.submitOrder = function(){
-		//if you are not signed in
-		//create a user in the db with your information
-		if(!$scope.user){
-			signup()
-		}
+		
 		
 		var sandwichPromises = []
 		//send a sandwich for every sandwich in tray to database
