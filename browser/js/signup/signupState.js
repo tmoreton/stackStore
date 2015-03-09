@@ -18,17 +18,22 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('SignupCtrl', function ($scope, $state, AddUserFactory) {
-
-  $scope.signup = function(){
-    console.log($scope.user);
-    if($scope.signInForm.$valid){
-        AddUserFactory.AddUser($scope.user).then(function(data){
-            $state.go('success');
-        });
-    }else{
-        $scope.signInForm.submitted = true;
-    }
-  }
+app.controller('SignupCtrl', function ($scope, $state, AddUserFactory, CheckUserFactory, CookieFactory) {
+    $scope.signup = function(){
+        console.log("signup is called");
+        if($scope.signInForm.$valid){//adds user to the db
+            console.log("past the validator")
+            AddUserFactory.AddUser($scope.user).then(function(){//if sucessful then logs in the user automatically
+                CheckUserFactory.checkuser($scope.user).then(function(user){
+                    console.log("successfully checked for user");
+                    if(user) {
+                        $state.go("checkout");
+                    }else{
+                        $state.go('success');
+                    }
+                });
+            });
+        }
+    };
 });
 
