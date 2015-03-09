@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'ngCookies', 'ngKookies','ui.bootstrap', 'angular.filter', 'xeditable'])
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'ngCookies', 'ngKookies','ui.bootstrap', 'angular.filter'])
 .config(['$kookiesProvider',
     function ($kookiesProvider) {
         $kookiesProvider.config.json = true;
@@ -7,9 +7,6 @@ var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', '
 ]);
 
 
-app.run(function(editableOptions) {
-  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-});
 
 app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH_EVENTS, $kookies) {
 
