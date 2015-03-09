@@ -41,7 +41,6 @@ router.delete('/sandwiches/:id', function(req, res) {
   Sandwich.remove({
     _id: req.params.id
   }, function(err, sandwich) {
-    console.log('laksdjfla;kdjf;akdsj', req.params.id);
     if(err) res.send(err);
 
     Sandwich.find(function(err, sandwiches) {
@@ -51,6 +50,17 @@ router.delete('/sandwiches/:id', function(req, res) {
 
 
   })
+})
+
+router.post('/sandwiches/:id', function(req, res) {
+  Sandwich.findOneAndUpdate(
+      { _id: req.params.id},
+      { price: req.body.price},
+      { upsert: true},
+    function(err, sandwich) {
+      if(err) res.send(err)
+    }
+  )
 })
 
 router.post('/signup/', function(req, res){

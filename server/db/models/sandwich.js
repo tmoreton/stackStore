@@ -15,9 +15,6 @@ var schema = new mongoose.Schema({
     },
     price: {
         type: Number,
-        //required: true,
-        get: getPrice,
-        set: setPrice
     },
     image: String,
     bread: {
@@ -32,19 +29,10 @@ var schema = new mongoose.Schema({
     // }
 });
 
-function getPrice(num){
-    return (num/100).toFixed(2);
-}
-
-function setPrice(num){
-    return num*100;
-}
 
 schema.plugin(uniqueValidator);
 var Sandwich = mongoose.model('Sandwich', schema);
 
 module.exports = {
     Sandwich: Sandwich,
-    getPrice: getPrice,
-    setPrice: setPrice
 };
