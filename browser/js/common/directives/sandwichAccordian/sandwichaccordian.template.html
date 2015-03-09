@@ -1,15 +1,20 @@
 <h1>Sandwich Selection</h1>
 <div class="row" >
   <div ng-repeat="sandwich in sandwichSelection">
-    <div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="col-sm-3 col-lg-3 col-md-3">
         <div class="thumbnail">
+            <h3 ng-show="sandwich.updated">{{sandwich.updated}}</h3>
             <img ng-src="{{sandwich.image}}" alt="a picture of a sandwich">
             <div class="caption">
-                <h4 class="pull-right">{{sandwich.price | currency}}</h4>
-                <h4><a href="#">{{sandwich.name}}</a>
-                </h4>
+            <div class="input-group">
+             <form ng-show="{{user.admin}}"><input type="text" value="{{sandwich.price}}" ng-model="sandwich.price"><span class="input-group-btn"><button class="btn btn-default" ng-click="updatePrice(sandwich._id, sandwich.price)">Update</button></span></form> 
+             </div>
+             </div>
+
+            <h4><a href="#">{{sandwich.name}}</a></h4>
                 <p>{{sandwich.description}}</p>
-            </div>
+                <h4 ng-show="{{user.admin}}">{{sandwich.price | currency }}</h4>
+                <h4 ng-show="!{{user.admin}}">{{sandwich.price | currency}}</h4>
             <div class="ratings">
                 <p class="pull-right">{{sandwich.reviews}}</p>
                 <p>
@@ -22,6 +27,7 @@
             </div>
             <button ng-click='addSandwich(sandwich)' class="btn btn-primary btn-sm">Add to Tray</button>
             <button ng-click='deleteSandwich(sandwich._id)' ng-show="{{user.admin}}" class="btn btn-danger btn-sm">Remove</button>
+            </div>
         </div>
     </div>
   </div>

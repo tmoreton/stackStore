@@ -1,4 +1,4 @@
-//'use strict';
+'use strict';
 app.config(function ($stateProvider) {
 
     $stateProvider.state('addsandwich', {
@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFactory) {
+app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFactory, $timeout) {
 	$scope.hideSubmitButton = true;
 	SandwichesFactory.getSandwiches().then( function(sandwiches) {
 		$scope.sandwichSelection = sandwiches;
@@ -43,7 +43,20 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
 		});
     })
-  };
+  },
+
+  $scope.updatePrice = function(id, price){
+      SandwichesFactory.newPrice(id, price); 
+      $scope.sandwichSelection.forEach(function(sandwich) {
+      	if(sandwich._id == id) {
+      		sandwich.price = price;
+      		sandwich.updated = "Price updated!";
+      		$timeout(function() {
+      			sandwich.updated = false
+      		}, 2000);
+      	}
+      })
+  }
 
 });
 

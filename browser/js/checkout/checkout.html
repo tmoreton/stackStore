@@ -1,23 +1,29 @@
-<div class="container text-center">
+<!-- <div class="container text-center">
+	<div class="row">
 	<h1>Checkout Page</h1>
 	<div>
-	<div class="col-md-8"></div>
-		<div class="col-md-4">
+	<div class="col-md-9"></div>
+		<div class="col-md-3">
 			<side-Bar id="side-panel"></side-Bar>
 		</div>
 	</div>
 	<sign-Up ng-show ="!isAuthenticated"></sign-Up>
 
 	<h3>{{sandwichesFromCookies}}</h3>
+	<stripe></stripe>
+	</div>
+</div> -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-9 text-center">
+			<h1>Checkout Page</h1>
+			<sign-Up ng-show ="!isAuthenticated"></sign-Up>
+				<h3>{{sandwichesFromCookies}}</h3>
+				<stripe></stripe>
+		</div>
+		<div class="col-lg-3 menu-tray">
+			<side-bar id="side-panel"></side-bar>
+		</div>
+	</div>
 </div>
-<!-- <stripe></stripe>
-	<form action="" method="POST">
-		<script
-			    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-			    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-			    data-amount="2000"
-			    data-name="Demo Site"
-			    data-description="2 widgets ($20.00)"
-			    data-image="/128x128.png">
-			  </script>
-	</form>  -->

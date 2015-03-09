@@ -52,6 +52,20 @@ router.delete('/sandwiches/:id', function(req, res) {
   })
 })
 
+router.put('/sandwiches/:id', function(req, res) {
+  Sandwich.findById(req.params.id, function(err, sandwich) {
+    if(err) res.send(err);
+    console.log('ldshfaldsfklajshdf', req.body);
+    sandwich.price = req.body.params.price;
+
+    sandwich.save(function(err) {
+      if(err) res.send(err);
+
+      res.json(sandwich);
+    })
+  })
+})
+
 router.post('/signup/', function(req, res){
   console.log(req.body.firstName)
   User.create({
@@ -83,20 +97,20 @@ router.post('/orders', function(req, res){
     });
   })
 })
-router.post('/build', function(req, res){
+router.post('/charge', function(req, res){
   console.log(req.body)
-  // Order.create({
-  //   firstName: req.body.firstName,
-  // }).then(function(){
-  //   console.log("Got this far!")
-  //   res.status(200).end();
-  // })
-  // stripe.charges.create({
-  //   amount: 400,
-  //   currency: "usd",
-  //   source: "tok_15d5BIHPOjExPGadYjdNe1ig", // obtained with Stripe.js
-  //   metadata: {'order_id': '6735'}
-  // });
+
+  var stripeToken = request.body.stripeToken;
+  var charge = stripe.charges.create({
+    amount: 1000, // amount in cents, again
+    currency: "usd",
+    source: stripeToken,
+    description: "payinguser@example.com"
+  }, function(err, charge) {
+    if (err && err.type === 'StripeCardError') {
+      // The card has been declined
+    }
+  });
 });
 
 module.exports = router;

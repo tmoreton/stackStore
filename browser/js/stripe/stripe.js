@@ -4,9 +4,15 @@ app.controller('stripeForm', function ($scope, $state, addOrder) {
   // Stripe Response Handler
   $scope.stripeCallback = function () {
       console.log($scope)
-      addOrder.addOrder($scope).then(function(data) {
-        $state.go('success');
-      });
+      // addOrder.addOrder($scope).then(function(data) {
+
+      // });
+      Stripe.card.createToken({
+        number: $('.card-number').val(),
+        cvc: $('.card-cvc').val(),
+        exp_month: $('.card-expiry-month').val(),
+        exp_year: $('.card-expiry-year').val()
+      }, stripeResponseHandler);
       // StripeCheckout.open({
       //   key: config.get('stripe_public_key'),
       //   address: false,
@@ -34,8 +40,7 @@ app.factory('addOrder', function ($http) {
     return {
         addOrder: function (postBody) {
           console.log("add user is called")
-          var test = angular.toJson("helloworld")
-            return $http.post('/api/build/', test).then(function(response){
+            return $http.post('/api/charge/', postBody).then(function(response){
                 return response.data
             })
         }
@@ -57,11 +62,6 @@ app.factory('addOrder', function ($http) {
 //         templateUrl: 'js/stripe/stripe.html'
 //     });
 // });
-
-
-
-
-
 
 
 
