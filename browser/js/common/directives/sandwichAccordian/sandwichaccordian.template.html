@@ -7,7 +7,9 @@
             <img ng-src="{{sandwich.image}}" alt="a picture of a sandwich">
             <div class="caption">
             <div class="input-group">
-             <form ng-show="{{user.admin}}"><input type="text" value="{{sandwich.price}}" ng-model="sandwich.price"><span class="input-group-btn"><button class="btn btn-default" ng-click="updatePrice(sandwich._id, sandwich.price)">Update</button></span></form> 
+             <form ng-show="{{user.admin}}"><input type="text" value="{{sandwich.price}}" ng-model="sandwich.price">
+             <span class="input-group-btn">
+             <button class="btn btn-default" ng-click="updatePrice(sandwich._id, sandwich.price)">Update</button></span></form> 
              </div>
              </div>
 
