@@ -26,8 +26,7 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 		//needs to be done
 	}
 	else{
-		//if you are not:
-		//sign up form will appear-done!
+		$state.go("signup")
 	}
 	
 	 var signup = function(){

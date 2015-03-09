@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
             getLoggedInUser: function(AuthService, $state){
                 return AuthService.getLoggedInUser().then(function(user){
                     if(user){
-                        $state.go("success");
+                        $state.go("checkout");
                     }
                 })
             }
