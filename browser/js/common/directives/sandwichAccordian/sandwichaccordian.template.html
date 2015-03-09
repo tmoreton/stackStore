@@ -31,6 +31,7 @@
                 </p>
             </div>
             <button ng-click='addSandwich(sandwich)' class="btn btn-primary btn-sm">Add to Tray</button>
+            <button ng-click='deleteSandwich(sandwich._id)' ng-show="{{user.admin}}" class="btn btn-danger btn-sm">Remove</button>
         </div>
     </div>
   </div>
