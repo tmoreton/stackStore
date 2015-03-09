@@ -12,17 +12,15 @@ app.factory('SandwichesFactory', function ($http) {
         },
 
         removeSandwiches: function(id) {
-            console.log(id);
             return $http.delete('/api/sandwiches/' + id).then(function(response) {
                 return response.data;
             });
+        },
+
+        updatePrice: function(id){
+            return $http.post('/api/sandwiches/' + id);
         }
 
-
-
-        // addToOrder: function(sandwich) {
-        //     return $http.post('', )
-        // }
     }
 
 });

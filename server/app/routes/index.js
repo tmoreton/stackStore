@@ -42,6 +42,17 @@ router.delete('/sandwiches/:id', function(req, res) {
   })
 })
 
+router.post('/sandwiches/:id', function(req, res) {
+  Sandwich.findOneAndUpdate(
+      { _id: req.params.id},
+      { price: req.body.price},
+      { upsert: true},
+    function(err, sandwich) {
+      if(err) res.send(err)
+    }
+  )
+})
+
 router.post('/signup/', function(req, res){
   console.log(req.body.firstName)
   User.create({
