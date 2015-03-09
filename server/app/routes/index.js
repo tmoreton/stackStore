@@ -3,7 +3,7 @@ var router = require('express').Router();
 var Sandwich = require('../../db/models/sandwich.js').Sandwich;
 var User = require('../../db/models/user.js').User;
 var Order = require('../../db/models/orders.js').Order;
-var stripe = require("stripe")("pk_test_OxISGD7GxGhZCOofus3QFoW8");
+var stripe = require("stripe")("sk_test_Cv1UxGFrtA7dBCrUWstCn5sA");
 
 // router.use('/', require('./'));
 
@@ -96,20 +96,37 @@ router.post('/orders', function(req, res){
     });
   })
 })
-router.post('/charge', function(req, res){
-  console.log(req.body)
 
-  var stripeToken = request.body.stripeToken;
+
+router.post('/charge', function(req, res){
+  var stripeToken = req.body.stripeToken;
+    console.log("----------------------------req-------",req.body)
   var charge = stripe.charges.create({
-    amount: 1000, // amount in cents, again
+    amount: req.body.sandwiches.price, // amount in cents, again
     currency: "usd",
     source: stripeToken,
     description: "payinguser@example.com"
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       // The card has been declined
+      console.log("line 113", JSON.stringify(err, null, 2));
     }
+    // console.log(charge)
+    res.send("completed payment!")
   });
 });
+
+// router.post('/charge', function(req, res, next) {
+//    var total = parseInt(req.body.total);
+//    console.log(req.body.token);
+//    stripe.charges.create({
+//        amount: req.body.total,
+//        currency: "usd",
+//        source: req.body.token,
+//        description: req.body.manifest
+//    }, function(err, charge) {
+//        res.send('Charged! Details: ' + charge);
+//    });
+// });
 
 module.exports = router;
