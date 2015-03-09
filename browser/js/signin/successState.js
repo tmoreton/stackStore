@@ -30,7 +30,9 @@ app.controller('SuccessCtrl', function($scope, getLoggedInUser, $state, Sandwich
   }
   SandwichesFactory.getSandwiches().then(function(sandwiches){
     $scope.allSandwiches = sandwiches
-    
+    $scope.allSandwiches.forEach(function(sandwich){
+      
+    })
   })
   
   
