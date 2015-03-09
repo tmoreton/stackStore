@@ -44,11 +44,12 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies,
     })
   },
 
-  $scope.updatePrice = function(id, price, sandwich){
+  $scope.updatePrice = function(id, price){
       SandwichesFactory.newPrice(id, price); 
       $scope.sandwichSelection.forEach(function(sandwich) {
       	if(sandwich._id == id) {
-      		sandwich.price = price
+      		sandwich.price = price;
+      		sandwich.updated = "Price updated!"
       	}
       })
   }
