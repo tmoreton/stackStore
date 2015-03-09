@@ -44,14 +44,13 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies,
     })
   },
 
-  $scope.updatePrice = function(id){
-      SandwichesFactory.updatePrice(id).then(function(sandwiches){
-        $scope.sandwichSelection = sandwiches;
-        console.log(sandwiches)
-        angular.forEach($scope.sandwichSelection, function (sandwich) {
-          sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
-        });
-      });
+  $scope.updatePrice = function(id, price, sandwich){
+      SandwichesFactory.newPrice(id, price); 
+      $scope.sandwichSelection.forEach(function(sandwich) {
+      	if(sandwich._id == id) {
+      		sandwich.price = price
+      	}
+      })
   }
 
 });

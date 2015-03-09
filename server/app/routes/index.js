@@ -52,15 +52,18 @@ router.delete('/sandwiches/:id', function(req, res) {
   })
 })
 
-router.post('/sandwiches/:id', function(req, res) {
-  Sandwich.findOneAndUpdate(
-      { _id: req.params.id},
-      { price: req.body.price},
-      { upsert: true},
-    function(err, sandwich) {
-      if(err) res.send(err)
-    }
-  )
+router.put('/sandwiches/:id', function(req, res) {
+  Sandwich.findById(req.params.id, function(err, sandwich) {
+    if(err) res.send(err);
+    console.log('ldshfaldsfklajshdf', req.body);
+    sandwich.price = req.body.params.price;
+
+    sandwich.save(function(err) {
+      if(err) res.send(err);
+
+      res.json(sandwich);
+    })
+  })
 })
 
 router.post('/signup/', function(req, res){

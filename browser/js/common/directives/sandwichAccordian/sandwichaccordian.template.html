@@ -15,13 +15,11 @@
         <div class="thumbnail">
             <img ng-src="{{sandwich.image}}" alt="a picture of a sandwich">
             <div class="caption">
-                <h4 class="pull-right" ng-show="{{user.admin}}">${{sandwich.price}}</h4>
-                <form><input type="text" value="{{sandwich.price}}"><span><button ng-click="updatePrice(sandwich._id)">Update</button></span></form>
+                <h4 class="pull-right" ng-show="{{user.admin}}">{{sandwich.price | currency }}</h4>
+                <form><input type="text" value="{{sandwich.price}}" ng-model="sandwich.price"><span><button ng-click="updatePrice(sandwich._id, sandwich.price)">Update</button></span></form>
 <!--                 <h4 class="pull-right" ng-click="updatePrice(sandwich._id)" ng-show="{{user.admin}}" editable-text="sandwich.price">${{sandwich.price}}</h4>
  -->                <h4><a href="#">{{sandwich.name}}</a>
-                <h4 class="pull-right">{{sandwich.price | currency}}</h4>
-                <h4><a href="#">{{sandwich.name}}</a>
-                </h4>
+                <h4 class="pull-right" ng-show="!{{user.admin}}">{{sandwich.price | currency}}</h4>
                 <p>{{sandwich.description}}</p>
             </div>
             <div class="ratings">
