@@ -46,11 +46,7 @@ mongoose.connection.on('open', function() {
             async.each(data.Sandwich, function(sandwich, sandwichCreated){
                 sandwich.user = users[i]._id;
                 i++;
-            }, function(err){
-                if(err) console.log(err);
-                console.log("working users!")
-            })
-        })
+            }
     });
 
     async.each(data.Sandwich, function (sandwich,sandwichCreated) {
