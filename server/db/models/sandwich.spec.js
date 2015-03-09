@@ -6,8 +6,6 @@ mongoose.createConnection('mongodb://localhost/testingModels');
 
 var Sandwich = require('./sandwich').Sandwich;
 var Reviews = require('./reviews').Reviews;
-var getPrice = require('./sandwich').getPrice;
-var setPrice = require('./sandwich').setPrice;
 
 console.log('are we calling the sandwich?', Sandwich);
 
@@ -75,34 +73,6 @@ describe('Sandwich Model', function() {
 
 });
 
-	describe('getPrice and setPrice method', function() {
-			var sandwich;
-			beforeEach(function(done) {
-				Sandwich.create({
-					name: 'The Crocker',
-					description: 'a simple sandwich',
-					fillings: ['apple', 'brie', 'goat cheese'],
-					bread: 'brioche'
-				}, function(err, createdSandwich) {
-					sandwich = createdSandwich;
-					done()
-				});
-			});
-
-				it('should get price 15.00', function(done) {
-					sandwich.price = 15;
-					expect(sandwich.price).to.equal('15.00');
-					done();
-				})
-
-				it('should set price', function(done) {
-					sandwich.price = 15;
-					expect(setPrice(sandwich.price)).to.equal(1500);
-					done();
-				})
-
-
-		})
 
 
 
