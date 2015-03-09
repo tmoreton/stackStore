@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 app.config(function ($stateProvider) {
 
     $stateProvider.state('addsandwich', {
@@ -10,6 +10,7 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies, CookieFactory) {
+	$scope.hideSubmitButton = true;
 	SandwichesFactory.getSandwiches().then( function(sandwiches) {
 		$scope.sandwichSelection = sandwiches;
 		angular.forEach($scope.sandwichSelection, function (sandwich) {

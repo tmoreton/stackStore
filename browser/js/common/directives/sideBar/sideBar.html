@@ -5,7 +5,7 @@
 		<div class="panel-body" ng-model="sandwich">
 			<div class="tray-sandwich">
 					<div>
-						<div class='name' ng-repeat="sandwich in sideSandwiches"><img src="http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png" height="35" width="35"><strong> {{sandwich.name}} &nbsp; <button ng-click="removeSandwich(sandwich)"class="btn btn-xs btn-danger remove btn-circle">x</button></strong>
+						<div class='name' ng-repeat="sandwich in sideSandwiches track by $index"><img src="http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png" height="35" width="35"><strong> {{sandwich.name}} &nbsp; <button ng-click="removeSandwich(sandwich)"class="btn btn-xs btn-danger remove btn-circle">x</button></strong>
 						<div class="descrip">{{sandwich.description}}</div>
 
 					</div>
