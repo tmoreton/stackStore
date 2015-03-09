@@ -28,19 +28,7 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 	else{
 		$state.go("signup")
 	}
-	
-	 var signup = function(){
-	    console.log($scope.user);
-	    if($scope.signInForm.$valid){
-	        AddUserFactory.AddUser($scope.user).then(function(data){
-	            
-	        });
-	    }else{
-	        $scope.signInForm.submitted = true;
-	    }
-	  }	
 	$scope.submitOrder = function(){
-		console.log("submit button pressed")
 		var sandwichPromises = []
 		//send a sandwich for every sandwich in tray to database
 		$scope.sideSandwiches.forEach(function(sandwich){
