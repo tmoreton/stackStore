@@ -6,11 +6,6 @@ var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', '
     }
 ]);
 
-
-// app.run(function(editableOptions) {
-//   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-// });
-
 app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH_EVENTS, $kookies) {
 
     // Given to the <navbar> directive to show the menu.

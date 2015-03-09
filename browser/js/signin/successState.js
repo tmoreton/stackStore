@@ -3,14 +3,15 @@ app.config(function ($stateProvider) {
 
     $stateProvider.state('success', {
     	resolve: {
-    		getLoggedInUser: function(AuthService, $state){
-    			return AuthService.getLoggedInUser().then(function(user){
-    				if(user){
-    					return user
-    				}else{
-   						$state.go("login")
-   					}
-   				})
+    		getLoggedInUser: function(AuthService, $state, $http){
+            return AuthService.getLoggedInUser(true).then(function(user){
+              if(user){
+                console.log(user)
+                return user
+              }else{
+                $state.go("login")
+              }
+            })
     		}
 
     	},
@@ -20,21 +21,11 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('SuccessCtrl', function($scope, $kookies, getLoggedInUser, $state, SandwichesFactory){  
-	$scope.user = getLoggedInUser;
+app.controller('SuccessCtrl', function($scope, getLoggedInUser, $kookies, $state, SandwichesFactory){  
+  
+  $scope.user = getLoggedInUser
+  $scope.numOrders = $scope.user.orders.length;
+  
   $scope.userLoggedIn = true; 
-  if ($scope.user.orders.length) {
-    $scope.numOrders = $scope.user.orders.length  
-  } else{
-    $scope.numOrders = 0;
-  }
-  SandwichesFactory.getSandwiches().then(function(sandwiches){
-    $scope.allSandwiches = sandwiches
-    $scope.allSandwiches.forEach(function(sandwich){
-      
-    })
-  })
-  
-  
-  
+ 
 });

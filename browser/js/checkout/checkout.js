@@ -62,23 +62,15 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 				console.log("this is what we think is the user id",user._id)
 				var user_id = user._id;
 				console.log("this is the user id that we are sending to the db",user_id)
-				CheckoutFactory.addNewOrder(sandwichIdArr, user_id)
-				$scope.sideSandwiches = [];
-				$kookies.remove('sandwiches')
-				$state.go('success');
+				CheckoutFactory.addNewOrder(sandwichIdArr, user_id).then(function(){
+					$scope.sideSandwiches = [];
+					$kookies.remove('sandwiches')
+	                $state.go('success');
+				});
+				
+                
 			})	
-
 		});
-		
-
-		
-
-		//that user in the db gets another order in their order history
-		//if everything works:
-		//sent to success page
-		// $state.go('success');
-		//else
-		//error appears
 	}
 	$scope.removeSandwich = function(sandwich){
 		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);

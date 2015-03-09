@@ -33,7 +33,7 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 		sandwich.exists = true
 		$scope.sideSandwiches.push(sandwich);
 		CookieFactory.setCookies($scope.sideSandwiches);
-	},
+	}
 
   $scope.deleteSandwich = function(id) {
     console.log('deleted?');
