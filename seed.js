@@ -9,6 +9,7 @@ require('./server/db/models/user.js');
 
 var Review = mongoose.model("Reviews");
 var Sandwich = mongoose.model("Sandwich");
+var User = mongoose.model("User");
 
 var data = {
     Sandwich: [
@@ -27,17 +28,33 @@ var data = {
         {description: "This was pretty tasty and I enjoyed it a lot. Get ittt", stars: 5},
         {description: "This was a great sandwich. The ingredients complemented each other nicely and I would order it again.", stars: 4},
     ],
-    Users: [
+    User: [
         { firstName: 'Kimmy', lastName: 'Schmidt', email: 'kimmy@email.com', password: 'kimmy' },
-        { firstName: 'Titus', lastName: 'Andromedon', email: 'titus@email.com', password: 'titus' },
+        { firstName: 'Titus', lastName: 'Andromedon', email: 'titus@email.com', password: 'titus', admin: true},
     ]
 }
 
 mongoose.connection.on('open', function() {
     mongoose.connection.db.dropDatabase(function() {
     console.log("Adding Data");
+
+    async.each(data.User, function (user,userCreated) {
+        User.create(user, userCreated);
+    }, function(err){
+        var i=0;
+        User.find({}, function(err, users){
+            async.each(data.Sandwich, function(sandwich, sandwichCreated){
+                sandwich.user = users[i]._id;
+                i++;
+            }, function(err){
+                if(err) console.log(err);
+                console.log("working users!")
+            })
+        })
+    });
+
     async.each(data.Sandwich, function (sandwich,sandwichCreated) {
-        Sandwich.create(sandwich, sandwichCreated);   
+        Sandwich.create(sandwich, sandwichCreated);
     },function (err){
         console.log("Finished Adding Sandwiches");
         var i = 0;
@@ -50,10 +67,10 @@ mongoose.connection.on('open', function() {
                 var j = 0;
                 Review.find( {} , function (err, addedReviews) {
                     async.each(addedReviews, function(addedReview, refAdded) {
-                        Sandwich.findOne( {_id: addedReview.sandwich}, function (err, addedSandwich) { 
+                        Sandwich.findOne( {_id: addedReview.sandwich}, function (err, addedSandwich) {
                             addedSandwich.reviews.push(addedReview._id);
                             addedSandwich.save( function() {
-                                 refAdded(); 
+                                 refAdded();
                             });
                         });
                     }, function (err) {
@@ -63,7 +80,7 @@ mongoose.connection.on('open', function() {
                     })
 
                 })
-               
+
             });
         });
     });

@@ -27,7 +27,15 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies,
 	$scope.addSandwich = function(sandwich) {
 		$scope.sideSandwiches.push(sandwich);
 		CookieFactory.setCookies($scope.sideSandwiches);
-	};
+	},
+
+  $scope.deleteSandwich = function(id) {
+      console.log('deleted?');
+    SandwichesFactory.removeSandwiches(id).then(function(response) {
+      return response.data;
+
+    })
+  };
 
 });
 

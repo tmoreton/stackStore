@@ -9,9 +9,16 @@ app.factory('SandwichesFactory', function ($http) {
             return $http.get('/api/sandwiches', {params: sandwichInformation}).then(function(response) {
                 return response.data;
             });
+        },
+
+        removeSandwiches: function(id) {
+            console.log(id);
+            return $http.delete('/api/sandwiches/' + id).then(function(response) {
+                return response.data;
+            });
         }
 
-        
+
 
         // addToOrder: function(sandwich) {
         //     return $http.post('', )
