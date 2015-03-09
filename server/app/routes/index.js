@@ -33,7 +33,7 @@ router.delete('/sandwiches/:id', function(req, res) {
     console.log('laksdjfla;kdjf;akdsj', req.params.id);
     if(err) res.send(err);
 
-    Sandwich.find({}, function(err, sandwiches) {
+    Sandwich.find(function(err, sandwiches) {
       if(err) res.send(err)
         res.json(sandwiches);
     })
