@@ -17,9 +17,11 @@ app.factory('CookieFactory', function($kookies){
 	 	},
 	 	removeCookie: function(sandwich){
 	 		var sandwiches = $kookies.get("sandwiches")
+	 		var deleted = false;
 	 		sandwiches.forEach(function (kookieSandwich, index, array) {
-	 			if (sandwich._id == kookieSandwich._id ) {
+	 			if (sandwich._id == kookieSandwich._id && !deleted ) {
 	 				array.splice(index,1);
+	 				deleted = true;
 	 			}
 	 		});
 	 		$kookies.set('sandwiches',sandwiches);
