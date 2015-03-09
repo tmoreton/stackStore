@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies, CookieFactory) {
+app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies, CookieFactory, $timeout) {
 	SandwichesFactory.getSandwiches().then( function(sandwiches) {
 		$scope.sandwichSelection = sandwiches;
 		angular.forEach($scope.sandwichSelection, function (sandwich) {
@@ -49,7 +49,10 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies,
       $scope.sandwichSelection.forEach(function(sandwich) {
       	if(sandwich._id == id) {
       		sandwich.price = price;
-      		sandwich.updated = "Price updated!"
+      		sandwich.updated = "Price updated!";
+      		$timeout(function() {
+      			sandwich.updated = false
+      		}, 2000);
       	}
       })
   }
