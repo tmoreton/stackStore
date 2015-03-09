@@ -2,10 +2,21 @@
 var router = require('express').Router();
 var Sandwich = require('../../db/models/sandwich.js').Sandwich;
 var User = require('../../db/models/user.js').User;
+var Reviews = require('../../db/models/reviews.js').Reviews
 var Order = require('../../db/models/orders.js').Order;
 var stripe = require("stripe")("pk_test_OxISGD7GxGhZCOofus3QFoW8");
 
 // router.use('/', require('./'));
+
+//get all reviews or review of sandwich ID specified
+router.get('/reviews', function(req, res){
+    Reviews.find({}, function(err, reviews) {
+      if(err) {
+        res.send(err)
+      }
+      res.json(reviews);  
+   });
+});
 
 //get sandwichbyid
 router.get('/sandwiches/:id', function(req, res) {
@@ -55,7 +66,6 @@ router.delete('/sandwiches/:id', function(req, res) {
 router.put('/sandwiches/:id', function(req, res) {
   Sandwich.findById(req.params.id, function(err, sandwich) {
     if(err) res.send(err);
-    console.log('ldshfaldsfklajshdf', req.body);
     sandwich.price = req.body.params.price;
 
     sandwich.save(function(err) {
