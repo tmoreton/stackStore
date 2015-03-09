@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies, CookieFactory) {
+app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFactory) {
 	$scope.hideSubmitButton = true;
 	SandwichesFactory.getSandwiches().then( function(sandwiches) {
 		$scope.sandwichSelection = sandwiches;
