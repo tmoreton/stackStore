@@ -28,12 +28,12 @@ app.controller('SignupCtrl', function ($scope, $state, AddUserFactory, CheckUser
                     console.log("successfully checked for user");
                     if(user) {
                         $state.go("checkout");
-                    }else{
-                        $state.go('success');
                     }
-                });
+                })
             });
-        }
+        }else{
+            $scope.signInForm.submitted = true;
+        }   
     };
 });
 

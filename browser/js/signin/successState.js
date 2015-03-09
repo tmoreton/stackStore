@@ -5,6 +5,7 @@ app.config(function ($stateProvider) {
     	resolve: {
     		getLoggedInUser: function(AuthService, $state, $http){
             return AuthService.getLoggedInUser(true).then(function(user){
+              console.log("trying to resolve")
               if(user){
                 console.log(user)
                 return user
