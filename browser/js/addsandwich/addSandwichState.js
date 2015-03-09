@@ -29,6 +29,7 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies,
 	}
 
 	$scope.addSandwich = function(sandwich) {
+		sandwich.exists = true
 		$scope.sideSandwiches.push(sandwich);
 		CookieFactory.setCookies($scope.sideSandwiches);
 	};

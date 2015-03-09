@@ -7,16 +7,24 @@ var stripe = require("stripe")("pk_test_OxISGD7GxGhZCOofus3QFoW8");
 
 // router.use('/', require('./'));
 
-//get all sandwiches
-router.get('/sandwiches', function(req, res) {
-	Sandwich.find({}, function(err, sandwiches) {
-		if(err) res.send(err)
-			res.json(sandwiches);
-	})
+//get sandwichbyid
+router.get('/sandwiches/:id', function(req, res) {
+    Sandwich.findById(req.params.id, function(err, sandwich){
+      if(err) res.send(err);
+        res.json(sandwich);
+    })
+
+})
+router.get('/sandwiches', function(req, res){
+  Sandwich.find({}, function(err, sandwiches) {
+    if(err) res.send(err)
+      res.json(sandwiches);
+    })
 })
 
+
 //post sandwiches
-router.post('/sandwiches', function(req, res) {
+router.post('/sandwiches/', function(req, res) {
 	var sandwichData = req.body.sandwich;
 	Sandwich.create(sandwichData).then(function(err, sandwich) {
     if (err) {
