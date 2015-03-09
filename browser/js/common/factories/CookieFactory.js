@@ -26,6 +26,9 @@ app.factory('CookieFactory', function($kookies){
 	 		});
 	 		$kookies.set('sandwiches',sandwiches);
 	 		return sandwiches;
+	 	},
+	 	removeAllCookies: function(){
+	 		$kookies.remove('sandwiches');
 	 	}
 	}
 })
