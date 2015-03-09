@@ -1,7 +1,6 @@
 <div class="container text-center">
 <h1>Thankyou for your order {{user.firstName}} {{user.lastName}}!</h1>
 <h2 ng-show="{{user.admin}}">Did you know that you are an admin? You hold much power.</h2>
-<h3 >Your many past orders:</h3>
-<h3>{{user.orders}}<h3>
+<h3 >You have made: {{numOrders}} Orders</h3>
 <h4>Why not <a ui-sref="createsandwich">build another sandwich?</a></h4>
 </div>

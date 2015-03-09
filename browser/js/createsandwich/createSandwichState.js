@@ -26,6 +26,11 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 	// $cookies.hello = undefined;
 	// console.log($cookies);
 
+	$scope.removeSandwich = function(sandwich){
+		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich)
+
+	}
+	
 	$scope.setFillings = function() {
 		$scope.fillings.forEach(function (filling) {
 			$scope.isSelectedFilling[filling] = false;
@@ -47,6 +52,7 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 					}
 				}
 			}
+			
 			console.log($scope.sandwich);
 			$scope.sideSandwiches.push($scope.sandwich);
 			CookieFactory.setCookies($scope.sideSandwiches);

@@ -20,7 +20,21 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('SuccessCtrl', function($scope, getLoggedInUser, $state){  
+app.controller('SuccessCtrl', function($scope, $kookies, getLoggedInUser, $state, SandwichesFactory){  
 	$scope.user = getLoggedInUser;
   $scope.userLoggedIn = true; 
+  if ($scope.user.orders.length) {
+    $scope.numOrders = $scope.user.orders.length  
+  } else{
+    $scope.numOrders = 0;
+  }
+  SandwichesFactory.getSandwiches().then(function(sandwiches){
+    $scope.allSandwiches = sandwiches
+    $scope.allSandwiches.forEach(function(sandwich){
+      
+    })
+  })
+  
+  
+  
 });

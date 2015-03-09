@@ -51,6 +51,7 @@ app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CookieFactory
 		//send a sandwich for every sandwich in tray to database
 		$scope.sideSandwiches.forEach(function(sandwich){
 			sandwichPromises.push(CheckoutFactory.addNewSandwich(sandwich));
+			
 		})
 
 		$q.all(sandwichPromises).then(function(sandwichIdArr){
