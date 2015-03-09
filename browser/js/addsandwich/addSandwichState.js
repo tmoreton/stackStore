@@ -23,6 +23,10 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies,
 	else {
 		$scope.sideSandwiches = [];
 	}
+	$scope.removeSandwich = function(sandwich){
+		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich)
+
+	}
 
 	$scope.addSandwich = function(sandwich) {
 		$scope.sideSandwiches.push(sandwich);
