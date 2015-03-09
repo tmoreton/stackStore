@@ -23,4 +23,17 @@ app.config(function ($stateProvider) {
 app.controller('SuccessCtrl', function($scope, getLoggedInUser, $state){  
 	$scope.user = getLoggedInUser;
   $scope.userLoggedIn = true; 
+  if ($scope.user.orders.length) {
+    $scope.numOrders = $scope.user.orders.length  
+  } else{
+    $scope.numOrders = 0;
+  }
+  // $scope.orders = $scope.user.orders;
+  // $scope.sandwiches = []
+  // $scope.orders.forEach(function(sandID){
+  //   $scope.sandwiches.push(SandwichesFactory.findSandwich(sandID))
+  // }
+  // console.log("these are the sandwiches",$scope.sandwiches)
+  
+  
 });

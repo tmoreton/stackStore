@@ -49,7 +49,7 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
 
      AuthService.getLoggedInUser().then(function(user) {
                 $scope.user = user;
-                console.log(user);
+                // console.log(user);
                 if(user) {
                     $scope.userLoggedIn = true;
                 } else {

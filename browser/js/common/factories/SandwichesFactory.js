@@ -10,6 +10,12 @@ app.factory('SandwichesFactory', function ($http) {
                 return response.data;
             });
         }
+        // ,
+        // findSandwich: function(sandwichID){
+        //     return $http.get('/api/sandwich/', {params: sandwichID}).then(function(response) {
+        //         return response.data;
+        //     });
+        // }
 
         
 
