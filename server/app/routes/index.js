@@ -15,6 +15,8 @@ router.get('/sandwiches/:id', function(req, res) {
     })
 
 })
+
+//get all sandwiches
 router.get('/sandwiches', function(req, res){
   Sandwich.find({}, function(err, sandwiches) {
     if(err) res.send(err)
@@ -35,6 +37,21 @@ router.post('/sandwiches/', function(req, res) {
 })
 
 
+router.delete('/sandwiches/:id', function(req, res) {
+  Sandwich.remove({
+    _id: req.params.id
+  }, function(err, sandwich) {
+    console.log('laksdjfla;kdjf;akdsj', req.params.id);
+    if(err) res.send(err);
+
+    Sandwich.find(function(err, sandwiches) {
+      if(err) res.send(err)
+        res.json(sandwiches);
+    })
+
+
+  })
+})
 
 router.post('/signup/', function(req, res){
   console.log(req.body.firstName)
@@ -64,7 +81,7 @@ router.post('/orders', function(req, res){
           res.status(200).end();
         });
       }
-    });     
+    });
   })
 })
 router.post('/build', function(req, res){

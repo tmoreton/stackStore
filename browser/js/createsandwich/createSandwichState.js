@@ -25,10 +25,12 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 	// CookieFactory.setCookies();
 	// $cookies.hello = undefined;
 	// console.log($cookies);
+
 	$scope.removeSandwich = function(sandwich){
 		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich)
 
 	}
+	
 	$scope.setFillings = function() {
 		$scope.fillings.forEach(function (filling) {
 			$scope.isSelectedFilling[filling] = false;
@@ -59,7 +61,7 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 			SandwichesFactory.addNewSandwich($scope.sandwich).then( function(response) {
 				$scope.reset();
 		  	});
-		} 
+		}
 		else {
             $scope.createSandwich.submitted = true;
             console.log("INVALID SUBMISSION");

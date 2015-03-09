@@ -32,7 +32,17 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies,
 		sandwich.exists = true
 		$scope.sideSandwiches.push(sandwich);
 		CookieFactory.setCookies($scope.sideSandwiches);
-	};
+	},
+
+  $scope.deleteSandwich = function(id) {
+    console.log('deleted?');
+    SandwichesFactory.removeSandwiches(id).then(function(sandwiches) {
+      $scope.sandwichSelection = sandwiches;
+      angular.forEach($scope.sandwichSelection, function (sandwich) {
+			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
+		});
+    })
+  };
 
 });
 
