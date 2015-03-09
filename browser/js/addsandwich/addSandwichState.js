@@ -9,7 +9,8 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies, CookieFactory, $timeout) {
+app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFactory, $timeout) {
+	$scope.hideSubmitButton = true;
 	SandwichesFactory.getSandwiches().then( function(sandwiches) {
 		$scope.sandwichSelection = sandwiches;
 		angular.forEach($scope.sandwichSelection, function (sandwich) {

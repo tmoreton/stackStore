@@ -16,16 +16,14 @@ app.factory('CookieFactory', function($kookies){
 	 		}
 	 	},
 	 	removeCookie: function(sandwich){
-	 		console.log("this is the sandwich we are trying to remove", sandwich)
 	 		var sandwiches = $kookies.get("sandwiches")
-	 		sandwiches.splice(sandwiches.indexOf(sandwich))
+	 		sandwiches.forEach(function (kookieSandwich, index, array) {
+	 			if (sandwich._id == kookieSandwich._id ) {
+	 				array.splice(index,1);
+	 			}
+	 		});
 	 		$kookies.set('sandwiches',sandwiches);
-	 		console.log("these are our sandwiches",$kookies.get("sandwiches"))
-	 		return sandwiches
+	 		return sandwiches;
 	 	}
 	}
-	// 	setCookies: function() {
-	// 		$cookies.put("delicious","chocolatechip")
-	// 	}
-	// }
 })
