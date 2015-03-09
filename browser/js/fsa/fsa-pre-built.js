@@ -65,9 +65,9 @@
             return data.user;
         };
 
-        this.getLoggedInUser = function () {
+        this.getLoggedInUser = function (fromServer) {
 
-            if (this.isAuthenticated()) {
+            if (this.isAuthenticated() && !fromServer) {
                 return $q.when(Session.user);
             }
 

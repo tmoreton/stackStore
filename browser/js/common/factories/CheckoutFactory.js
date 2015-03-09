@@ -1,4 +1,4 @@
-app.factory('CheckoutFactory', function(AuthService, $http, SandwichesFactory){
+app.factory('CheckoutFactory', function(AuthService, $http, SandwichesFactory, $state, $kookies){
 	return{
 		addNewSandwich: function(sandwich) {
             if(sandwich.exists){
@@ -15,9 +15,7 @@ app.factory('CheckoutFactory', function(AuthService, $http, SandwichesFactory){
             }
         },
         addNewOrder: function(arrOfSandwichIDs, userID){
-        	return $http.post('/api/orders', {sandwiches:arrOfSandwichIDs, user: userID}).then(function(response){
-        		console.log("frontend done",response)
-        	})
+        	return $http.post('/api/orders', {sandwiches: arrOfSandwichIDs, user: userID})
         }
 
 	}

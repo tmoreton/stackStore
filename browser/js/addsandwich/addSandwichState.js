@@ -10,6 +10,7 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies, CookieFactory) {
+	$scope.hideSubmitButton = true;
 	SandwichesFactory.getSandwiches().then( function(sandwiches) {
 		$scope.sandwichSelection = sandwiches;
 		angular.forEach($scope.sandwichSelection, function (sandwich) {
@@ -32,7 +33,7 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, $kookies,
 		sandwich.exists = true
 		$scope.sideSandwiches.push(sandwich);
 		CookieFactory.setCookies($scope.sideSandwiches);
-	},
+	}
 
   $scope.deleteSandwich = function(id) {
     console.log('deleted?');
