@@ -138,7 +138,6 @@ img.homepic {
 	background-color: #67b0d1;
 }
 
-
 .navbar-custom.top-nav-collapse .nav.navbar-nav {
     background-color: rgba(0,0,0,0);
 }
@@ -242,6 +241,13 @@ div.thumbnail{
   padding-right: 10px;
   padding-left: 10px;
   color: #d17581;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 350px;
+    overflow-x: hidden;
+    position: fixed;
 }
 
 @import 'directives/main';
