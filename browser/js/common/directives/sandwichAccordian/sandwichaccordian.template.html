@@ -15,7 +15,7 @@
         <div class="thumbnail">
             <img ng-src="{{sandwich.image}}" alt="a picture of a sandwich">
             <div class="caption">
-                <h4 class="pull-right">${{sandwich.price}}</h4>
+                <h4 class="pull-right">{{sandwich.price | currency}}</h4>
                 <h4><a href="#">{{sandwich.name}}</a>
                 </h4>
                 <p>{{sandwich.description}}</p>

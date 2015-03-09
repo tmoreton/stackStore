@@ -41,7 +41,6 @@ router.delete('/sandwiches/:id', function(req, res) {
   Sandwich.remove({
     _id: req.params.id
   }, function(err, sandwich) {
-    console.log('laksdjfla;kdjf;akdsj', req.params.id);
     if(err) res.send(err);
 
     Sandwich.find(function(err, sandwiches) {
