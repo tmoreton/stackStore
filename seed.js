@@ -40,13 +40,6 @@ mongoose.connection.on('open', function() {
 
     async.each(data.User, function (user,userCreated) {
         User.create(user, userCreated);
-    }, function(err){
-        var i=0;
-        User.find({}, function(err, users){
-            async.each(data.Sandwich, function(sandwich, sandwichCreated){
-                sandwich.user = users[i]._id;
-                i++;
-            }
     });
 
     async.each(data.Sandwich, function (sandwich,sandwichCreated) {
