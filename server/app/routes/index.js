@@ -10,12 +10,14 @@ var stripe = require("stripe")("pk_test_OxISGD7GxGhZCOofus3QFoW8");
 
 //get all reviews or review of sandwich ID specified
 router.get('/reviews', function(req, res){
-    Reviews.find({}, function(err, reviews) {
-      if(err) {
-        res.send(err)
-      }
-      res.json(reviews);  
-   });
+    if(!req.body.params) {
+      Reviews.find({}, function(err, reviews) {
+        if(err) {
+          res.send(err)
+        }
+        res.json(reviews);  
+     });
+    }
 });
 
 //get sandwichbyid
