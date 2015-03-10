@@ -4,9 +4,11 @@ var Sandwich = require('../../db/models/sandwich.js').Sandwich;
 var User = require('../../db/models/user.js').User;
 var Reviews = require('../../db/models/reviews.js').Reviews;
 var Order = require('../../db/models/orders.js').Order;
+var passport = require('passport');
 var stripe = require("stripe")("sk_test_Gh9YI83NtqAns36ZNROjSaVs");
 
-// router.use('/', require('./'));
+
+// router.use('/auth/google', require('../configure/authentication/google.js'));
 
 //get all reviews or review of sandwich ID specified
 router.get('/reviews', function(req, res){
@@ -15,7 +17,7 @@ router.get('/reviews', function(req, res){
         if(err) {
           res.send(err);
         }
-        res.json(reviews);  
+        res.json(reviews);
      });
     }
 });
@@ -129,9 +131,19 @@ router.post('/charge', function(req, res){
     if (err && err.type === 'StripeCardError') {
       // The card has been declined
     }
-    console.log('charge????', charge);
   });
 });
 
+
+// router.get('/auth/google',
+//   passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' }));
+
+// router.get('/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/signup' }),
+//   function(req, res) {
+//     console.log(req.body)
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
+// });
 
 module.exports = router;

@@ -8,20 +8,19 @@ var uniqueValidator = require('mongoose-unique-validator');
 var schema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: true
+        // required: true
     },
     lastName: {
         type: String,
-        required: true
+        // required: true
     },
     email: {
         type: String,
-        required: true,
-        unique: true
+        // required: true
     },
     password: {
         type: String,
-        required: true
+        // required: true
     },
     salt: {
         type: String

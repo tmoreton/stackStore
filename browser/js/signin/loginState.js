@@ -23,18 +23,16 @@ app.controller('LoginCtrl', function ($scope, CookieFactory, CheckUserFactory, $
 
           $scope.checkuser = function(){
             $scope.authorizedUser = ''
-            console.log("checkuser is happening")
             if($scope.loginForm.$valid){
                 CheckUserFactory.checkuser($scope.user).then(function(user){
                     if(user) {
                         var tray = CookieFactory.getCookies();
-                        console.log("tray", tray)
                         if (tray.length){
                             $state.go("checkout")
                         }else{
-                            $state.go('success');  
+                            $state.go('success');
                         }
-                    } 
+                    }
                 }).catch(function(err){
                     $scope.tryAgain = "Try Again";
                     console.log(err)
