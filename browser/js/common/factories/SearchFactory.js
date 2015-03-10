@@ -1,11 +1,12 @@
 'use strict';
-app.factory('SearchFactory', function ($http) {
+app.factory('SearchFactory', function ($http, $state) {
     return {
         Search: function(searchString){
         	var words = searchString.split(' ')
-        	$http.get('/api/search',{params:{words: words}}).then(function(response){
+        	return $http.get('/api/search',{params:{words: words}}).then(function(response){
         		console.log("came back to the front")
-        		console.log(response)
+        		console.log(response.data)
+        		$state.go('addsandwich')
         		return response.data;
         	})
         }

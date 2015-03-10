@@ -61,8 +61,10 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
     });
 
     $scope.search = function(string){
-        console.log("searching...")
-        SearchFactory.Search(string)
+        SearchFactory.Search(string).then(function(results){
+            $scope.searchResults = results
+            $digest();
+        });
     }
 
 });

@@ -9,20 +9,28 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFactory, $timeout) {
+app.controller('AddSandwichCtrl', function ($scope, $rootScope, SandwichesFactory, CookieFactory, $timeout) {
 	$scope.hideSubmitButton = true;
 	SandwichesFactory.getSandwiches().then( function(sandwiches) {
-		$scope.sandwichSelection = sandwiches;
+		
+		if($scope.searchResults){
+			$scope.sandwichSelection = $scope.searchResults
+		}else{
+			$scope.sandwichSelection = sandwiches;
+		}
 		angular.forEach($scope.sandwichSelection, function (sandwich) {
+			//if it has an image gives a default image
 			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
+			// calculates average review
 			var sum = 0;
 			sandwich.reviews.forEach(function (review) {
-				console.log(review);
 				sum+= review.stars;
 			});
 			sandwich.averageReviewScore = Math.floor(sum / sandwich.reviews.length);
 		});
+		
 	});
+
 	var storedCookies = CookieFactory.getCookies();
 	if (storedCookies) {
 		$scope.sideSandwiches = storedCookies;
@@ -42,7 +50,6 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 	};
 
 	$scope.deleteSandwich = function(id) {
-    console.log('deleted?');
     SandwichesFactory.removeSandwiches(id).then(function(sandwiches) {
       $scope.sandwichSelection = sandwiches;
       angular.forEach($scope.sandwichSelection, function (sandwich) {
@@ -56,7 +63,6 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
       $scope.sandwichSelection.forEach(function(sandwich) {
       	if(sandwich._id === id) {
       		sandwich.price = price;
-      		sandwich.updated = "Price updated!";
       		$timeout(function() {
       			sandwich.updated = false;
       		}, 2000);
@@ -65,8 +71,6 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
   	};
 
 	$scope.getAvgStars = function(sandwich) {
-		console.log('sandwich',sandwich);
-		console.log('sandwich AS',sandwich.averageReviewScore);
 		return new Array(sandwich.averageReviewScore);
 	};
 });

@@ -16,7 +16,7 @@
             <h4><a href="#">{{sandwich.name}}</a></h4>
                 <p>{{sandwich.description}}</p>
                 <h4 ng-show="{{user.admin}}">{{sandwich.price | currency }}</h4>
-                <h4 ng-show="!{{user.admin}}">{{sandwich.price | currency}}</h4>
+                <h4 ng-show="{{!user.admin}}">{{sandwich.price | currency}}</h4>
             <div class="ratings">
                 <!-- <p class="pull-right">{{sandwich.reviews}}</p> -->
                 <p>
