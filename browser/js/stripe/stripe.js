@@ -27,6 +27,7 @@ app.controller('stripeForm', function ($scope, $state, addOrder) {
         exp_month: $('.card-expiry-month').val(),
         exp_year: $('.card-expiry-year').val()
       }, stripeResponseHandler);
+
       // StripeCheckout.open({
       //   key: config.get('stripe_public_key'),
       //   address: false,
