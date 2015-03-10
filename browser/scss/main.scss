@@ -228,13 +228,14 @@ img.homepic {
 }
 
 div.thumbnail{
-  height: 550px;
+  height: 450px;
 }
 
 .thumbnail .caption {
   padding: 9px;
   color: #333;
   height: 85px;
+
 }
 
 .caption {
@@ -252,11 +253,13 @@ div.thumbnail{
     max-height: 350px;
     overflow-x: hidden;
     position: fixed;
+    width: 250px;
 }
 
 .panel-heading {
   position:fixed;
-  width: auto;
+  width: 250px;
+  text-align: center;
 }
 
 .sandwich-descrip {
@@ -303,7 +306,16 @@ ul.rating {
     color: #67B0D1;
 }
 
+.crop {
+  overflow:hidden;
+  width:200px;
+  height: 100px;
+}
 
+.crop img {
+  width:200px;
+  height:120px;
+}
 
 
 @import 'directives/main';
