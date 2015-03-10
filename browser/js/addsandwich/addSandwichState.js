@@ -2,22 +2,24 @@
 app.config(function ($stateProvider) {
 
     $stateProvider.state('addsandwich', {
-        url: '/addsandwich',
+        url: '/addsandwich/:searched',
         controller: 'AddSandwichCtrl',
         templateUrl: 'js/addsandwich/addsandwich.template.html'
     });
 
 });
 
-app.controller('AddSandwichCtrl', function ($scope, $rootScope, SandwichesFactory, CookieFactory, $timeout) {
+app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFactory, $timeout, $stateParams) {
 	$scope.hideSubmitButton = true;
-	SandwichesFactory.getSandwiches().then( function(sandwiches) {
-		
-		if($scope.searchResults){
+	SandwichesFactory.getSandwiches().then(function(sandwiches) {
+		console.log("searchresults",$scope.searchResults)
+		if($stateParams.searched){
 			$scope.sandwichSelection = $scope.searchResults
+			$stateParams.searched = false;
 		}else{
 			$scope.sandwichSelection = sandwiches;
 		}
+
 		angular.forEach($scope.sandwichSelection, function (sandwich) {
 			//if it has an image gives a default image
 			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
@@ -28,7 +30,7 @@ app.controller('AddSandwichCtrl', function ($scope, $rootScope, SandwichesFactor
 			});
 			sandwich.averageReviewScore = Math.floor(sum / sandwich.reviews.length);
 		});
-		
+		$scope.searchResults = false;
 	});
 
 	var storedCookies = CookieFactory.getCookies();
@@ -73,5 +75,7 @@ app.controller('AddSandwichCtrl', function ($scope, $rootScope, SandwichesFactor
 	$scope.getAvgStars = function(sandwich) {
 		return new Array(sandwich.averageReviewScore);
 	};
+
+
 });
 
