@@ -5,7 +5,7 @@ var User = require('../../db/models/user.js').User;
 var Reviews = require('../../db/models/reviews.js').Reviews;
 var Order = require('../../db/models/orders.js').Order;
 var stripe = require("stripe")("sk_test_Cv1UxGFrtA7dBCrUWstCn5sA");
-
+var _ = require('lodash');
 // router.use('/', require('./'));
 
 //get all reviews or review of sandwich ID specified
@@ -141,9 +141,43 @@ router.post('/charge', function(req, res){
 //    });
 // });
 router.get('/search', function(req, res){
-  console.log("reached the backend")
-  console.log("req.query", req.query);
-  res.status(200).end();
+  var matches = []
+  //grabs search terms
+  console.log("in back end")
+  var words = req.query.words
+  console.log("type", typeof words)
+  console.log("words", words)
+  if(typeof words == "string"){
+    words = words.split()
+  }
+
+  //find all sandwiches
+  Sandwich.find(function(err, sandwiches) {
+    if(err) res.send(err);
+    var allSandwiches = sandwiches
+    //for each sandwich
+    allSandwiches.forEach(function(sandwich){
+      //check if there is a match within the sandwich
+      
+      Array.prototype.forEach.call(words,function(word){
+        //searches ingredients:
+        var fillings = sandwich.fillings.map(function(word){return word.toLowerCase()})
+        fillings.forEach(function(ingredient){
+          if(ingredient.indexOf(word) > -1){
+              //push matches to matches array
+              matches.push(sandwich)
+          }
+        })
+        
+      })
+
+    })
+    var uniqueMatches = _.uniq(matches)  
+    res.json(uniqueMatches);
+    
+  });
+  // res.status(200).end();
+
 })
 
 module.exports = router;
