@@ -251,5 +251,17 @@ div.thumbnail{
     position: fixed;
 }
 
+.sandwich-descrip {
+  font-size: 12px;
+  font-style: italic;
+  margin-left: 10px;
+  text-transform: none;
+}
+
+p.no-reviews {
+   font-style: italic;
+   font-weight: bold; 
+}
+
 @import 'directives/main';
 @import 'home/main';

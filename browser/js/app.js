@@ -13,7 +13,9 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
         { label: 'Home', state: 'home' },
         // { label: 'Login/Signup', state: 'signup' },
         { label: 'Add Sandwich from Menu', state: 'addsandwich'},
-        { label: 'Make Your Own Masterpiece', state: 'createsandwich'}
+        { label: 'Make Your Own Masterpiece', state: 'createsandwich'},
+        { label: 'Reviews', state: 'reviews'}
+
     ];
 
     $rootScope.$on('$stateChangeStart', function( event, toState, toParams, fromState, fromParams ) {

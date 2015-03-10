@@ -15,6 +15,12 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 		$scope.sandwichSelection = sandwiches;
 		angular.forEach($scope.sandwichSelection, function (sandwich) {
 			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
+			var sum = 0;
+			sandwich.reviews.forEach(function (review) {
+				console.log(review);
+				sum+= review.stars;
+			});
+			sandwich.averageReviewScore = Math.floor(sum / sandwich.reviews.length);
 		});
 	});
 	var storedCookies = CookieFactory.getCookies();
@@ -25,38 +31,43 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 		$scope.sideSandwiches = [];
 	}
 	$scope.removeSandwich = function(sandwich){
-		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich)
+		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
 
-	}
+	};
 
 	$scope.addSandwich = function(sandwich) {
-		sandwich.exists = true
+		sandwich.exists = true;
 		$scope.sideSandwiches.push(sandwich);
 		CookieFactory.setCookies($scope.sideSandwiches);
-	}
+	};
 
-  $scope.deleteSandwich = function(id) {
+	$scope.deleteSandwich = function(id) {
     console.log('deleted?');
     SandwichesFactory.removeSandwiches(id).then(function(sandwiches) {
       $scope.sandwichSelection = sandwiches;
       angular.forEach($scope.sandwichSelection, function (sandwich) {
 			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
 		});
-    })
-  },
+    });
+  };
 
-  $scope.updatePrice = function(id, price){
+	$scope.updatePrice = function(id, price){
       SandwichesFactory.newPrice(id, price); 
       $scope.sandwichSelection.forEach(function(sandwich) {
-      	if(sandwich._id == id) {
+      	if(sandwich._id === id) {
       		sandwich.price = price;
       		sandwich.updated = "Price updated!";
       		$timeout(function() {
-      			sandwich.updated = false
+      			sandwich.updated = false;
       		}, 2000);
       	}
-      })
-  }
+      });
+  	};
 
+	$scope.getAvgStars = function(sandwich) {
+		console.log('sandwich',sandwich);
+		console.log('sandwich AS',sandwich.averageReviewScore);
+		return new Array(sandwich.averageReviewScore);
+	};
 });
 
