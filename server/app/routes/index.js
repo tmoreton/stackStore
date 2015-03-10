@@ -110,9 +110,11 @@ router.post('/orders', function(req, res){
 
 router.post('/charge', function(req, res){
   var stripeToken = req.body.stripeToken;
+
     console.log("----------------------------req-------",req.body);
+
   var charge = stripe.charges.create({
-    amount: req.body.sandwiches.price, // amount in cents, again
+    amount: 1000, // amount in cents, again
     currency: "usd",
     source: stripeToken,
     description: "payinguser@example.com"

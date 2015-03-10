@@ -1,4 +1,4 @@
-<script src="https://checkout.stripe.com/checkout.js"></script>
+<!-- <script src="https://checkout.stripe.com/checkout.js"></script>
 
 <button id="customButton">Purchase</button>
 
@@ -26,7 +26,7 @@
   $(window).on('popstate', function() {
     handler.close();
   });
-</script><!--
+</script> -->
 
 <form action="/api/charge" method="POST" id="payment-form">
   <span class="payment-errors"></span>
@@ -54,5 +54,5 @@
     <input type="text" size="4" data-stripe="exp-year"/>
   </div>
 
-  <button type="submit">Submit Payment</button>
-</form> -->
+  <button ng-click="addOrder()">Submit Payment</button>
+</form>

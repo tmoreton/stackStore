@@ -137,17 +137,20 @@ img.homepic {
 	margin-bottom: 0;
 	background-color: #67b0d1;
 }
+.navbar .nav > li > a.active {
+  color: #444;
+}
 
 .navbar-custom.top-nav-collapse .nav.navbar-nav {
     background-color: rgba(0,0,0,0);
 }
 
 .navbar-custom ul.nav li a {
-	font-size: 12px;
-	letter-spacing: 1px;
+  font-size: 12px;
+  letter-spacing: 1px;
     color: #fff;
-	text-transform: uppercase;
-	font-weight: 700;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .navbar-custom .nav li a {
@@ -163,7 +166,6 @@ img.homepic {
     color: #444;
     background-color: rgba(255,255,255,.2);
 }
-
 
 .navbar-custom.top-nav-collapse ul.nav li a {
 	-webkit-transition: all .2s ease-in-out;
@@ -250,6 +252,10 @@ div.thumbnail{
     overflow-x: hidden;
     position: fixed;
 }
+
+.panel-heading {
+  position:fixed;
+  width: auto;
 
 .sandwich-descrip {
   font-size: 12px;
