@@ -1,7 +1,7 @@
 'use strict';
 var async = require('async');
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://admin:admin@ds043447.mongolab.com:43447/stackwich").connection;
+mongoose.connect("mongodb://localhost/stackStore").connection;
 
 require('./server/db/models/orders.js');
 require('./server/db/models/reviews.js');

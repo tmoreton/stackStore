@@ -41,8 +41,8 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 	//$scope.selectedFillings = [ ];
 
 	$scope.addSandwich = function() {
-		console.log('scope form',$scope.createSandwich);
 		if ($scope.createSandwich.$valid) {
+			$scope.sandwich.price = 10;
 			$scope.sandwich.fillings = [];
 
 			for (var key in $scope.isSelectedFilling) {
