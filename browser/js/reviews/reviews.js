@@ -9,16 +9,15 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('ReviewCtrl', function ($scope, $state, ReviewsFactory) {
-    ReviewsFactory.getReviews().then (function(reviews) {
-        $scope.reviews = reviews;
-        $scope.reviews.forEach( function(review) {
-            review.starArray = [ ];
-            for (var i = 1; i<= review.stars; i++) {
-                review.starArray.push(i);
-            }
-        });
+app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory) {
+
+    SandwichesFactory.getSandwiches().then (function(sandwiches) {
+        $scope.sandwiches = sandwiches;
     });
+
+    $scope.getStarNum = function(review) {
+        return new Array(review.stars);
+    };
 
 });
 

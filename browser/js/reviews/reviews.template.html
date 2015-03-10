@@ -1,18 +1,14 @@
 <div class="container">
-	<div ng-show="reviews" ng-repeat='review in reviews'>
-			<ul>
-				<li>
-						{{review.description}}
-						<!-- <div ng-repeat='i in getStars(review)'> -->
-					
-						<!-- </div> -->
-				</li>
-					<span 
-					ng-repeat='star in review.starArray'
+	<div ng-repeat='sandwich in sandwiches'>
+		<div>
+			<h4>{{sandwich.name}}</h4>
+			<p ng-repeat="review in sandwich.reviews">
+				{{review.description}}
+				<span
+					ng-repeat='star in getStarNum(review) track by $index'
 					class="glyphicon glyphicon-star">
-					</span>
-				
-						
-		</ul>
+				</span>
+			</p>
+		</div>
 	</div>
 </div>

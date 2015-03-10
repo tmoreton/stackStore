@@ -11,7 +11,7 @@ var stripe = require("stripe")("sk_test_Cv1UxGFrtA7dBCrUWstCn5sA");
 //get all reviews or review of sandwich ID specified
 router.get('/reviews', function(req, res){
     if(!req.body.params) {
-      Reviews.find({}, function(err, reviews) {
+      Reviews.find().populate('sandwich').exec(function(err, reviews) {
         if(err) {
           res.send(err);
         }
