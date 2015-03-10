@@ -1,8 +1,9 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'ngCookies', 'ngKookies','ui.bootstrap', 'angular.filter'])
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'ngCookies', 'ngKookies','ui.bootstrap', 'angular.filter', 'stripe'])
 .config(['$kookiesProvider',
     function ($kookiesProvider) {
         $kookiesProvider.config.json = true;
+        Stripe.setPublishableKey('pk_test_ZWDcXPDv6RKpf1iuy5KCxgty');
     }
 ]);
 

@@ -23,6 +23,7 @@ body {
 
 }
 
+
 .container {
 	padding-top: 100px;
 }
@@ -227,13 +228,14 @@ img.homepic {
 }
 
 div.thumbnail{
-  height: 550px;
+  height: 450px;
 }
 
 .thumbnail .caption {
   padding: 9px;
   color: #333;
   height: 85px;
+
 }
 
 .caption {
@@ -251,11 +253,14 @@ div.thumbnail{
     max-height: 350px;
     overflow-x: hidden;
     position: fixed;
+    width: 250px;
 }
 
 .panel-heading {
   position:fixed;
-  width: auto;
+  width: 250px;
+  text-align: center;
+}
 
 .sandwich-descrip {
   font-size: 12px;
@@ -266,8 +271,52 @@ div.thumbnail{
 
 p.no-reviews {
    font-style: italic;
-   font-weight: bold; 
+   font-weight: bold;
 }
+
+.google {
+  background-color: #d34836;
+  color: white;
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
+}
+
+div.reviewForm {
+  margin-top: 50px;
+}
+
+.rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+}
+ul.rating {
+    display: inline-block;
+}
+.rating li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.rating .filled {
+    color: #67B0D1;
+}
+
+.crop {
+  overflow:hidden;
+  width:200px;
+  height: 100px;
+}
+
+.crop img {
+  width:200px;
+  height:120px;
+}
+
 
 @import 'directives/main';
 @import 'home/main';

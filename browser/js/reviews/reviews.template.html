@@ -1,31 +1,60 @@
-<div class="container">
-<div class='row'>
-<div class='col-md-6'>
-	<div ng-repeat='sandwich in sandwiches'>
-		<div>
-			<h4>{{sandwich.name}}<small class="sandwich-descrip">{{sandwich.description}}</small></h4>
-			<div ng-show="!sandwich.reviews.length">
-			<p class='no-reviews'><strong>This sandwich has no reviews! You should add one.</strong></p>
+<div class="container" ng-init="rating = star.rating + 1">
+	<div class='row'>
+		<div class='col-md-6'>
+			<div ng-repeat='sandwich in sandwiches'>
+				<div>
+					<h4>{{sandwich.name}}<small class="sandwich-descrip">{{sandwich.description}}</small></h4>
+					<div ng-show="!sandwich.reviews.length">
+						<p class='no-reviews'><strong>This sandwich has no reviews! You should add one.</strong></p>
+					</div>
+					<p ng-repeat="review in sandwich.reviews">
+						{{review.description}}
+						<span
+							ng-repeat='star in getStarNum(review) track by $index'
+							class="glyphicon glyphicon-star">
+						</span>
+					</p>
+				</div>
 			</div>
-			<p ng-repeat="review in sandwich.reviews">
-				{{review.description}}
-				<span
-					ng-repeat='star in getStarNum(review) track by $index'
-					class="glyphicon glyphicon-star">
-				</span>
-			</p>
+		</div>
+		<div class='col-md-2'>
+		</div>
+		<div class='col-md-4'>
+			<div class='affix'><h4>Select a sandwich to read reviews about it</h4>
+				<select ng-change="sandwichSelected()" ng-model="selectedSandwich" ng-options="sandwich.name for sandwich in allSandwiches">
+					<option value=''>Choose a sandwich</option>
+				</select>
+				<button ng-click='showAllReviews()' class="btn btn-primary">Show All Reviews</button>
+				<div ng-show='!currentUser' class='reviewForm'>
+					<br>
+					<button class="btn btn-lg btn-primary" ui-sref="login">Click here to login so you can add your own reviews!</button>
+					<br>
+				</div>
+				<div ng-show='currentUser' class='
+					reviewForm'>
+					<h4 class = 'reviewFormTitle'>Add a Review!</h4>
+					<form ng-class="{submitted:addReviewForm.submitted}" name="addReviewForm" novalidate>
+						<select name="sandwichReviewed" ng-required="true" ng-model="sandwichReviewed" ng-options="sandwich.name for sandwich in allSandwiches">
+							<option value=''>Choose a sandwich to review</option>
+						</select>
+						<br>
+						<br>
+						<!-- <strong class="choice">Choose a rating</strong> -->
+						<div>
+							<span ng-repeat="rating in ratings">
+								<div star-rating rating-value="rating.current" max="rating.max">
+								</div>
+							</span>
+						</div>
+						<textarea name="review" class="form-control" rows="3" placeholder="Write a review for the sandwich you selected" ng-model="reviewText" ng-required="true"></textarea>
+						<br>
+						<div class="text-center">
+							<br>
+							<button class="btn btn-lg btn-primary" ng-click="addReview()">Add Review</button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
-	<div class='col-md-2'>
-	</div>
-	<div class='col-md-4'>
-	<div class='affix'><h4>Select a sandwich to read reviews about it</h4>
-					<select ng-change="sandwichSelected()" ng-model="selectedSandwich" ng-options="sandwich.name for sandwich in allSandwiches">
-						<option value=''>Choose a sandwich</option>
-					</select>
-		<button ng-click='showAllReviews()' class="btn btn-primary">Show All Reviews</button>
-	</div>
-	</div>
-</div>
 </div>

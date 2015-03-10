@@ -2,25 +2,26 @@
 <div class="row" >
   <div ng-repeat="sandwich in sandwichSelection">
     <div class="col-sm-3 col-lg-3 col-md-3">
-        <div class="thumbnail">
+            <div class="thumbnail crop">
             <h3 ng-show="sandwich.updated">{{sandwich.updated}}</h3>
-            <img ng-src="{{sandwich.image}}" alt="a picture of a sandwich">
+            <img ui-sref="reviews({'sandwich': sandwich._id})" ng-src="{{sandwich.image}}" alt="a picture of a sandwich">
             <div class="caption">
             <div class="input-group">
              <form ng-show="{{user.admin}}"><input type="text" value="{{sandwich.price}}" ng-model="sandwich.price">
              <span class="input-group-btn">
-             <button class="btn btn-default" ng-click="updatePrice(sandwich._id, sandwich.price)">Update</button></span></form> 
+             <button class="btn btn-default" ng-click="updatePrice(sandwich._id, sandwich.price)">Update</button></span></form>
              </div>
              </div>
 
-            <h4><a href="#">{{sandwich.name}}</a></h4>
+            <h4><a ui-sref="reviews({'sandwich': sandwich._id})">{{sandwich.name}}</a></h4>
                 <p>{{sandwich.description}}</p>
                 <h4 ng-show="{{user.admin}}">{{sandwich.price | currency }}</h4>
                 <h4 ng-show="{{!user.admin}}">{{sandwich.price | currency}}</h4>
             <div class="ratings">
                 <!-- <p class="pull-right">{{sandwich.reviews}}</p> -->
                 <p>
-                    <span 
+                    <span
+                    ui-sref="reviews({'sandwich': sandwich._id})"
                     ng-repeat='star in getAvgStars(sandwich) track by $index'
                     class="glyphicon glyphicon-star">
                     </span>

@@ -1,5 +1,5 @@
 module.exports = {
-  "DATABASE_URI": "mongodb://localhost:27017/stackStore",
+  "DATABASE_URI": "mongodb://localhost/stackStore",
   "SESSION_SECRET": "Optimus Prime is my real dad",
   "TWITTER": {
     "consumerKey": "ZVQ2NZscYX1aa6nZI81Fg8HBg",
@@ -17,3 +17,4 @@ module.exports = {
     "callbackURL": "http://localhost:1337/auth/google/callback"
   }
 };
+
