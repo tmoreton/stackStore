@@ -38,9 +38,18 @@ app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthSe
     $scope.addReview =  function() {
         console.log('addingReview');
         if ($scope.addReviewForm.$valid) {
-            SandwichesFactory.addReview($scope.sandwichReviewed,$scope.reviewText, $scope.currentUser);
-            console.log('sandwich reviewed', $scope.sandwichReviewed);
-            console.log('review text', $scope.reviewText);
+            SandwichesFactory.addReview($scope.sandwichReviewed,$scope.reviewText, $scope.currentUser, 5).then( function(review) {
+                $scope.allSandwiches.forEach( function(sandwich) {
+                    if (sandwich._id === review.sandwich) {
+                        sandwich.reviews.unshift(review);
+                    }
+                });
+                if ($scope.selectedSandwich[0] === $scope.sandwichReviewed) {
+                    //selected sandwich is reviewed sandwich so update its reviews
+                    $scope.selectedSandwich.reviews.unshift(review);
+                }
+            });
+            
         } else {
             console.log('invalid submission');
             $scope.addReviewForm.submitted = true;

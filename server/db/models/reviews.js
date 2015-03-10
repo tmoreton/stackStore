@@ -8,7 +8,7 @@ var schema = new mongoose.Schema({
     required: true
   },
   sandwich: {type: mongoose.Schema.Types.ObjectId, ref: "Sandwich"},
-  user: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+  user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
   stars: {type: Number, min: 1, max: 5}
 });
 

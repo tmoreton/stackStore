@@ -27,9 +27,9 @@ app.factory('SandwichesFactory', function ($http) {
             });
         },
 
-        addReview: function(sandwich,review,user) {
-            return $http.post('/api/reviews', {params : {description: review, user: user._id, sandwich: sandwich._id}}).then(function(response) {
-                console.log(response.data);
+        addReview: function(sandwich,review,user,stars) {
+            return $http.post('/api/reviews', {params : {description: review, user: user._id, sandwich: sandwich._id, stars: stars}}).then(function(response) {
+                return response.data;
             });
         }
 

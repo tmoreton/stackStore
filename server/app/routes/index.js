@@ -52,10 +52,7 @@ router.post('/sandwiches/', function(req, res) {
 //post new review
 router.post('/reviews', function(req, res) {
   var reviewData =  req.body.params;
-  Reviews.create(reviewData).then(function(err, review) {
-    if (err) {
-      res.send(err).end();
-    }
+  Reviews.create(reviewData).then(function(review) {
     Sandwich.findById(review.sandwich, function(err, sandwich) {
       sandwich.reviews.push(review._id);
       sandwich.save();
@@ -99,7 +96,6 @@ router.post('/signup/', function(req, res){
     password: req.body.password,
     email: req.body.email
   }).then(function(person){
-    console.log("Got this far!");
     res.status(200).end();
   });
 });
