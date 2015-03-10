@@ -11,9 +11,13 @@ app.config(function ($stateProvider) {
 
 app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadFactory, FillingsFactory, CookieFactory, $kookies) {
 	$scope.hideSubmitButton = true;
+	$scope.finalPrice = 0;
 	var storedCookies = CookieFactory.getCookies();
 	if (storedCookies) {
 		$scope.sideSandwiches = storedCookies;
+		storedCookies.forEach(function(sandwich) {
+			$scope.finalPrice += sandwich.price;
+		})
 	}
 	else {
 		$scope.sideSandwiches = [];
@@ -25,9 +29,9 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 	// CookieFactory.setCookies();
 	// $cookies.hello = undefined;
 	// console.log($cookies);
-
 	$scope.removeSandwich = function(sandwich){
-		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich)
+		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
+		$scope.finalPrice -= sandwich.price;
 
 	}
 	
@@ -45,6 +49,7 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 			$scope.sandwich.price = 6;
 			$scope.sandwich.fillings = [];
 
+
 			for (var key in $scope.isSelectedFilling) {
 				if ($scope.isSelectedFilling.hasOwnProperty(key)) {
 					if ($scope.isSelectedFilling[key]) {
@@ -53,6 +58,7 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 					}
 				}
 			}
+			$scope.finalPrice += $scope.sandwich.price;
 			
 			console.log($scope.sandwich);
 			$scope.sideSandwiches.push($scope.sandwich);

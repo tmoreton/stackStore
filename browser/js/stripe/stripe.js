@@ -9,7 +9,7 @@ app.directive('stripe', function () {
     };
 });
 
-app.controller('stripeController', function ($scope, $http, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q, $state) {
+app.controller('stripeController', function ($scope, $http, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q, $state, $interval) {
   var cookies = CookieFactory.getCookies();
   $scope.sideSandwiches = CookieFactory.getCookies()
   $scope.hideCheckoutButton = true;
@@ -69,7 +69,9 @@ app.controller('stripeController', function ($scope, $http, CookieFactory, AuthS
         CheckoutFactory.addNewOrder(sandwichIdArr, user_id).then(function(){
           $scope.sideSandwiches = [];
           CookieFactory.removeAllCookies();
-                  $state.go('success');
+                $interval(function() {
+                  $state.go('success')
+                  }, 5000);  
         });
         
                 
