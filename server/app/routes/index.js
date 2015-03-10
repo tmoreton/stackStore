@@ -140,5 +140,10 @@ router.post('/charge', function(req, res){
 //        res.send('Charged! Details: ' + charge);
 //    });
 // });
+router.get('/search', function(req, res){
+  console.log("reached the backend")
+  console.log("req.query", req.query);
+  res.status(200).end();
+})
 
 module.exports = router;
