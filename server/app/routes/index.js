@@ -113,7 +113,6 @@ router.post('/charge', function(req, res){
   var stripeToken = req.body.token;
   var price = req.body.total;
 
-
   var charge = stripe.charges.create({
     amount: price*100, // amount in cents, again
     currency: "usd",
@@ -124,7 +123,6 @@ router.post('/charge', function(req, res){
       // The card has been declined
     }
     console.log('charge????', charge);
-    res.send("completed payment!");
   });
 });
 

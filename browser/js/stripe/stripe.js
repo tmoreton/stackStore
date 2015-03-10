@@ -16,6 +16,9 @@ app.controller('stripeController', function ($scope, $http, CookieFactory) {
   cookies.forEach(function(sandwich) {
     total += sandwich.price;
     $scope.totalPrice = total;
+    if(!total) {
+      $scope.totalPrice = null;
+    }
   });
 
 
@@ -28,6 +31,10 @@ app.controller('stripeController', function ($scope, $http, CookieFactory) {
     $scope.cvc = '';
     $scope.expmonth = '';
     $scope.expyear = '';
+  }
+
+  $scope.onSubmit = function() {
+
   }
   // $scope.reset = function() {
   //   $scope.cvc = 
