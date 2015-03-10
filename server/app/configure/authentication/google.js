@@ -25,6 +25,10 @@ module.exports = function (app) {
                 done(null, user);
             } else {
                 UserModel.create({
+                    // firstName: profile.given_name,
+                    // lastName: profile.family_name,
+                    // email: profile.email,
+                    // password: profile.id,
                     google: {
                         id: profile.id
                     }
@@ -47,9 +51,14 @@ module.exports = function (app) {
     }));
 
     app.get('/auth/google/callback',
+        function(req, res, next) {
+            console.log("In the 2nd router");
+            next();
+        },
         passport.authenticate('google', { failureRedirect: '/login' }),
         function (req, res) {
-            res.redirect('/');
+            console.log("TEST");
+            res.redirect('http://127.0.0.1:1337/');
         });
 
 };

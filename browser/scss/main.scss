@@ -23,6 +23,7 @@ body {
 
 }
 
+
 .container {
 	padding-top: 100px;
 }
@@ -267,7 +268,15 @@ div.thumbnail{
 
 p.no-reviews {
    font-style: italic;
-   font-weight: bold; 
+   font-weight: bold;
+}
+
+.google {
+  background-color: #d34836;
+  color: white;
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
 }
 
 div.reviewForm {

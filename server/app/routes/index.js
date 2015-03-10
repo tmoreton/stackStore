@@ -4,9 +4,11 @@ var Sandwich = require('../../db/models/sandwich.js').Sandwich;
 var User = require('../../db/models/user.js').User;
 var Reviews = require('../../db/models/reviews.js').Reviews;
 var Order = require('../../db/models/orders.js').Order;
-var stripe = require("stripe")("sk_test_Cv1UxGFrtA7dBCrUWstCn5sA");
+var passport = require('passport');
+var stripe = require("stripe")("sk_test_Gh9YI83NtqAns36ZNROjSaVs");
 
-// router.use('/', require('./'));
+
+// router.use('/auth/google', require('../configure/authentication/google.js'));
 
 //get all reviews or review of sandwich ID specified
 router.get('/reviews', function(req, res){
@@ -15,7 +17,7 @@ router.get('/reviews', function(req, res){
         if(err) {
           res.send(err);
         }
-        res.json(reviews);  
+        res.json(reviews);
      });
     }
 });
@@ -99,6 +101,7 @@ router.post('/signup/', function(req, res){
     res.status(200).end();
   });
 });
+
 router.post('/orders', function(req, res){
   Order.create({sandwiches:req.body.sandwiches, user:req.body.user}).then(function(order){
     User.findById(req.body.user, function(err, userDoc){
@@ -116,36 +119,31 @@ router.post('/orders', function(req, res){
 
 
 router.post('/charge', function(req, res){
-  var stripeToken = req.body.stripeToken;
-
-    console.log("----------------------------req-------",req.body);
+  var stripeToken = req.body.token;
+  var price = req.body.total;
 
   var charge = stripe.charges.create({
-    amount: 1000, // amount in cents, again
+    amount: price*100, // amount in cents, again
     currency: "usd",
     source: stripeToken,
-    description: "payinguser@example.com"
+    description: "sandwich stack payment. thank you!"
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       // The card has been declined
-      console.log("line 113", JSON.stringify(err, null, 2));
     }
-    // console.log(charge)
-    res.send("completed payment!");
   });
 });
 
-// router.post('/charge', function(req, res, next) {
-//    var total = parseInt(req.body.total);
-//    console.log(req.body.token);
-//    stripe.charges.create({
-//        amount: req.body.total,
-//        currency: "usd",
-//        source: req.body.token,
-//        description: req.body.manifest
-//    }, function(err, charge) {
-//        res.send('Charged! Details: ' + charge);
-//    });
+
+// router.get('/auth/google',
+//   passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' }));
+
+// router.get('/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/signup' }),
+//   function(req, res) {
+//     console.log(req.body)
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
 // });
 
 module.exports = router;

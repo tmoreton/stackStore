@@ -12,8 +12,9 @@ module.exports = {
     "callbackURL": "http://localhost:1337/auth/facebook/callback"
   },
   "GOOGLE": {
-    "clientID": "369003002521-88250fc9kjpkfqvhicu7vokbnvu88ud6.apps.googleusercontent.com",
-    "clientSecret": "DB1-q81E4ODEuL8cFGCm5QS1",
-    "callbackURL": "http://localhost:1337/auth/google/callback"
+    "clientID": "844240427977-t3jt27ud200dl2be5u0kong50fo52f1p.apps.googleusercontent.com",
+    "clientSecret": "ybwlIiQPkJGyBx-Z5bJOf4_O",
+    "callbackURL": "http://127.0.0.1:1337/auth/google/callback"
   }
 };
+
