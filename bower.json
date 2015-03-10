@@ -23,6 +23,7 @@
     "ngkookies": "~0.1.1",
     "angular-payments": "2472bc9befa25678",
     "angular-bootstrap": "~0.12.1",
-    "angular-filter": "~0.5.4"
+    "angular-filter": "~0.5.4",
+    "stripe-angular": "~1.0.1"
   }
 }
