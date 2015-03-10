@@ -160,7 +160,7 @@ router.get('/search', function(req, res){
       //check if there is a match within the sandwich
       
       Array.prototype.forEach.call(words,function(word){
-        //searches ingredients:
+        //searches fillings:
         var fillings = sandwich.fillings.map(function(word){return word.toLowerCase()})
         fillings.forEach(function(ingredient){
           if(ingredient.indexOf(word) > -1){
@@ -168,6 +168,24 @@ router.get('/search', function(req, res){
               matches.push(sandwich)
           }
         })
+        //searches bread:
+        var bread = sandwich.bread.toLowerCase()
+        if(bread.indexOf(word) > -1){
+          //push matches to matches array
+          matches.push(sandwich)
+        }
+        //searches by name
+        var name = sandwich.name.toLowerCase()
+        if(name.indexOf(word) > -1){
+          //push matches to matches array
+          matches.push(sandwich)
+        }
+        //searches by description
+        var description = sandwich.description.toLowerCase()
+        if(description.indexOf(word) > -1){
+          //push matches to matches array
+          matches.push(sandwich)
+        }
         
       })
 
