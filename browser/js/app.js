@@ -6,7 +6,7 @@ var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', '
     }
 ]);
 
-app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH_EVENTS, $kookies) {
+app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH_EVENTS, $kookies, SearchFactory) {
 
     // Given to the <navbar> directive to show the menu.
     $scope.menuItems = [
@@ -49,17 +49,21 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
         });
 
     })
+    
+    AuthService.getLoggedInUser().then(function(user) {
+        $scope.user = user;
+        // console.log(user);
+        if(user) {
+            $scope.userLoggedIn = true;
+        } else {
+            $scope.userLoggedIn = false;
+        }
+    });
 
-     AuthService.getLoggedInUser().then(function(user) {
-                $scope.user = user;
-                // console.log(user);
-                if(user) {
-                    $scope.userLoggedIn = true;
-                } else {
-                    $scope.userLoggedIn = false;
-                }
-            });
-
+    $scope.search = function(string){
+        console.log("searching...")
+        SearchFactory.Search(string)
+    }
 
 });
 
