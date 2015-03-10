@@ -7,11 +7,9 @@ app.factory('CookieFactory', function($kookies){
 	 	getCookies: function() {
 	 		if ($kookies.get('sandwiches')) {
 	 			var sandwiches = $kookies.get('sandwiches');
-	 			console.log('in cookie',sandwiches);
 	 			return sandwiches;
 	 		}
 	 		else {
-	 			console.log('no kookie :(');
 	 			return false;
 	 		}
 	 	},
