@@ -4,10 +4,11 @@ var Sandwich = require('../../db/models/sandwich.js').Sandwich;
 var User = require('../../db/models/user.js').User;
 var Reviews = require('../../db/models/reviews.js').Reviews;
 var Order = require('../../db/models/orders.js').Order;
+var stripe = require("stripe")("sk_test_Cv1UxGFrtA7dBCrUWstCn5sA");
+var _ = require('lodash');
+// router.use('/', require('./'));
 var passport = require('passport');
 var stripe = require("stripe")("sk_test_Gh9YI83NtqAns36ZNROjSaVs");
-
-
 // router.use('/auth/google', require('../configure/authentication/google.js'));
 
 //get all reviews or review of sandwich ID specified
@@ -145,5 +146,62 @@ router.post('/charge', function(req, res){
 //     // Successful authentication, redirect home.
 //     res.redirect('/');
 // });
+router.get('/search', function(req, res){
+  var matches = []
+  //grabs search terms
+  console.log("in back end")
+  var words = req.query.words
+  console.log("type", typeof words)
+  console.log("words", words)
+  if(typeof words == "string"){
+    words = words.split()
+  }
+
+  //find all sandwiches
+  Sandwich.find(function(err, sandwiches) {
+    if(err) res.send(err);
+    var allSandwiches = sandwiches
+    //for each sandwich
+    allSandwiches.forEach(function(sandwich){
+      //check if there is a match within the sandwich
+      
+      Array.prototype.forEach.call(words,function(word){
+        //searches fillings:
+        var fillings = sandwich.fillings.map(function(word){return word.toLowerCase()})
+        fillings.forEach(function(ingredient){
+          if(ingredient.indexOf(word) > -1){
+              //push matches to matches array
+              matches.push(sandwich)
+          }
+        })
+        //searches bread:
+        var bread = sandwich.bread.toLowerCase()
+        if(bread.indexOf(word) > -1){
+          //push matches to matches array
+          matches.push(sandwich)
+        }
+        //searches by name
+        var name = sandwich.name.toLowerCase()
+        if(name.indexOf(word) > -1){
+          //push matches to matches array
+          matches.push(sandwich)
+        }
+        //searches by description
+        var description = sandwich.description.toLowerCase()
+        if(description.indexOf(word) > -1){
+          //push matches to matches array
+          matches.push(sandwich)
+        }
+        
+      })
+
+    })
+    var uniqueMatches = _.uniq(matches)  
+    res.json(uniqueMatches);
+    
+  });
+  // res.status(200).end();
+
+})
 
 module.exports = router;
