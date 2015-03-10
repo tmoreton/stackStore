@@ -270,5 +270,9 @@ p.no-reviews {
    font-weight: bold; 
 }
 
+div.reviewForm {
+  margin-top: 50px;
+}
+
 @import 'directives/main';
 @import 'home/main';

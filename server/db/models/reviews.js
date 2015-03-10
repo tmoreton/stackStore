@@ -17,4 +17,4 @@ var Reviews = mongoose.model('Reviews', schema);
 
 module.exports = {
 	Reviews: Reviews
-}
+};

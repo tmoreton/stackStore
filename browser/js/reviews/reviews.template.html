@@ -25,14 +25,26 @@
 					<option value=''>Choose a sandwich</option>
 				</select>
 				<button ng-click='showAllReviews()' class="btn btn-primary">Show All Reviews</button>
-				<h4>Add a Review!</h4>
-				<form ng-class="{submitted:addReview.submitted}" name="addReview" novalidate>
-					<select name="sandwichReviewed" ng-required="true" ng-model="sandwichReviewed" ng-options="sandwich.name for sandwich in allSandwiches">
-						<option value=''>Choose a sandwich to review</option>
-					</select>
-					<textarea name="review" class="form-control" rows="3" placeholder="Write a review for the sandwich you selected" ng-model="reviewText" ng-required="true"></textarea>
-					<div class="text-center">
-						<button class="btn btn-lg btn-primary" ng-click="addReview()">Add Review</button>
+				<div ng-show='!currentUser' class='reviewForm'>
+					<br>
+					<button class="btn btn-lg btn-primary" ui-sref="login">Click here to login so you can add your own reviews!</button>
+					<br>
+				</div>
+				<div ng-show='currentUser' class='
+					reviewForm'>
+					<h4 class = 'reviewFormTitle'>Add a Review!</h4>
+					<form ng-class="{submitted:addReviewForm.submitted}" name="addReviewForm" novalidate>
+						<select name="sandwichReviewed" ng-required="true" ng-model="sandwichReviewed" ng-options="sandwich.name for sandwich in allSandwiches">
+							<option value=''>Choose a sandwich to review</option>
+						</select>
+						<br>
+						<br>
+						<textarea name="review" class="form-control" rows="3" placeholder="Write a review for the sandwich you selected" ng-model="reviewText" ng-required="true"></textarea>
+						<br>
+						<div class="text-center">
+							<br>
+							<button class="btn btn-lg btn-primary" ng-click="addReview()">Add Review</button>
+						</div>
 					</div>
 				</form>
 			</div>

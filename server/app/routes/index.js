@@ -49,6 +49,22 @@ router.post('/sandwiches/', function(req, res) {
 	});
 });
 
+//post new review
+router.post('/reviews', function(req, res) {
+  var reviewData =  req.body.params;
+  Reviews.create(reviewData).then(function(err, review) {
+    if (err) {
+      res.send(err).end();
+    }
+    Sandwich.findById(review.sandwich, function(err, sandwich) {
+      sandwich.reviews.push(review._id);
+      sandwich.save();
+      res.json(review);
+    });
+  });
+});
+
+
 
 router.delete('/sandwiches/:id', function(req, res) {
   Sandwich.remove({
@@ -88,16 +104,11 @@ router.post('/signup/', function(req, res){
   });
 });
 router.post('/orders', function(req, res){
-  console.log("this is req.body or so we thought", req.body);
   Order.create({sandwiches:req.body.sandwiches, user:req.body.user}).then(function(order){
-    console.log("order has been created");
-    console.log("this should be a user damnit", req.body.user);
     User.findById(req.body.user, function(err, userDoc){
-      console.log("inside user function");
       if (err){
         console.log(err);
       }else{
-        console.log("trying to update user");
         userDoc.orders.push(order);
         userDoc.save(function(){
           res.status(200).end();

@@ -9,12 +9,16 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory) {
+app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthService) {
 
     SandwichesFactory.getSandwiches().then (function(sandwiches) {
         $scope.allSandwiches = sandwiches;
         $scope.sandwiches = sandwiches;
 
+    });
+
+    AuthService.getLoggedInUser().then( function (user) {
+        $scope.currentUser = user;
     });
 
     $scope.sandwichSelected = function() {
@@ -32,12 +36,14 @@ app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory) {
     };
 
     $scope.addReview =  function() {
-        if ($scope.addReview.$valid) {
+        console.log('addingReview');
+        if ($scope.addReviewForm.$valid) {
+            SandwichesFactory.addReview($scope.sandwichReviewed,$scope.reviewText, $scope.currentUser);
             console.log('sandwich reviewed', $scope.sandwichReviewed);
             console.log('review text', $scope.reviewText);
         } else {
             console.log('invalid submission');
-            $scope.addReview.submitted = true;
+            $scope.addReviewForm.submitted = true;
         }
     };
 
