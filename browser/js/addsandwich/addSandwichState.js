@@ -2,28 +2,40 @@
 app.config(function ($stateProvider) {
 
     $stateProvider.state('addsandwich', {
-        url: '/addsandwich',
+        url: '/addsandwich/:searched',
         controller: 'AddSandwichCtrl',
         templateUrl: 'js/addsandwich/addsandwich.template.html'
     });
 
 });
 
-app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFactory, $timeout) {
+app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFactory, $timeout, $stateParams) {
 	$scope.hideSubmitButton = true;
-	SandwichesFactory.getSandwiches().then( function(sandwiches) {
-		$scope.sandwichSelection = sandwiches;
+	SandwichesFactory.getSandwiches().then(function(sandwiches) {
+		console.log("searchresults",$scope.searchResults)
+		if($stateParams.searched){
+			$scope.sandwichSelection = $scope.searchResults
+			$stateParams.searched = false;
+		}else{
+			$scope.sandwichSelection = sandwiches;
+		}
+
 		angular.forEach($scope.sandwichSelection, function (sandwich) {
+			//if it has an image gives a default image
 			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
+			// calculates average review
 			var sum = 0;
 			sandwich.reviews.forEach(function (review) {
 				sum+= review.stars;
 			});
 			sandwich.averageReviewScore = Math.floor(sum / sandwich.reviews.length);
 		});
+		$scope.searchResults = false;
 	});
 
+
 	$scope.finalPrice = 0;
+
 	var storedCookies = CookieFactory.getCookies();
 	if (storedCookies) {
 		$scope.sideSandwiches = storedCookies;
@@ -64,7 +76,6 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
       $scope.sandwichSelection.forEach(function(sandwich) {
       	if(sandwich._id === id) {
       		sandwich.price = price;
-      		sandwich.updated = "Price updated!";
       		$timeout(function() {
       			sandwich.updated = false;
       		}, 2000);
@@ -73,11 +84,12 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
   	};
 
 	$scope.getAvgStars = function(sandwich) {
-
 		if (sandwich.averageReviewScore === 0 || isNaN(sandwich.averageReviewScore)) {
 			return [ ]; //no reviews
 		}
 		return new Array(sandwich.averageReviewScore);
 	};
+
+
 });
 
