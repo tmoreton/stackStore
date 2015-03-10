@@ -1,7 +1,12 @@
 <div class="container">
+<div class='row'>
+<div class='col-md-6'>
 	<div ng-repeat='sandwich in sandwiches'>
 		<div>
-			<h4>{{sandwich.name}}</h4>
+			<h4>{{sandwich.name}}<small class="sandwich-descrip">{{sandwich.description}}</small></h4>
+			<div ng-show="!sandwich.reviews.length">
+			<p class='no-reviews'><strong>This sandwich has no reviews! You should add one.</strong></p>
+			</div>
 			<p ng-repeat="review in sandwich.reviews">
 				{{review.description}}
 				<span
@@ -11,4 +16,16 @@
 			</p>
 		</div>
 	</div>
+</div>
+	<div class='col-md-2'>
+	</div>
+	<div class='col-md-4'>
+	<div class='affix'><h4>Select a sandwich to read reviews about it</h4>
+					<select ng-change="sandwichSelected()" ng-model="selectedSandwich" ng-options="sandwich.name for sandwich in allSandwiches">
+						<option value=''>Choose a sandwich</option>
+					</select>
+		<button ng-click='showAllReviews()' class="btn btn-primary">Show All Reviews</button>
+	</div>
+	</div>
+</div>
 </div>
