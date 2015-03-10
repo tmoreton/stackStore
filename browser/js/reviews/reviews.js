@@ -46,6 +46,12 @@ app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthSe
                     //selected sandwich is reviewed sandwich so update its reviews
                     $scope.selectedSandwich.reviews.unshift(review);
                 }
+                $scope.sandwichReviewed= '';
+                $scope.reviewText = '';
+                $scope.ratings[0].current = 3;
+                $scope.addReviewForm.submitted = false;
+                return;
+
 
             });
             
