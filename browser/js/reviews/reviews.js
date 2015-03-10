@@ -10,12 +10,6 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthService) {
-    $(':radio').change(
-      function(){
-        $('.choice').text( this.value + ' stars' );
-      } 
-    );
-    
     SandwichesFactory.getSandwiches().then (function(sandwiches) {
         $scope.allSandwiches = sandwiches;
         $scope.sandwiches = sandwiches;
@@ -41,9 +35,8 @@ app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthSe
     };
 
     $scope.addReview =  function() {
-        console.log('addingReview');
         if ($scope.addReviewForm.$valid) {
-            SandwichesFactory.addReview($scope.sandwichReviewed,$scope.reviewText, $scope.currentUser, 5).then( function(review) {
+            SandwichesFactory.addReview($scope.sandwichReviewed,$scope.reviewText, $scope.currentUser, $scope.ratings[0].current).then( function(review) {
                 $scope.allSandwiches.forEach( function(sandwich) {
                     if (sandwich._id === review.sandwich) {
                         sandwich.reviews.unshift(review);
@@ -53,6 +46,7 @@ app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthSe
                     //selected sandwich is reviewed sandwich so update its reviews
                     $scope.selectedSandwich.reviews.unshift(review);
                 }
+
             });
             
         } else {
@@ -60,6 +54,11 @@ app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthSe
             $scope.addReviewForm.submitted = true;
         }
     };
+
+    $scope.ratings = [{
+        current: 3,
+        max: 5
+    }];
 
 });
 

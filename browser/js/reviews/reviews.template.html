@@ -40,7 +40,12 @@
 						<br>
 						<br>
 						<!-- <strong class="choice">Choose a rating</strong> -->
-						<div star-rating rating-value="rating" max="5" on-rating-selected="//rateFunction(rating)"></div>
+						<div>
+							<span ng-repeat="rating in ratings">
+								<div star-rating rating-value="rating.current" max="rating.max">
+								</div>
+							</span>
+						</div>
 						<textarea name="review" class="form-control" rows="3" placeholder="Write a review for the sandwich you selected" ng-model="reviewText" ng-required="true"></textarea>
 						<br>
 						<div class="text-center">
