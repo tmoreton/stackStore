@@ -256,6 +256,7 @@ div.thumbnail{
 .panel-heading {
   position:fixed;
   width: auto;
+}
 
 .sandwich-descrip {
   font-size: 12px;
@@ -268,6 +269,33 @@ p.no-reviews {
    font-style: italic;
    font-weight: bold; 
 }
+
+div.reviewForm {
+  margin-top: 50px;
+}
+
+.rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+}
+ul.rating {
+    display: inline-block;
+}
+.rating li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.rating .filled {
+    color: #67B0D1;
+}
+
+
+
 
 @import 'directives/main';
 @import 'home/main';
