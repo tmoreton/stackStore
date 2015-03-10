@@ -5,14 +5,23 @@
 
 <form stripe:form="submitPayment">
   <fieldset>
-    <input ng-model="number" placeholder="Card Number" data-stripe="number" />
-    <input ng-model="expmonth" size="2" placeholder="Exp. Month" data-stripe="exp-month" />
-    <input ng-model="expyear" size="4" placeholder="Exp. Year" data-stripe="exp-year" />
-    <input ng-model="cvc" placeholder="CVC" data-stripe="cvc" />
+    <span>Card Number</span><input ng-model="number" placeholder="Card Number" data-stripe="number" /><br>
+    <span>Expiration (MM/YYYY)</span>
+      <input type="text" ng-model="expmonth" size="2" data-stripe="exp-month"/>
+    <span> / </span>
+    <input type="text" ng-model="expyear" size="4" data-stripe="exp-year"/><br>
+    <span>CVC</span>
+    <input ng-model="cvc" placeholder="CVC" data-stripe="cvc" /><br>
     <button type="submit">Submit</button>
   </fieldset>
 </form>
-<span ng-show="paymentSubmitted">Thank you for your payment! <p><a ui-sref="createsandwich" class="btn btn-primary btn-sm ">Build Another Sandwich!</a></p></span>
+<span ng-show="paymentSubmitted"><h3>Thank you for your payment of {{totalPrice | currency}}!</h3> 
+
+<p><a ui-sref="createsandwich" class="btn btn-primary btn-sm ">Build Another Sandwich!</a></p>
+
+<p><a ui-sref="success">Go to Profile</a></p>
+
+</span>
 
 
 </body>

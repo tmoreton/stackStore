@@ -15,9 +15,10 @@ app.controller('stripeController', function ($scope, $http, CookieFactory) {
   var total = 0;
   cookies.forEach(function(sandwich) {
     total += sandwich.price;
+    $scope.totalPrice = total;
   });
 
-  $scope.total
+
   
 
   $scope.submitPayment = function(status, response) {
