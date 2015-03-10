@@ -2,14 +2,15 @@
 app.config(function ($stateProvider) {
 
     $stateProvider.state('reviews', {
-        url: '/reviews',
+        url: '/reviews/:sandwich',
         controller: 'ReviewCtrl',
         templateUrl: 'js/reviews/reviews.template.html'
     });
 
 });
 
-app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthService) {
+app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthService, $stateParams) {
+    var id = $stateParams.sandwich;
     SandwichesFactory.getSandwiches().then (function(sandwiches) {
         $scope.allSandwiches = sandwiches;
         $scope.sandwiches = sandwiches;

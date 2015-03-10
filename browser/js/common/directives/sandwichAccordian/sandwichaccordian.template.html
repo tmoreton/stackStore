@@ -13,7 +13,7 @@
              </div>
              </div>
 
-            <h4><a href="#">{{sandwich.name}}</a></h4>
+            <h4><a ui-sref="reviews({'sandwich': sandwich._id})">{{sandwich.name}}</a></h4>
                 <p>{{sandwich.description}}</p>
                 <h4 ng-show="{{user.admin}}">{{sandwich.price | currency }}</h4>
                 <h4 ng-show="!{{user.admin}}">{{sandwich.price | currency}}</h4>
