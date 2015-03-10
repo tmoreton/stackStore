@@ -33,7 +33,7 @@ router.get('/sandwiches/:id', function(req, res) {
 router.get('/sandwiches', function(req, res){
   Sandwich.find().populate('reviews').exec( function(err, sandwiches) {
     if(err) res.send(err);
-      res.json(sandwiches);
+    res.json(sandwiches);
   });
 });
 

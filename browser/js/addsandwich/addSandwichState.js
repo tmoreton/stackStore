@@ -66,6 +66,7 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 
 	$scope.getAvgStars = function(sandwich) {
 		console.log('sandwich',sandwich);
+		console.log('sandwich AS',sandwich.averageReviewScore);
 		return new Array(sandwich.averageReviewScore);
 	};
 });
