@@ -18,14 +18,10 @@
           <div class="col-md-3">
             <input class="form-control" ng-model="cvc" placeholder="CVC" data-stripe="cvc" /><br>
           </div>
-          <button class="btn btn-primary" type="submit">Submit</button>
+          <button class="btn btn-primary" type="submit" ng-click="customSubmit()">Submit</button>
         </fieldset>
       </form>
       <span ng-show="paymentSubmitted"><h3>Thank you for your payment of {{totalPrice | currency}}!</h3>
-
-      <p><a ui-sref="createsandwich" class="btn btn-primary btn-sm ">Build Another Sandwich!</a></p>
-
-      <p><a ui-sref="success">Go to Profile</a></p>
 
       </span>
     </div>
