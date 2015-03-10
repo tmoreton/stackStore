@@ -5,8 +5,11 @@ var User = require('../../db/models/user.js').User;
 var Reviews = require('../../db/models/reviews.js').Reviews;
 var Order = require('../../db/models/orders.js').Order;
 var stripe = require("stripe")("sk_test_Cv1UxGFrtA7dBCrUWstCn5sA");
+var passport = require('passport');
+// var app = require('../configure/authentication/google.js');
 
-// router.use('/', require('./'));
+
+// router.use('/auth/google', require('../configure/authentication/google.js'));
 
 //get all reviews or review of sandwich ID specified
 router.get('/reviews', function(req, res){
@@ -15,7 +18,7 @@ router.get('/reviews', function(req, res){
         if(err) {
           res.send(err);
         }
-        res.json(reviews);  
+        res.json(reviews);
      });
     }
 });
@@ -111,7 +114,7 @@ router.post('/orders', function(req, res){
 router.post('/charge', function(req, res){
   var stripeToken = req.body.stripeToken;
 
-    console.log("----------------------------req-------",req.body);
+    console.log("-------req-------",req.body);
 
   var charge = stripe.charges.create({
     amount: 1000, // amount in cents, again
@@ -139,6 +142,17 @@ router.post('/charge', function(req, res){
 //    }, function(err, charge) {
 //        res.send('Charged! Details: ' + charge);
 //    });
+// });
+
+// router.get('/auth/google',
+//   passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' }));
+
+// router.get('/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/signup' }),
+//   function(req, res) {
+//     console.log(req.body)
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
 // });
 
 module.exports = router;

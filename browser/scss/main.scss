@@ -256,6 +256,7 @@ div.thumbnail{
 .panel-heading {
   position:fixed;
   width: auto;
+}
 
 .sandwich-descrip {
   font-size: 12px;
@@ -266,7 +267,15 @@ div.thumbnail{
 
 p.no-reviews {
    font-style: italic;
-   font-weight: bold; 
+   font-weight: bold;
+}
+
+.google {
+  background-color: #d34836;
+  color: white;
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
 }
 
 @import 'directives/main';
