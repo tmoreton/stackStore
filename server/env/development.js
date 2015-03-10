@@ -17,3 +17,4 @@ module.exports = {
     "callbackURL": "http://localhost:1337/auth/google/callback"
   }
 };
+
