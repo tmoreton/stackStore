@@ -2,6 +2,12 @@ app.factory('CookieFactory', function($kookies){
 	return{
 		setCookies: function(sandwich){
 	 		$kookies.set('sandwiches',sandwich);
+	 		var currentPrice = $kookies.get('price');
+	 		if(!currentPrice) {
+	 			currentPrice = 0;
+	 		};
+	 		$kookies.set('price', currentPrice + sandwich.price);
+	 		console.log('PRIIIIIIICELihd;fliahdf', $kookies.get('price'));
 	 	},
 
 	 	getCookies: function() {
