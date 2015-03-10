@@ -25,7 +25,14 @@ app.factory('SandwichesFactory', function ($http) {
             return $http.put('/api/sandwiches/' + id, {params: {price:price}}).then(function(response) {
                 return response.data;
             });
+        },
+
+        addReview: function(sandwich,review,user,stars) {
+            return $http.post('/api/reviews', {params : {description: review, user: user._id, sandwich: sandwich._id, stars: stars}}).then(function(response) {
+                return response.data;
+            });
         }
-    }
+
+    };
 
 });

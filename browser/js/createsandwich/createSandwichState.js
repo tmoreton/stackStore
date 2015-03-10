@@ -77,7 +77,7 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 			name: "",
 			fillings: []
 		};
-	}
+	};
 });
 
 // $scope.breadChosen =  function() {

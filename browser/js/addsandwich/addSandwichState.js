@@ -63,6 +63,10 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
   	};
 
 	$scope.getAvgStars = function(sandwich) {
+
+		if (sandwich.averageReviewScore === 0 || isNaN(sandwich.averageReviewScore)) {
+			return [ ]; //no reviews
+		}
 		return new Array(sandwich.averageReviewScore);
 	};
 });
