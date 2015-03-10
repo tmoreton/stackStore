@@ -10,21 +10,29 @@ app.directive('stripe', function () {
 });
 
 app.controller('stripeController', function ($scope, $http, CookieFactory) {
-  // Stripe Response Handler
   var cookies = CookieFactory.getCookies();
-  // var total = 0;
-  // $scope.totalPrice = function() {
-  //   for(var i = 0; i < cookies.length; i++) {
-  //     total += cookies[i].price;
-  //   }
-  //     console.log('TOTAL????', total);
-  // }
-  $scope.submitPayment = function(status, response) {
-    console.log('COOKIES????', cookies);
-    console.log('HELLO STRIPE?', status, response);
-    $http.post('/api/charge/', {token: response.id, cookies: cookies});
-  }
+  
+  var total = 0;
+  cookies.forEach(function(sandwich) {
+    total += sandwich.price;
+  });
 
+  $scope.total
+  
+
+  $scope.submitPayment = function(status, response) {
+    $http.post('/api/charge/', {token: response.id, total: total});
+    $scope.paymentSubmitted = true;
+    $scope.number = '';
+    $scope.cvc = '';
+    $scope.expmonth = '';
+    $scope.expyear = '';
+  }
+  // $scope.reset = function() {
+  //   $scope.cvc = 
+
+  //   }
+  // };
 
 });
 

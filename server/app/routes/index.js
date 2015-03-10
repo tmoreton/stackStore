@@ -111,16 +111,14 @@ router.post('/orders', function(req, res){
 
 router.post('/charge', function(req, res){
   var stripeToken = req.body.token;
-  var price = req.body.cookies[0].price;
+  var price = req.body.total;
 
-    console.log("get token",req.body.token);
-    console.log("get price",req.body.cookies[0].price);
 
   var charge = stripe.charges.create({
     amount: price*100, // amount in cents, again
     currency: "usd",
     source: stripeToken,
-    description: "payinguser@example.com"
+    description: "sandwich stack payment. thank you!"
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       // The card has been declined
