@@ -5,3 +5,5 @@ app.directive('sideBar', function () {
         templateUrl: 'js/common/directives/sideBar/sideBar.html'
     };
 });
+
+

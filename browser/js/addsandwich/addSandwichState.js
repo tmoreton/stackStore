@@ -22,15 +22,21 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 			sandwich.averageReviewScore = Math.floor(sum / sandwich.reviews.length);
 		});
 	});
+
+	$scope.finalPrice = 0;
 	var storedCookies = CookieFactory.getCookies();
 	if (storedCookies) {
 		$scope.sideSandwiches = storedCookies;
+		storedCookies.forEach(function(sandwich) {
+			$scope.finalPrice += sandwich.price
+		})
 	}
 	else {
 		$scope.sideSandwiches = [];
 	}
 	$scope.removeSandwich = function(sandwich){
 		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
+		$scope.finalPrice -= sandwich.price;
 
 	};
 
@@ -38,11 +44,15 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 		sandwich.exists = true;
 		$scope.sideSandwiches.push(sandwich);
 		CookieFactory.setCookies($scope.sideSandwiches);
+		$scope.finalPrice += sandwich.price;
+
 	};
 
 	$scope.deleteSandwich = function(id) {
+
     SandwichesFactory.removeSandwiches(id).then(function(sandwiches) {
       $scope.sandwichSelection = sandwiches;
+
       angular.forEach($scope.sandwichSelection, function (sandwich) {
 			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
 		});
