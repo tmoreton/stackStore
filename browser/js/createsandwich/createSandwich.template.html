@@ -1,6 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-9">
+		<div><h1>Custom sandwiches start at $6 plus an additional $0.50 per ingredient.</h1></div>
 			<form ng-class="{submitted:createSandwich.submitted}" name="createSandwich" novalidate>
 				<div><h2>Choose your bread</h2>
 					<select name="bread" ng-required="true" ng-model="sandwich.bread" ng-options="type for type in bread">

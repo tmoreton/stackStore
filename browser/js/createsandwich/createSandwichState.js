@@ -42,13 +42,14 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 
 	$scope.addSandwich = function() {
 		if ($scope.createSandwich.$valid) {
-			$scope.sandwich.price = 10;
+			$scope.sandwich.price = 6;
 			$scope.sandwich.fillings = [];
 
 			for (var key in $scope.isSelectedFilling) {
 				if ($scope.isSelectedFilling.hasOwnProperty(key)) {
 					if ($scope.isSelectedFilling[key]) {
 						$scope.sandwich.fillings.push(key);
+						$scope.sandwich.price += 0.5;
 					}
 				}
 			}
