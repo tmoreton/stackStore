@@ -19,7 +19,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, CheckUserFactory, $state, AuthService) {
+app.controller('LoginCtrl', function ($scope, CookieFactory, CheckUserFactory, $state, AuthService) {
 
           $scope.checkuser = function(){
             $scope.authorizedUser = ''
@@ -27,8 +27,13 @@ app.controller('LoginCtrl', function ($scope, CheckUserFactory, $state, AuthServ
             if($scope.loginForm.$valid){
                 CheckUserFactory.checkuser($scope.user).then(function(user){
                     if(user) {
-                        console.log("authornot")
-                        $state.go('success');   
+                        var tray = CookieFactory.getCookies();
+                        console.log("tray", tray)
+                        if (tray.length){
+                            $state.go("checkout")
+                        }else{
+                            $state.go('success');  
+                        }
                     } 
                 }).catch(function(err){
                     $scope.tryAgain = "Try Again";

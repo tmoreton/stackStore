@@ -26,27 +26,9 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 		//needs to be done
 	}
 	else{
-		//if you are not:
-		//sign up form will appear-done!
+		$state.go("signup")
 	}
-	
-	 var signup = function(){
-	    console.log($scope.user);
-	    if($scope.signInForm.$valid){
-	        AddUserFactory.AddUser($scope.user).then(function(data){
-	            
-	        });
-	    }else{
-	        $scope.signInForm.submitted = true;
-	    }
-	  }	
 	$scope.submitOrder = function(){
-		//if you are not signed in
-		//create a user in the db with your information
-		if(!$scope.user){
-			signup()
-		}
-		
 		var sandwichPromises = []
 		//send a sandwich for every sandwich in tray to database
 		$scope.sideSandwiches.forEach(function(sandwich){
@@ -55,16 +37,15 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 		})
 
 		$q.all(sandwichPromises).then(function(sandwichIdArr){
+			console.log("sandwich promises convered into an array")
 			//use sandwich ids
 			//create new order with sandwichid array
 			//which will have a reference to the current user
 			$q.when($scope.userPromise).then(function(user){
-				console.log("this is what we think is the user id",user._id)
 				var user_id = user._id;
-				console.log("this is the user id that we are sending to the db",user_id)
 				CheckoutFactory.addNewOrder(sandwichIdArr, user_id).then(function(){
 					$scope.sideSandwiches = [];
-					$kookies.remove('sandwiches')
+					CookieFactory.removeAllCookies();
 	                $state.go('success');
 				});
 				

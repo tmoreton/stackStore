@@ -10,7 +10,7 @@ app.factory('FillingsFactory', function () {
             'Lettuce',
             'Tomato',
             'Avocado',
-            'Onions',
+            'Sriracha',
             'Bell Peppers',
             'Spinach',
             'Portobello Mushroom',

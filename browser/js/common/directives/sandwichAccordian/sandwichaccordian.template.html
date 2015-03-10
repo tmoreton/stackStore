@@ -18,13 +18,12 @@
                 <h4 ng-show="{{user.admin}}">{{sandwich.price | currency }}</h4>
                 <h4 ng-show="!{{user.admin}}">{{sandwich.price | currency}}</h4>
             <div class="ratings">
-                <p class="pull-right">{{sandwich.reviews}}</p>
+                <!-- <p class="pull-right">{{sandwich.reviews}}</p> -->
                 <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
+                    <span 
+                    ng-repeat='star in getAvgStars(sandwich) track by $index'
+                    class="glyphicon glyphicon-star">
+                    </span>
                 </p>
             </div>
             <button ng-click='addSandwich(sandwich)' class="btn btn-primary btn-sm">Add to Tray</button>
