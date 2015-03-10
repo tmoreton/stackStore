@@ -12,14 +12,11 @@
     <input type="text" ng-model="expyear" size="4" data-stripe="exp-year"/><br>
     <span>CVC</span>
     <input ng-model="cvc" placeholder="CVC" data-stripe="cvc" /><br>
-    <button type="submit">Submit</button>
+    <button type="submit" ng-click="customSubmit()">Submit</button>
   </fieldset>
 </form>
 <span ng-show="paymentSubmitted"><h3>Thank you for your payment of {{totalPrice | currency}}!</h3> 
 
-<p><a ui-sref="createsandwich" class="btn btn-primary btn-sm ">Build Another Sandwich!</a></p>
-
-<p><a ui-sref="success">Go to Profile</a></p>
 
 </span>
 
