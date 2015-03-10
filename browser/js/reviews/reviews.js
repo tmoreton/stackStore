@@ -10,7 +10,12 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthService) {
-
+    $(':radio').change(
+      function(){
+        $('.choice').text( this.value + ' stars' );
+      } 
+    );
+    
     SandwichesFactory.getSandwiches().then (function(sandwiches) {
         $scope.allSandwiches = sandwiches;
         $scope.sandwiches = sandwiches;

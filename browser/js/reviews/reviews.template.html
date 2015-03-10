@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-init="rating = star.rating + 1">
 	<div class='row'>
 		<div class='col-md-6'>
 			<div ng-repeat='sandwich in sandwiches'>
@@ -39,6 +39,8 @@
 						</select>
 						<br>
 						<br>
+						<!-- <strong class="choice">Choose a rating</strong> -->
+						<div star-rating rating-value="rating" max="5" on-rating-selected="//rateFunction(rating)"></div>
 						<textarea name="review" class="form-control" rows="3" placeholder="Write a review for the sandwich you selected" ng-model="reviewText" ng-required="true"></textarea>
 						<br>
 						<div class="text-center">
