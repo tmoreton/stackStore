@@ -17,7 +17,6 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
 			var sum = 0;
 			sandwich.reviews.forEach(function (review) {
-				console.log(review);
 				sum+= review.stars;
 			});
 			sandwich.averageReviewScore = Math.floor(sum / sandwich.reviews.length);
@@ -42,7 +41,6 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 	};
 
 	$scope.deleteSandwich = function(id) {
-    console.log('deleted?');
     SandwichesFactory.removeSandwiches(id).then(function(sandwiches) {
       $scope.sandwichSelection = sandwiches;
       angular.forEach($scope.sandwichSelection, function (sandwich) {

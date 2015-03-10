@@ -13,8 +13,17 @@ app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthSe
     var id = $stateParams.sandwich;
     SandwichesFactory.getSandwiches().then (function(sandwiches) {
         $scope.allSandwiches = sandwiches;
+        if (id) {
+            $scope.allSandwiches.forEach( function(currentSandwich) {
+                if (currentSandwich._id === id)  {
+                    $scope.sandwiches = [ currentSandwich ];
+                    $scope.selectedSandwich = currentSandwich;
+                }
+            });
+        }
+        else {
         $scope.sandwiches = sandwiches;
-
+        }
     });
 
     AuthService.getLoggedInUser().then( function (user) {
