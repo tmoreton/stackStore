@@ -31,5 +31,15 @@ app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory) {
         $scope.selectedSandwich = "";
     };
 
+    $scope.addReview =  function() {
+        if ($scope.addReview.$valid) {
+            console.log('sandwich reviewed', $scope.sandwichReviewed);
+            console.log('review text', $scope.reviewText);
+        } else {
+            console.log('invalid submission');
+            $scope.addReview.submitted = true;
+        }
+    };
+
 });
 
