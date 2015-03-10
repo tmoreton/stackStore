@@ -89,7 +89,7 @@ mongoose.connection.on('open', function() {
         var i = 0;
         Sandwich.find({ } , function (err, sandwiches){
             async.each(data.Review, function (review, reviewCreated){
-                i=Math.floor(Math.random(0,sandwiches.length)*sandwiches.length);
+                i=Math.floor(Math.random()*sandwiches.length);
                 review.sandwich = sandwiches[i]._id;
                 Review.create(review, reviewCreated);
             }, function (err){
