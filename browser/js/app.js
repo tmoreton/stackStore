@@ -21,7 +21,9 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
 
     $rootScope.$on('$stateChangeStart', function( event, toState, toParams, fromState, fromParams ) {
         if (fromState.name === 'home')
-            $scope.LogOutSuccess = null;
+            $scope.LogOutSuccess = null; 
+        if (fromState.name === 'success')
+            $scope.justOrdered = false;
     });
 
     $scope.userLogout = function() {
