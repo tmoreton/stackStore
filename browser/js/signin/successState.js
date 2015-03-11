@@ -20,11 +20,11 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('SuccessCtrl', function($scope, getLoggedInUser, $kookies, $state, SandwichesFactory){  
+app.controller('SuccessCtrl', function($scope, getLoggedInUser, $kookies, $state, SandwichesFactory, $rootScope){  
   
   $scope.user = getLoggedInUser;
   $scope.numOrders = $scope.user.orders.length;
-  
+  $scope.justOrdered = $rootScope.justOrdered;
   $scope.userLoggedIn = true; 
  
 });
