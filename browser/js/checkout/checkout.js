@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q) {
+app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q, $rootScope) {
 	$scope.sideSandwiches = CookieFactory.getCookies();
 	$scope.finalPrice = 0;
 	$scope.sideSandwiches.forEach(function(sandwich) {
@@ -48,7 +48,7 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 				CheckoutFactory.addNewOrder(sandwichIdArr, user_id).then(function(){
 					$scope.sideSandwiches = [];
 					CookieFactory.removeAllCookies();
-					$scope.justOrdered = true;
+					$rootScope.justOrdered = true;
 	                $state.go('success');
 				});
 				
