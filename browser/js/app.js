@@ -18,14 +18,14 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
         { label: 'Reviews', state: 'reviews'}
 
     ];
-     $scope.justOrdered = false;
+    $scope.justOrdered = null;
     $rootScope.$on('$stateChangeStart', function( event, toState, toParams, fromState, fromParams ) {
-        if (toState === 'success' && fromState === 'checkout') {
+        if (toState.name == 'success' && fromState.name == 'checkout') {
             $scope.justOrdered = true;
         }
         if (fromState.name === 'home') {
             $scope.LogOutSuccess = null; 
-        } if (fromState.name === 'success') {
+        } if (fromState.name == 'success') {
             $scope.justOrdered = false;
         }
     });

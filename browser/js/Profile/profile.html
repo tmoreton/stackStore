@@ -1,8 +1,7 @@
 <div class="container text-center">
-justOrdered?  {{justOrdered}}
-<h1 ng-show="justOrdered">Thank you for your order {{user.firstName}} {{user.lastName}}!</h1>
-<h2 ng-show="{{user.admin}}">Did you know that you are an admin? You hold much power.</h2>
-<h3 >You have made: {{numOrders}} Orders</h3>
-<h4 ng-show="numOrders">Why not <a ui-sref="createsandwich">build another sandwich?</a></h4>
-<h4 ng-show="!numOrders">Why not <a ui-sref="createsandwich">build your first sandwich?!</a></h4>
+	<h1 ng-show="justOrdered">Thank you for your order {{user.firstName}} {{user.lastName}}!</h1>
+	<h2 ng-show="{{user.admin}}">Did you know that you are an admin? You hold much power.</h2>
+	<h3 >You have made: {{numOrders}} Orders</h3>
+	<h4 ng-show="numOrders">Why not <a ui-sref="createsandwich">build another sandwich?</a></h4>
+	<h4 ng-show="!numOrders">Why not <a ui-sref="createsandwich">build your first sandwich?!</a></h4>
 </div>
