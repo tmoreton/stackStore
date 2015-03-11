@@ -22,6 +22,10 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 	else {
 		$scope.sideSandwiches = [];
 	}
+	if ($scope.finalPrice === 0 ) {
+		//empty tray - can't check out
+		$scope.hideCheckoutButton = true;
+	}
 	$scope.bread = BreadFactory.bread;
 	$scope.fillings = FillingsFactory.fillings;
 	$scope.sandwich = {};
@@ -30,7 +34,9 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 	$scope.removeSandwich = function(sandwich){
 		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
 		$scope.finalPrice -= sandwich.price;
-
+		if ($scope.finalPrice === 0 ) {
+			$scope.hideCheckoutButton = true; //empty tray 
+		}
 	};
 	
 	$scope.setFillings = function() {
@@ -55,6 +61,7 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 				}
 			}
 			$scope.finalPrice += $scope.sandwich.price;
+			$scope.hideCheckoutButton = false; //at least 1 sandwich now so you can check out
 			
 			$scope.sideSandwiches.push($scope.sandwich);
 			CookieFactory.setCookies($scope.sideSandwiches);

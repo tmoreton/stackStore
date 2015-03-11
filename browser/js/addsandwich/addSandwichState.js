@@ -46,9 +46,19 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 	else {
 		$scope.sideSandwiches = [];
 	}
+
+	if ($scope.finalPrice === 0 ) {
+		//empty tray- can't check out
+		$scope.hideCheckoutButton = true;
+	}
+
 	$scope.removeSandwich = function(sandwich){
 		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
 		$scope.finalPrice -= sandwich.price;
+		if ($scope.finalPrice === 0 ) {
+			//empty tray- can't check out
+			$scope.hideCheckoutButton = true;
+		}
 
 	};
 
@@ -57,7 +67,8 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 		$scope.sideSandwiches.push(sandwich);
 		CookieFactory.setCookies($scope.sideSandwiches);
 		$scope.finalPrice += sandwich.price;
-
+		//at least 1 sandwich so show the checkout button
+		$scope.hideCheckoutButton = false; 
 	};
 
 	$scope.deleteSandwich = function(id) {
