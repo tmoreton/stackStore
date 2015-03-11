@@ -14,14 +14,13 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 	$scope.finalPrice = 0;
 	$scope.sideSandwiches.forEach(function(sandwich) {
 		$scope.finalPrice += sandwich.price;
-	})
+	});
 	$scope.hideCheckoutButton = true;
 	$scope.hideSubmitButton = true;
 	$scope.isAuthenticated = AuthService.isAuthenticated();
 	//show tray directive -done!
 	$scope.userPromise = AuthService.getLoggedInUser();
 	
-	console.log("promise?",$scope.userPromise);
 	//determine if logged in -done!
 	if($scope.isAuthenticated){
 		$scope.hideSubmitButton = false;
@@ -30,18 +29,18 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 		//needs to be done
 	}
 	else{
-		$state.go("signup")
+		$state.go("signup");
 	}
 	$scope.submitOrder = function(){
-		var sandwichPromises = []
+		var sandwichPromises = [];
 		//send a sandwich for every sandwich in tray to database
 		$scope.sideSandwiches.forEach(function(sandwich){
 			sandwichPromises.push(CheckoutFactory.addNewSandwich(sandwich));
 			
-		})
+		});
 
 		$q.all(sandwichPromises).then(function(sandwichIdArr){
-			console.log("sandwich promises convered into an array")
+			console.log("sandwich promises convered into an array");
 			//use sandwich ids
 			//create new order with sandwichid array
 			//which will have a reference to the current user
@@ -50,17 +49,18 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 				CheckoutFactory.addNewOrder(sandwichIdArr, user_id).then(function(){
 					$scope.sideSandwiches = [];
 					CookieFactory.removeAllCookies();
+					$scope.justOrdered = true;
 	                $state.go('success');
 				});
 				
                 
-			})	
+			})	;
 		});
-	}
+	};
 	$scope.removeSandwich = function(sandwich){
 		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
 		$scope.finalPrice -= sandwich.price;
-	}
+	};
 	
 });
 

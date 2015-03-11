@@ -4,7 +4,8 @@ app.config(function ($stateProvider) {
     $stateProvider.state('addsandwich', {
         url: '/addsandwich/:searched',
         controller: 'AddSandwichCtrl',
-        templateUrl: 'js/addsandwich/addsandwich.template.html'
+        templateUrl: 'js/addsandwich/addsandwich.template.html',
+        reloadOnSearch: false
     });
 
 });

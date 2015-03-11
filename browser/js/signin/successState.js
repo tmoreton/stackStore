@@ -5,14 +5,13 @@ app.config(function ($stateProvider) {
     	resolve: {
     		getLoggedInUser: function(AuthService, $state, $http){
             return AuthService.getLoggedInUser(true).then(function(user){
-              console.log("trying to resolve")
               if(user){
-                console.log(user)
-                return user
+                console.log(user);
+                return user;
               }else{
-                $state.go("login")
+                $state.go("login");
               }
-            })
+            });
     		}
 
     	},
@@ -24,7 +23,7 @@ app.config(function ($stateProvider) {
 
 app.controller('SuccessCtrl', function($scope, getLoggedInUser, $kookies, $state, SandwichesFactory){  
   
-  $scope.user = getLoggedInUser
+  $scope.user = getLoggedInUser;
   $scope.numOrders = $scope.user.orders.length;
   
   $scope.userLoggedIn = true; 
