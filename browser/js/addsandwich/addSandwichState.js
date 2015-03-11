@@ -19,7 +19,6 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 		}else{
 			$scope.sandwichSelection = sandwiches;
 		}
-
 		angular.forEach($scope.sandwichSelection, function (sandwich) {
 			//if it has an image gives a default image
 			sandwich.image = sandwich.image? sandwich.image : "http://fc00.deviantart.net/fs70/f/2012/178/c/e/sandwich_icon_by_yamshing-d553fv4.png";
@@ -32,7 +31,11 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 		});
 		$scope.searchResults = false;
 	});
-
+	$scope.onlyHighReviews = function(){
+		$scope.sandwichSelection = $scope.sandwichSelection.filter(function(sandwich){
+			return sandwich.averageReviewScore >= 4;
+		})
+	}
 
 	$scope.finalPrice = 0;
 
@@ -91,7 +94,6 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
       			sandwich.updated = false;
       		}, 2000);
       	}
-      	if()
       });
   	};
 
