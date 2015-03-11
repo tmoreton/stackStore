@@ -52,13 +52,11 @@ module.exports = function (app) {
 
     app.get('/auth/google/callback',
         function(req, res, next) {
-            console.log("In the 2nd router");
             next();
         },
         passport.authenticate('google', { failureRedirect: '/login' }),
         function (req, res) {
-            console.log("TEST");
-            res.redirect('http://127.0.0.1:1337/');
+            res.redirect('https://stackwich.herokuapp.com/');
         });
 
 };
