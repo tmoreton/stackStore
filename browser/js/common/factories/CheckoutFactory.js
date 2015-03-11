@@ -4,8 +4,6 @@ app.factory('CheckoutFactory', function(AuthService, $http, SandwichesFactory, $
             if(sandwich.exists){
                 //find object id and return it
                 return SandwichesFactory.findSandwichById(sandwich).then(function(sand){
-                    console.log("sand", sand);
-                    console.log("sandid", sand._id)
                     return sand._id;
                 })
             }else{

@@ -40,7 +40,6 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 		});
 
 		$q.all(sandwichPromises).then(function(sandwichIdArr){
-			console.log("sandwich promises convered into an array");
 			//use sandwich ids
 			//create new order with sandwichid array
 			//which will have a reference to the current user

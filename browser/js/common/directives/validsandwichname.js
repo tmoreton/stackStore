@@ -1,3 +1,4 @@
+'use strict';
 app.directive('sandwichnamevalidator', function(SandwichesFactory, $q){
 	return {
 		require: 'ngModel',
@@ -10,8 +11,6 @@ app.directive('sandwichnamevalidator', function(SandwichesFactory, $q){
 	    			var names = sandwichArr.map(function(sand) {
 	    				return sand.name;
 	    			});
-	    			console.log('names', names);
-	    			console.log('viewValue',viewValue);
    					if (names.indexOf(viewValue) > -1) {
    						console.log("you can't submit...");
    						return $q.reject("Not unqiue");
@@ -21,7 +20,7 @@ app.directive('sandwichnamevalidator', function(SandwichesFactory, $q){
    						return true;
    					}
     			});
-    		} 
+    		};
     	}
-	}
+	};
 });

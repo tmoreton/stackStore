@@ -13,9 +13,8 @@ app.config(function ($stateProvider) {
 app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFactory, $timeout, $stateParams) {
 	$scope.hideSubmitButton = true;
 	SandwichesFactory.getSandwiches().then(function(sandwiches) {
-		console.log("searchresults",$scope.searchResults)
 		if($stateParams.searched){
-			$scope.sandwichSelection = $scope.searchResults
+			$scope.sandwichSelection = $scope.searchResults;
 			$stateParams.searched = false;
 		}else{
 			$scope.sandwichSelection = sandwiches;
@@ -41,8 +40,8 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
 	if (storedCookies) {
 		$scope.sideSandwiches = storedCookies;
 		storedCookies.forEach(function(sandwich) {
-			$scope.finalPrice += sandwich.price
-		})
+			$scope.finalPrice += sandwich.price;
+		});
 	}
 	else {
 		$scope.sideSandwiches = [];

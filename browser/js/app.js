@@ -27,7 +27,7 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
     });
 
     $scope.userLogout = function() {
-        $kookies.remove("sandwiches")
+        $kookies.remove("sandwiches");
         $scope.user = null;
         $scope.userLoggedIn = false;
         return AuthService.logout();
@@ -39,7 +39,7 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
 
     $rootScope.$on(AUTH_EVENTS.logoutSuccess, function() {
         $scope.LogOutSuccess = "You've successfully logged out";
-    })
+    });
 
     $rootScope.$on(AUTH_EVENTS.loginSuccess, function() {
         AuthService.getLoggedInUser().then(function(user) {
@@ -51,11 +51,10 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
             }
         });
 
-    })
+    });
     
     AuthService.getLoggedInUser().then(function(user) {
         $scope.user = user;
-        // console.log(user);
         if(user) {
             $scope.userLoggedIn = true;
         } else {
@@ -67,7 +66,7 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
         SearchFactory.Search(string).then(function(results){
             $scope.searchResults = results;
         });
-    }
+    };
 
 });
 
@@ -78,10 +77,4 @@ app.config(function ($urlRouterProvider, $locationProvider) {
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
     $urlRouterProvider.otherwise('/');
 
-    // .module('myApp', ['angularPayments']).config(function($window) {
-    //     $window.Stripe.setPublishableKey('pk_test_OxISGD7GxGhZCOofus3QFoW8');
-    // });
-    // angular.config(function() {
-    //     window.Stripe.setPublishableKey('pk_test_OxISGD7GxGhZCOofus3QFoW8');
-    // })
 });

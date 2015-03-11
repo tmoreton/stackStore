@@ -17,7 +17,7 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 		$scope.sideSandwiches = storedCookies;
 		storedCookies.forEach(function(sandwich) {
 			$scope.finalPrice += sandwich.price;
-		})
+		});
 	}
 	else {
 		$scope.sideSandwiches = [];
@@ -33,13 +33,13 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
 		$scope.finalPrice -= sandwich.price;
 
-	}
+	};
 	
 	$scope.setFillings = function() {
 		$scope.fillings.forEach(function (filling) {
 			$scope.isSelectedFilling[filling] = false;
 		});
-	}
+	};
 
 	$scope.setFillings();
 	//$scope.selectedFillings = [ ];
@@ -60,7 +60,6 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 			}
 			$scope.finalPrice += $scope.sandwich.price;
 			
-			console.log($scope.sandwich);
 			$scope.sideSandwiches.push($scope.sandwich);
 			CookieFactory.setCookies($scope.sideSandwiches);
 			$scope.reset();
