@@ -91,6 +91,7 @@ app.controller('AddSandwichCtrl', function ($scope, SandwichesFactory, CookieFac
       			sandwich.updated = false;
       		}, 2000);
       	}
+      	if()
       });
   	};
 

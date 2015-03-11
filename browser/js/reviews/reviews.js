@@ -44,6 +44,7 @@ app.controller('ReviewCtrl', function ($scope, $state, SandwichesFactory, AuthSe
         $scope.selectedSandwich = "";
     };
 
+    
     $scope.addReview =  function() {
         if ($scope.addReviewForm.$valid) {
             SandwichesFactory.addReview($scope.sandwichReviewed,$scope.reviewText, $scope.currentUser, $scope.ratings[0].current).then( function(review) {
