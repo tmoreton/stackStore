@@ -6,7 +6,6 @@ app.config(function ($stateProvider) {
     		getLoggedInUser: function(AuthService, $state, $http){
             return AuthService.getLoggedInUser(true).then(function(user){
               if(user){
-                console.log(user);
                 return user;
               }else{
                 $state.go("login");

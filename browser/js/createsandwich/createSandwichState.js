@@ -26,9 +26,7 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 	$scope.fillings = FillingsFactory.fillings;
 	$scope.sandwich = {};
 	$scope.isSelectedFilling= {};
-	// CookieFactory.setCookies();
-	// $cookies.hello = undefined;
-	// console.log($cookies);
+
 	$scope.removeSandwich = function(sandwich){
 		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
 		$scope.finalPrice -= sandwich.price;
@@ -42,8 +40,6 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 	};
 
 	$scope.setFillings();
-	//$scope.selectedFillings = [ ];
-
 	$scope.addSandwich = function() {
 		if ($scope.createSandwich.$valid) {
 			$scope.sandwich.price = 6;
@@ -69,14 +65,11 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
             console.log("INVALID SUBMISSION");
         }
 
-	},
+	};
 
 	$scope.reset = function() {
 		$scope.createSandwich.submitted = false;
 		$scope.setFillings();
-		// $scope.sandwich.bread = "";
-		// $scope.sandwich.description = "";
-		// $scope.sandwich.name = "";
 		$scope.sandwich = {
 			bread: "",
 			description: "",
@@ -86,8 +79,3 @@ app.controller('CreateSandwichCtrl', function ($scope, SandwichesFactory, BreadF
 	};
 });
 
-// $scope.breadChosen =  function() {
-// 	    SandwichesFactory.addNewSandwich($scope.breadType).then( function(response) {
-// 	        console.log(response);
-// 	    });
-// 	}
