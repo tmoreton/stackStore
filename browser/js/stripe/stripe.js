@@ -29,14 +29,16 @@ app.controller('stripeController', function ($scope, $http, CookieFactory, AuthS
   }
   
   var total = 0;
-  cookies.forEach(function(sandwich) {
-    total += sandwich.price;
-    $scope.totalPrice = total;
-    if(!total) {
-      $scope.paymentSubmitted = false;
-    }
-  });
-
+  if ($scope.cookies) {
+    cookies.forEach(function(sandwich) {
+      total += sandwich.price;
+      $scope.totalPrice = total;
+      if(!total) {
+        $scope.paymentSubmitted = false;
+      }
+    });
+  }
+  
   $scope.submitPayment = function(status, response) {
     $http.post('/api/charge/', {token: response.id, total: total});
     $scope.paymentSubmitted = true;
