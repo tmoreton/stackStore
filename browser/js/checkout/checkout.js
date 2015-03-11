@@ -9,12 +9,14 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q, $rootScope) {
+app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthService, AddUserFactory, CheckoutFactory, $q) {
 	$scope.sideSandwiches = CookieFactory.getCookies();
 	$scope.finalPrice = 0;
-	$scope.sideSandwiches.forEach(function(sandwich) {
-		$scope.finalPrice += sandwich.price;
-	});
+	if ($scope.sideSandwiches) {
+		$scope.sideSandwiches.forEach(function(sandwich) {
+			$scope.finalPrice += sandwich.price;
+		});
+	}
 	$scope.hideCheckoutButton = true;
 	$scope.hideSubmitButton = true;
 	$scope.isAuthenticated = AuthService.isAuthenticated();
@@ -48,7 +50,7 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 				CheckoutFactory.addNewOrder(sandwichIdArr, user_id).then(function(){
 					$scope.sideSandwiches = [];
 					CookieFactory.removeAllCookies();
-					$rootScope.justOrdered = true;
+					$scope.justOrdered = true;
 	                $state.go('success');
 				});
 				

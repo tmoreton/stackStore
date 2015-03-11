@@ -46,6 +46,7 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
             $scope.user = user;
             if(user) {
                 $scope.userLoggedIn = true;
+                $scope.justOrdered = false;
             } else {
                 $scope.userLoggedIn = false;
             }
