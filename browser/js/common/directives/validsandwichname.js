@@ -12,11 +12,10 @@ app.directive('sandwichnamevalidator', function(SandwichesFactory, $q){
 	    				return sand.name;
 	    			});
    					if (names.indexOf(viewValue) > -1) {
-   						console.log("you can't submit...");
+   						console.log("you can't submit. sandwich name must be unique");
    						return $q.reject("Not unqiue");
    					}
    					else {
-   						console.log('This is unique');
    						return true;
    					}
     			});

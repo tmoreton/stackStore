@@ -2,21 +2,21 @@
   <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-md-4">
-      <form stripe:form="submitPayment" class="form">
+      <form stripe:form="submitPayment" class="form" name="stripeForm" novalidate>
         <fieldset>
-          <input class="form-control" ng-model="number" placeholder="Card Number" data-stripe="number" /><br>
+          <input class="form-control" name ="number" ng-model="card.number" placeholder="Card Number" data-stripe="number" /><br>
           <div class="col-md-1"></div>
           <div class="col-md-3">
-            <input class="form-control" type="text" placeholder="MM" ng-model="expmonth" size="2" data-stripe="exp-month"/>
+            <input class="form-control" name="month" type="text" placeholder="MM" ng-model="card.month" size="2" data-stripe="exp-month"/>
           </div>
           <div class="col-md-1">
             <strong>/</strong>
           </div>
           <div class="col-md-3">
-            <input class="form-control" type="text" placeholder="YY" ng-model="expyear" size="4" data-stripe="exp-year"/>
+            <input class="form-control" name ="year" type="text" placeholder="YY" ng-model="card.year" size="4" data-stripe="exp-year"/>
           </div>
           <div class="col-md-3">
-            <input class="form-control" ng-model="cvc" placeholder="CVC" data-stripe="cvc" /><br>
+            <input class="form-control" name="cvc" ng-model="card.cvc" placeholder="CVC" data-stripe="cvc" /><br>
           </div>
           <button class="btn btn-primary" type="submit" ng-click="customSubmit()">Submit</button>
         </fieldset>

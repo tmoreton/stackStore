@@ -33,35 +33,6 @@ app.controller('CheckoutCtrl', function ($scope, $state, CookieFactory, AuthServ
 	else{
 		$state.go("signup");
 	}
-	$scope.submitOrder = function(){
-		var sandwichPromises = [];
-		//send a sandwich for every sandwich in tray to database
-		$scope.sideSandwiches.forEach(function(sandwich){
-			sandwichPromises.push(CheckoutFactory.addNewSandwich(sandwich));
-			
-		});
-
-		$q.all(sandwichPromises).then(function(sandwichIdArr){
-			//use sandwich ids
-			//create new order with sandwichid array
-			//which will have a reference to the current user
-			$q.when($scope.userPromise).then(function(user){
-				var user_id = user._id;
-				CheckoutFactory.addNewOrder(sandwichIdArr, user_id).then(function(){
-					$scope.sideSandwiches = [];
-					CookieFactory.removeAllCookies();
-					$scope.justOrdered = true;
-	                $state.go('success');
-				});
-				
-                
-			})	;
-		});
-	};
-	$scope.removeSandwich = function(sandwich){
-		$scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
-		$scope.finalPrice -= sandwich.price;
-	};
 	
 });
 

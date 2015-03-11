@@ -17,19 +17,17 @@ app.controller('stripeController', function ($scope, $http, CookieFactory, AuthS
   $scope.isAuthenticated = AuthService.isAuthenticated();
   //show tray directive -done!
   $scope.userPromise = AuthService.getLoggedInUser();
+  $scope.card = {};
   //determine if logged in -done!
   if($scope.isAuthenticated){
     $scope.hideSubmitButton = false;
-    //if you are:
-    //grab your financial information with Stripe?
-    //needs to be done
   }
   else{
     $state.go("signup");
   }
   
   var total = 0;
-  if ($scope.cookies) {
+  if (cookies) {
     cookies.forEach(function(sandwich) {
       total += sandwich.price;
       $scope.totalPrice = total;
@@ -42,10 +40,13 @@ app.controller('stripeController', function ($scope, $http, CookieFactory, AuthS
   $scope.submitPayment = function(status, response) {
     $http.post('/api/charge/', {token: response.id, total: total});
     $scope.paymentSubmitted = true;
-    $scope.number = '';
-    $scope.cvc = '';
-    $scope.expmonth = '';
-    $scope.expyear = '';
+    $scope.card = {
+      number : '',
+      cvc : '',
+      expmonth : '',
+      expyear : '',
+    };
+ 
   };
 
   $scope.customSubmit = function() {
@@ -66,8 +67,9 @@ app.controller('stripeController', function ($scope, $http, CookieFactory, AuthS
           $scope.sideSandwiches = [];
           CookieFactory.removeAllCookies();
                   setTimeout(function() {
-                    $state.go('success')}, 
-                    5000);
+                    $scope.justOrdered = true;
+                    $state.go('success');
+                  }, 5000);
         });
         
                 
@@ -75,8 +77,10 @@ app.controller('stripeController', function ($scope, $http, CookieFactory, AuthS
     });
   };
 
+
   $scope.removeSandwich = function(sandwich){
     $scope.sideSandwiches = CookieFactory.removeCookie(sandwich);
+    $scope.finalPrice -= sandwich.price;
   };
 
 });

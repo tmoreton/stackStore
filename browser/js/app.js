@@ -18,12 +18,16 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
         { label: 'Reviews', state: 'reviews'}
 
     ];
-
+     $scope.justOrdered = false;
     $rootScope.$on('$stateChangeStart', function( event, toState, toParams, fromState, fromParams ) {
-        if (fromState.name === 'home')
+        if (toState === 'success' && fromState === 'checkout') {
+            $scope.justOrdered = true;
+        }
+        if (fromState.name === 'home') {
             $scope.LogOutSuccess = null; 
-        if (fromState.name === 'success')
+        } if (fromState.name === 'success') {
             $scope.justOrdered = false;
+        }
     });
 
     $scope.userLogout = function() {
@@ -46,7 +50,6 @@ app.controller('MainController', function ($scope, $rootScope, AuthService, AUTH
             $scope.user = user;
             if(user) {
                 $scope.userLoggedIn = true;
-                $scope.justOrdered = false;
             } else {
                 $scope.userLoggedIn = false;
             }
